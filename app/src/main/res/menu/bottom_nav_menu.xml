@@ -2,17 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/home_nav"
+        android:id="@+id/homeFragment"
         android:title="Home"
         android:icon="@drawable/house"
         android:iconTint="@color/black"/>
     <item
-        android:id="@+id/pet_nav"
+        android:id="@+id/petFragment"
         android:title="Pet"
         android:icon="@drawable/ic_pet"
         android:iconTint="@color/black"/>
     <item
-        android:id="@+id/shop_nav"
+        android:id="@+id/shopFragment"
         android:title="Shop"
         android:icon="@drawable/ic_shop"
         android:iconTint="@color/black"/>
