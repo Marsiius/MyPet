@@ -1,0 +1,20 @@
+---COMPONENTI---
+fragment Profilo Animale/i{
+    widget conta passi
+}
+fragment HOME{
+    Fragment Conta Passi
+    Fragment calendario
+    Fragment con mappe per trovare negozi nelle vicinanze
+    piccolo widget con i chilometri fatti settimanali o mensili
+    Fragment su cosa gli animali possono mangiare e cosa no
+    Fragment consigli sugli animali (es. quante volte portarli fuori e quanti km)\\
+    }
+fragment SETTINGS{
+    possibile darkmode
+    settare notifiche
+    informazioni sull'app e sviluppo
+}
+
+
+
