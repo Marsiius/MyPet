@@ -1,6 +1,9 @@
 ---COMPONENTI---
 fragment Profilo Animale/i{
     widget conta passi
+    -libretto sanitario vaccini (legalmente dovrebbe essere sempre portato dietro dal padrone,
+    se fosse in app sarebbe molto utile e comodo)
+    -segnare i vaccini del cane e le intolleranze
 }
 fragment HOME{
     Fragment Conta Passi
