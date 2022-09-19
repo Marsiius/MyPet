@@ -47,6 +47,7 @@ class MainActivity : AppCompatActivity() {
         toolbar = binding.toolbarTb
         setSupportActionBar(toolbar)
 
+
         navController.addOnDestinationChangedListener { _, destination, _ ->
             if(destination.id != R.id.petFragment && destination.id != R.id.homeFragment && destination.id != R.id.settingsFragment) {
                     supportActionBar?.show() // to show

@@ -12,21 +12,21 @@
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_homeFragment_to_blankFragment"
-            app:destination="@id/blankFragment" />
+            app:destination="@id/blankFragment" /><!-- Label che cambia nella toolbar di ogni fragment -->
     </fragment>
     <fragment
         android:id="@+id/petFragment"
         android:name="it.pdm.app.Pet"
         android:label="fragment_pet"
-        tools:layout="@layout/fragment_pet" />
+        tools:layout="@layout/fragment_pet" /><!-- Label che cambia nella toolbar di ogni fragment -->
     <fragment
         android:id="@+id/settingsFragment"
         android:name="it.pdm.app.Settings"
         android:label="fragment_shop"
-        tools:layout="@layout/fragment_settings" />
+        tools:layout="@layout/fragment_settings" /><!-- Label che cambia nella toolbar di ogni fragment -->
     <fragment
         android:id="@+id/blankFragment"
         android:name="it.pdm.app.BlankFragment"
-        android:label="fragment_blank"
-        tools:layout="@layout/fragment_blank" />
+        android:label="fragment"
+        tools:layout="@layout/fragment" /><!-- Label che cambia nella toolbar di ogni fragment -->
 </navigation>
