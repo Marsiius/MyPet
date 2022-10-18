@@ -5,7 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
+var clicked = false
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
@@ -35,6 +39,29 @@ class Pet : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_pet, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val fab = view.findViewById<FloatingActionButton>(R.id.fab)
+        val fabAdd = view.findViewById<FloatingActionButton>(R.id.fab_add)
+        val fabEdit = view.findViewById<FloatingActionButton>(R.id.fab_edit)
+        val fabDel = view.findViewById<FloatingActionButton>(R.id.fab_del)
+
+        fab.setOnClickListener{
+
+            if(!clicked){
+                fabAdd.visibility = View.VISIBLE
+                fabEdit.visibility = View.VISIBLE
+                fabDel.visibility = View.VISIBLE
+            }else{
+                fabAdd.visibility = View.INVISIBLE
+                fabEdit.visibility = View.INVISIBLE
+                fabDel.visibility = View.INVISIBLE
+            }
+            clicked = !clicked
+        }
     }
 
     companion object {
