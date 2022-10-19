@@ -1,6 +1,8 @@
 package it.pdm.app
 
+import android.graphics.Color
 import android.os.Bundle
+import android.transition.TransitionInflater
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -41,6 +43,7 @@ class Pet : Fragment() {
         return inflater.inflate(R.layout.fragment_pet, container, false)
     }
 
+    //implementazione FAB botton con override di onViewCreated
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -48,14 +51,19 @@ class Pet : Fragment() {
         val fabAdd = view.findViewById<FloatingActionButton>(R.id.fab_add)
         val fabEdit = view.findViewById<FloatingActionButton>(R.id.fab_edit)
         val fabDel = view.findViewById<FloatingActionButton>(R.id.fab_del)
-
+        val open = AnimationUtils.loadAnimation(context, R.anim.fab_open)
+        val forward = AnimationUtils.loadAnimation(context, R.anim.rotate_forward)
+        val backward = AnimationUtils.loadAnimation(context,R.anim.rotate_backward)
         fab.setOnClickListener{
-
             if(!clicked){
+                //fab.startAnimation(open)
+                fab.startAnimation(forward)
                 fabAdd.visibility = View.VISIBLE
                 fabEdit.visibility = View.VISIBLE
                 fabDel.visibility = View.VISIBLE
             }else{
+                //fab.startAnimation(close)
+                fab.startAnimation(backward)
                 fabAdd.visibility = View.INVISIBLE
                 fabEdit.visibility = View.INVISIBLE
                 fabDel.visibility = View.INVISIBLE
@@ -84,3 +92,9 @@ class Pet : Fragment() {
             }
     }
 }
+
+
+
+
+
+
