@@ -7,19 +7,13 @@
     android:background="#99f499"
     tools:context=".Pet">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:src="@drawable/ic_add"
-        app:backgroundTint="@color/white"
+        app:backgroundTint="#4CAF50"
         android:layout_margin="16dp"
         android:contentDescription="@string/app_name" />
 

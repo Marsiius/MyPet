@@ -1,6 +1,8 @@
 package it.pdm.app
 
+import android.content.res.ColorStateList
 import android.graphics.Color
+import android.graphics.Color.*
 import android.os.Bundle
 import android.transition.TransitionInflater
 import androidx.fragment.app.Fragment
@@ -23,16 +25,10 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class Pet : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+
     }
 
     override fun onCreateView(
@@ -54,16 +50,22 @@ class Pet : Fragment() {
         val open = AnimationUtils.loadAnimation(context, R.anim.fab_open)
         val forward = AnimationUtils.loadAnimation(context, R.anim.rotate_forward)
         val backward = AnimationUtils.loadAnimation(context,R.anim.rotate_backward)
+        val colorOpen = Color.rgb(255,0,0)
+        val colorClose = Color.rgb(76, 175, 80)
+
         fab.setOnClickListener{
             if(!clicked){
                 //fab.startAnimation(open)
                 fab.startAnimation(forward)
+                //fab.setRippleColor(WHITE) //Cambia il colore SOLO QUANDO viene premuto
+                fab.backgroundTintList = ColorStateList.valueOf(colorOpen)
                 fabAdd.visibility = View.VISIBLE
                 fabEdit.visibility = View.VISIBLE
                 fabDel.visibility = View.VISIBLE
             }else{
                 //fab.startAnimation(close)
                 fab.startAnimation(backward)
+                fab.backgroundTintList = ColorStateList.valueOf(colorClose)
                 fabAdd.visibility = View.INVISIBLE
                 fabEdit.visibility = View.INVISIBLE
                 fabDel.visibility = View.INVISIBLE
