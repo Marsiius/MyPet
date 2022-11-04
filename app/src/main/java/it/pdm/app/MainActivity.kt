@@ -33,8 +33,8 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
             if(destination.id != R.id.petFragment && destination.id != R.id.homeFragment && destination.id != R.id.settingsFragment) {
 
-                binding.bottomNavigationView.visibility = View.GONE
-            } else {
+                binding.bottomNavigationView.visibility = View.INVISIBLE //CON IL .GONE il fragment si bugga e sarà biaco
+            } else {                                                     //CON .INVISIBLE E .VISIBLE IL FRAGMENT FUNZIONA CORRETTAMENTE MA CI SONO DEI BUG VISIVI
 
                 binding.bottomNavigationView.visibility = View.VISIBLE
             }
