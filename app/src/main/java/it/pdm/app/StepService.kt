@@ -49,7 +49,7 @@ class StepService : Service(), SensorEventListener {
 
     override fun onSensorChanged(event: SensorEvent?) {
         if(running){
-            Log.d("Tracking","Sto trackando")
+            Log.d("Tracking","passo")
             // Toast.makeText(this, "Running", Toast.LENGTH_SHORT).show()
             //totalSteps = event!!.values[0]
             //val currentSteps = totalSteps.toInt() - previousTotalSteps.toInt()
