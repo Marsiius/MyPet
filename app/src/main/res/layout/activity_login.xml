@@ -93,7 +93,7 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sign un"
+        android:text="Sign up"
         android:textColor="@color/purple_700"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
