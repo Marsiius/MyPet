@@ -33,11 +33,13 @@
         <service
             android:name=".StepService"
             android:enabled="true"
-            android:exported="true" />
+            android:exported="true"
+            android:noHistory="true"/>
 
         <activity
             android:name=".SplashScreenActivity"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
