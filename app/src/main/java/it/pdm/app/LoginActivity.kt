@@ -16,6 +16,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var logbutton: Button
     private lateinit var signinTV: TextView
     private lateinit var mAuth: FirebaseAuth
+    private lateinit var fpasswordTV: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +32,25 @@ class LoginActivity : AppCompatActivity() {
         signinTV.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
+        }
+
+        fpasswordTV.setOnClickListener{
+            resetPassword()
+        }
+    }
+
+    private fun resetPassword() {
+        val email = emailTV.text.toString()
+        if(TextUtils.isEmpty(email)){
+            Toast.makeText(applicationContext, "Please enter email...", Toast.LENGTH_LONG).show()
+            return
+        } else{
+            mAuth.sendPasswordResetEmail(email).addOnSuccessListener {
+                Toast.makeText(applicationContext, "Please, check your email", Toast.LENGTH_LONG).show()
+            }
+                .addOnFailureListener{
+                    Toast.makeText(applicationContext, "ERROR: try again", Toast.LENGTH_LONG).show()
+                }
         }
     }
 
@@ -64,7 +84,8 @@ class LoginActivity : AppCompatActivity() {
     private fun initializeUI() {
         emailTV = findViewById(R.id.et_email)
         passwordTV = findViewById(R.id.et_password)
-        signinTV = findViewById(R.id.textView3)
+        signinTV = findViewById(R.id.tv_log_in)
         logbutton = findViewById(R.id.button_login)
+        fpasswordTV = findViewById(R.id.tv_forgot_password)
     }
 }
