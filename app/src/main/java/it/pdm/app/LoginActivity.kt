@@ -94,6 +94,14 @@ class LoginActivity : AppCompatActivity() {
         mAuth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener{
                 if (it.isSuccessful) {
+                    if(checkBox.isChecked){
+                        val sharedPreferences: SharedPreferences = getSharedPreferences(SHARED_PREFS,
+                            MODE_PRIVATE)
+                        val editor: SharedPreferences.Editor = sharedPreferences.edit()
+                        editor.putString("name", "true")
+                        editor.apply()
+                        Toast.makeText(applicationContext, "Welcome", Toast.LENGTH_LONG).show()
+                    }
                     Toast.makeText(applicationContext, "Login successful!", Toast.LENGTH_LONG).show()
                     val intent = Intent(this, MainActivity::class.java)
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
