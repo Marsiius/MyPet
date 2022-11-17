@@ -1,5 +1,7 @@
 package it.pdm.app
 
+import android.content.Intent
+import android.content.SharedPreferences
 import android.content.res.ColorStateList
 import android.graphics.Color.*
 import android.os.Bundle
@@ -8,7 +10,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.fragment_pet.*
+import kotlinx.android.synthetic.main.toolbar.*
 
 var clicked = false
 
@@ -23,6 +28,9 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class Pet : Fragment() {
+
+    private val SHARED_PREFS = "sharedPrefs"
+
     //override per la definizione della parte grafica/layout del fragment
     //questo metodo deve ritornare una vista oppure null (default)
     override fun onCreateView(
@@ -43,6 +51,22 @@ class Pet : Fragment() {
 
         fab.setOnClickListener{
             setFabAnimation()
+        }
+
+        ic_logout.setOnClickListener{
+            Toast.makeText(context, "LOG OUT", Toast.LENGTH_LONG).show()
+
+            val sharedPreferences: SharedPreferences? = context?.getSharedPreferences(SHARED_PREFS,
+                AppCompatActivity.MODE_PRIVATE
+            )
+            val editor: SharedPreferences.Editor? = sharedPreferences?.edit()
+            editor?.putString("name", "")
+            editor?.apply()
+
+            val intent: Intent = Intent(context, RegisterActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            startActivity(intent)
         }
     }
 

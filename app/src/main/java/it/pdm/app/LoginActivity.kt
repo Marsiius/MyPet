@@ -1,16 +1,20 @@
 package it.pdm.app
 
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
+import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
 
+    private val SHARED_PREFS = "sharedPrefs"
     private lateinit var emailTV: TextView
     private lateinit var passwordTV: TextView
     private lateinit var logbutton: Button
@@ -26,7 +30,10 @@ class LoginActivity : AppCompatActivity() {
 
         initializeUI()
 
+        checkbox()
+
         logbutton.setOnClickListener{
+            showProgressBar()
             loginUserAccount()
         }
         signinTV.setOnClickListener {
@@ -36,6 +43,23 @@ class LoginActivity : AppCompatActivity() {
 
         fpasswordTV.setOnClickListener{
             resetPassword()
+        }
+    }
+
+    private fun showProgressBar() {
+        progressBar.visibility = View.VISIBLE
+    }
+
+    private fun checkbox() {
+        val sharedPreferences: SharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE)
+        val check: String? = sharedPreferences.getString("name","")
+        if (check.equals("true")){
+            Toast.makeText(applicationContext, "Login successful!", Toast.LENGTH_LONG).show()
+            val intent = Intent(this, MainActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            startActivity(intent)
+            finish()
         }
     }
 
@@ -84,7 +108,7 @@ class LoginActivity : AppCompatActivity() {
     private fun initializeUI() {
         emailTV = findViewById(R.id.et_email)
         passwordTV = findViewById(R.id.et_password)
-        signinTV = findViewById(R.id.tv_log_in)
+        signinTV = findViewById(R.id.tv_signup)
         logbutton = findViewById(R.id.button_login)
         fpasswordTV = findViewById(R.id.tv_forgot_password)
     }

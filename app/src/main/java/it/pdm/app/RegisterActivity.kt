@@ -77,6 +77,6 @@ class RegisterActivity : AppCompatActivity() {
         passwordTV = findViewById(R.id.et_password)
         confirmPasswordTV = findViewById(R.id.et_confirm_password)
         regButton = findViewById(R.id.button_sign_up)
-        loginTV = findViewById(R.id.tv_log_in)
+        loginTV = findViewById(R.id.tv_signup)
     }
 }
