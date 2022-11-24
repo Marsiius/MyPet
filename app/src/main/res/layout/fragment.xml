@@ -1,18 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/purple_200"
-    tools:context=".BlankFragment">
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:background="@color/white"
+        tools:context=".BlankFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/stepsValue"
-        android:layout_centerInParent="true"
-        android:textSize="80sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/_0" />
+        <RelativeLayout
+            android:id="@+id/first_view"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginRight="0dp"
+            android:background="@drawable/bot_radius"
+            android:backgroundTint="@color/purple_200">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="300dp"
+                android:layout_height="180dp"
+                android:layout_centerInParent="true"
+                android:elevation="8dp"
+                app:cardCornerRadius="25dp" >
+
+            </androidx.cardview.widget.CardView>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/secondView"
+            android:layout_below="@+id/first_view"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginRight="0dp">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="300dp"
+                android:layout_height="180dp"
+                android:layout_centerInParent="true"
+                android:elevation="8dp"
+                app:cardCornerRadius="25dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/stepsValue_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:text="@string/_0"
+                        android:textSize="80sp" />
+                    <TextView
+                        android:id="@+id/stepText_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="100dp"
+                        android:text="PASSI FATTI"
+                        android:textSize="50sp" />
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </RelativeLayout>
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@id/secondView"
+        android:columnCount="2"
+        android:rowCount="1">
+
+        <Button
+            android:text="@string/avvia"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="5dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            />
+
+        <Button
+            android:text="@string/termina"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="10dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            />
+
+    </GridLayout>
 
 </RelativeLayout>
+
+
+
+
