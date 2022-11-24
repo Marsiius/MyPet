@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.fragment_pet.*
 import kotlinx.android.synthetic.main.toolbar.*
 
@@ -53,21 +54,29 @@ class Pet : Fragment() {
             setFabAnimation()
         }
 
-        ic_logout.setOnClickListener{
-            Toast.makeText(context, "LOG OUT", Toast.LENGTH_LONG).show()
-
-            val sharedPreferences: SharedPreferences? = context?.getSharedPreferences(SHARED_PREFS,
-                AppCompatActivity.MODE_PRIVATE
-            )
-            val editor: SharedPreferences.Editor? = sharedPreferences?.edit()
-            editor?.putString("name", "")
-            editor?.apply()
-
-            val intent: Intent = Intent(context, RegisterActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-            startActivity(intent)
+        fab_add.setOnClickListener {
+            findNavController().navigate(R.id.action_petFragment_to_signupPetFragment)
         }
+
+        ic_logout.setOnClickListener{
+            logout()
+        }
+    }
+
+    private fun logout() {
+        Toast.makeText(context, "LOG OUT", Toast.LENGTH_LONG).show()
+
+        val sharedPreferences: SharedPreferences? = context?.getSharedPreferences(SHARED_PREFS,
+            AppCompatActivity.MODE_PRIVATE
+        )
+        val editor: SharedPreferences.Editor? = sharedPreferences?.edit()
+        editor?.putString("name", "")
+        editor?.apply()
+
+        val intent: Intent = Intent(context, RegisterActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        startActivity(intent)
     }
 
     private fun setFabAnimation(){

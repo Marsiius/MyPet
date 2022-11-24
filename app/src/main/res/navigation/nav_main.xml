@@ -18,7 +18,11 @@
         android:id="@+id/petFragment"
         android:name="it.pdm.app.Pet"
         android:label="fragment_pet"
-        tools:layout="@layout/fragment_pet" /><!-- Label che cambia nella toolbar di ogni fragment -->
+        tools:layout="@layout/fragment_pet" >
+        <action
+            android:id="@+id/action_petFragment_to_signupPetFragment"
+            app:destination="@id/signupPetFragment" />
+    </fragment><!-- Label che cambia nella toolbar di ogni fragment -->
     <fragment
         android:id="@+id/settingsFragment"
         android:name="it.pdm.app.Settings"
@@ -28,5 +32,10 @@
         android:id="@+id/blankFragment"
         android:name="it.pdm.app.BlankFragment"
         android:label="fragment"
-        tools:layout="@layout/fragment" /><!-- Label che cambia nella toolbar di ogni fragment -->
+        tools:layout="@layout/fragment" />
+    <fragment
+        android:id="@+id/signupPetFragment"
+        android:name="it.pdm.app.SignupPetFragment"
+        android:label="fragment_signup_pet"
+        tools:layout="@layout/fragment_signup_pet" /><!-- Label che cambia nella toolbar di ogni fragment -->
 </navigation>

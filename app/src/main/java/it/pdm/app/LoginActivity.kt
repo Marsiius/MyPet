@@ -33,7 +33,6 @@ class LoginActivity : AppCompatActivity() {
         checkbox()
 
         logbutton.setOnClickListener{
-            showProgressBar()
             loginUserAccount()
         }
         signinTV.setOnClickListener {
@@ -44,10 +43,6 @@ class LoginActivity : AppCompatActivity() {
         fpasswordTV.setOnClickListener{
             resetPassword()
         }
-    }
-
-    private fun showProgressBar() {
-        progressBar.visibility = View.VISIBLE
     }
 
     private fun checkbox() {
@@ -81,6 +76,7 @@ class LoginActivity : AppCompatActivity() {
     private fun loginUserAccount() {
         val email = emailTV.text.toString()
         val password = passwordTV.text.toString()
+        progressBar.visibility = View.VISIBLE
 
         if (TextUtils.isEmpty(email)) {
             Toast.makeText(applicationContext, "Please enter email...", Toast.LENGTH_LONG).show()
@@ -109,6 +105,7 @@ class LoginActivity : AppCompatActivity() {
                     startActivity(intent)
                 } else {
                     Toast.makeText(applicationContext, "Login failed! Please try again later", Toast.LENGTH_LONG).show()
+                    progressBar.visibility = View.INVISIBLE
                 }
             }
     }
