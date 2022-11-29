@@ -15,6 +15,7 @@ import android.hardware.SensorEventListener
 import android.widget.Toast
 import it.pdm.app.databinding.FragmentBinding
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment.*
 import kotlinx.android.synthetic.main.fragment_settings.*
 
 class BlankFragment : Fragment(), SensorEventListener {
@@ -62,7 +63,7 @@ class BlankFragment : Fragment(), SensorEventListener {
     @SuppressLint("SetTextI18n")
     override fun onSensorChanged(event: SensorEvent) {
         if (running) {
-            stepsValue.setText("" + event.values[0])
+            stepsValue_tv.setText("" + event.values[0])
         }
     }
 

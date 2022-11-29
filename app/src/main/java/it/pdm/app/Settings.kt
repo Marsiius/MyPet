@@ -36,20 +36,9 @@ class Settings : Fragment(){
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setSteps()
-        startStepService()
-        stepsValue.text = "" + totalSteps
     }
 
-    private fun setSteps() {
-        val sharedPref = requireContext().getSharedPreferences("trackingPrefs", Context.MODE_PRIVATE)
-        totalSteps = sharedPref.getLong("steps", 0L)
-    }
 
-    private fun startStepService() {
-        val intent = Intent(context, StepService::class.java)
-        requireActivity().startService(intent)
-    }
 
 }
 

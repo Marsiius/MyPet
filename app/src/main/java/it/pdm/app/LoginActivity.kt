@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
@@ -46,16 +47,18 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun checkbox() {
-        val sharedPreferences: SharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE)
-        val check: String? = sharedPreferences.getString("name","")
-        if (check.equals("true")){
-            Toast.makeText(applicationContext, "Login successful!", Toast.LENGTH_LONG).show()
-            val intent = Intent(this, MainActivity::class.java)
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-            startActivity(intent)
-            finish()
-        }
+        if(mAuth != null){
+            val sharedPreferences: SharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE)
+            val check: String? = sharedPreferences.getString("name","")
+            if (check.equals("true")){
+                Toast.makeText(applicationContext, "Login successful!", Toast.LENGTH_LONG).show()
+                val intent = Intent(this, MainActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                startActivity(intent)
+                finish()
+            }
+        } else return
     }
 
     private fun resetPassword() {
@@ -76,7 +79,7 @@ class LoginActivity : AppCompatActivity() {
     private fun loginUserAccount() {
         val email = emailTV.text.toString()
         val password = passwordTV.text.toString()
-        progressBar.visibility = View.VISIBLE
+        progressBarLogin.visibility = View.VISIBLE
 
         if (TextUtils.isEmpty(email)) {
             Toast.makeText(applicationContext, "Please enter email...", Toast.LENGTH_LONG).show()
@@ -105,7 +108,7 @@ class LoginActivity : AppCompatActivity() {
                     startActivity(intent)
                 } else {
                     Toast.makeText(applicationContext, "Login failed! Please try again later", Toast.LENGTH_LONG).show()
-                    progressBar.visibility = View.INVISIBLE
+                    progressBarLogin.visibility = View.INVISIBLE
                 }
             }
     }
