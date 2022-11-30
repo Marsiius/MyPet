@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:title="Account"
+        app:icon="@drawable/ic_account_circle">
+
+        <Preference
+            android:key="user_email"
+            android:title="Email"
+            android:summary="user_email"
+            />
+
+        <Preference
+            android:key="reset_password"
+            android:title="Password"
+            android:summary="Click to change password with a link"
+            />
+    </PreferenceCategory>
+
+
+    <PreferenceCategory
+        android:title="Notifications"
+        app:icon="@drawable/ic_notification">
+
+        <SwitchPreferenceCompat
+            android:key="notifications"
+            android:title="Enable notifications"
+        />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="help_category"
+        android:icon="@drawable/ic_help"
+        android:title="Help">
+
+        <Preference
+            android:title="Send feedback"
+            android:summary="Report suggest new features"
+            />
+
+        <Preference
+            android:title="Contact us"
+            android:summary="mypet.mc@gmail.com"
+            />
+
+        <Preference
+            android:title="Delete account"
+            android:summary="All progress will be lost"
+            />
+    </PreferenceCategory>
+
+</PreferenceScreen>

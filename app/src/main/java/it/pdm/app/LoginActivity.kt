@@ -10,7 +10,6 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
@@ -47,18 +46,16 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun checkbox() {
-        if(mAuth != null){
-            val sharedPreferences: SharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE)
-            val check: String? = sharedPreferences.getString("name","")
-            if (check.equals("true")){
-                Toast.makeText(applicationContext, "Login successful!", Toast.LENGTH_LONG).show()
-                val intent = Intent(this, MainActivity::class.java)
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                startActivity(intent)
-                finish()
-            }
-        } else return
+        val sharedPreferences: SharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE)
+        val check: String? = sharedPreferences.getString("name","")
+        if (check.equals("true")){
+            Toast.makeText(applicationContext, "Login successful!", Toast.LENGTH_LONG).show()
+            val intent = Intent(this, MainActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            startActivity(intent)
+            finish()
+        }
     }
 
     private fun resetPassword() {
@@ -83,10 +80,12 @@ class LoginActivity : AppCompatActivity() {
 
         if (TextUtils.isEmpty(email)) {
             Toast.makeText(applicationContext, "Please enter email...", Toast.LENGTH_LONG).show()
+            progressBarLogin.visibility = View.INVISIBLE
             return
         }
         if (TextUtils.isEmpty(password)) {
             Toast.makeText(applicationContext, "Please enter password!", Toast.LENGTH_LONG).show()
+            progressBarLogin.visibility = View.INVISIBLE
             return
         }
 

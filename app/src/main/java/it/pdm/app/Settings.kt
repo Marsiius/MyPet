@@ -1,44 +1,51 @@
 package it.pdm.app
 
-import android.annotation.SuppressLint
-import android.hardware.SensorManager
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.content.Context
-import android.content.Intent
-import android.hardware.Sensor
-import android.hardware.SensorEvent
-import android.hardware.SensorEventListener
-import android.widget.TextView
-//import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
-import it.pdm.app.databinding.FragmentBinding
-import kotlinx.android.synthetic.main.fragment_settings.*
+import androidx.preference.Preference
+import androidx.preference.PreferenceFragmentCompat
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 
-//import kotlinx.android.synthetic.main.activity_main.*
-//import kotlinx.android.synthetic.main.fragment_settings.*
 
-class Settings : Fragment(){
+class Settings : PreferenceFragmentCompat() {
 
-    private var totalSteps : Long=0
+    private lateinit var mAuth: FirebaseAuth
+    private lateinit var user: FirebaseUser
+    private lateinit var prefUser: Preference
+    private lateinit var prefPassword: Preference
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_settings, container, false)
+    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
+        setPreferencesFromResource(R.xml.root_preferences, rootKey)
+
+        initializeUI()
+
+        setEmail()
+
+        prefPassword.onPreferenceClickListener = Preference.OnPreferenceClickListener {
+            resetPassword()
+            true
+        }
     }
 
-    @SuppressLint("SetTextI18n")
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    private fun setEmail(){
+            prefUser.summary = user.email.toString()
     }
 
+    private fun resetPassword() {
+        mAuth.sendPasswordResetEmail(user.email.toString()).addOnSuccessListener {
+            Toast.makeText(context, "Please, check your email", Toast.LENGTH_LONG).show()
+        }
+            .addOnFailureListener{
+                Toast.makeText(context, "ERROR: try again", Toast.LENGTH_LONG).show()
+            }
+    }
 
-
+    private fun initializeUI(){
+        mAuth = FirebaseAuth.getInstance()
+        user = FirebaseAuth.getInstance().currentUser!!
+        prefUser = findPreference("user_email")!!
+        prefPassword = findPreference("reset_password")!!
+    }
 }
 
