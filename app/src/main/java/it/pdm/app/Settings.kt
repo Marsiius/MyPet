@@ -1,5 +1,7 @@
 package it.pdm.app
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.widget.Toast
 import androidx.preference.Preference
@@ -14,6 +16,8 @@ class Settings : PreferenceFragmentCompat() {
     private lateinit var user: FirebaseUser
     private lateinit var prefUser: Preference
     private lateinit var prefPassword: Preference
+    private lateinit var prefFeedback: Preference
+    private lateinit var prefContactus: Preference
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.root_preferences, rootKey)
@@ -23,7 +27,17 @@ class Settings : PreferenceFragmentCompat() {
         setEmail()
 
         prefPassword.onPreferenceClickListener = Preference.OnPreferenceClickListener {
-            resetPassword()
+            val builder: AlertDialog.Builder = AlertDialog.Builder(context)
+                builder.setCancelable(true)
+                builder.setTitle("Reset password?")
+                builder.setMessage("You will receive an email with a link")
+                builder.setPositiveButton("Confirm"
+                    ) { _, _ -> resetPassword()}
+                builder.setNegativeButton(android.R.string.cancel
+                    ) { _, _ -> }
+
+            val dialog: AlertDialog = builder.create()
+                dialog.show()
             true
         }
     }
