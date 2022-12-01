@@ -1,7 +1,6 @@
 package it.pdm.app
 
 import android.app.AlertDialog
-import android.content.DialogInterface
 import android.os.Bundle
 import android.widget.Toast
 import androidx.preference.Preference
@@ -18,7 +17,7 @@ class Settings : PreferenceFragmentCompat() {
     private lateinit var prefPassword: Preference
     private lateinit var prefFeedback: Preference
     private lateinit var prefContactus: Preference
-
+    
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.root_preferences, rootKey)
 
