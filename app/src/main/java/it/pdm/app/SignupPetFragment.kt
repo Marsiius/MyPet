@@ -1,32 +1,18 @@
 package it.pdm.app
 
+import pets.Pet
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import kotlinx.android.synthetic.main.fragment_signup_pet.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [SignupPetFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class SignupPetFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
     }
 
     override fun onCreateView(
@@ -37,23 +23,35 @@ class SignupPetFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_signup_pet, container, false)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment SignupPetFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            SignupPetFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        button_sign_pet.setOnClickListener {
+            if (everythingOk()) {
+                signupPet()
             }
+        }
+    }
+
+    private fun everythingOk(): Boolean {
+        var ok = true
+        if (et_name.text.isEmpty())
+            ok = false
+        if (et_birthday.text.isEmpty())
+            ok = false
+        return ok
+    }
+
+    private fun signupPet() {
+        val pet = Pet(
+            et_name.text.toString(),
+            et_birthday.text.toString(),
+            et_weight.text.toString(),
+            et_height.text.toString(),
+            et_chipnumber.text.toString(),
+            et_gender.text.toString(),
+            et_breed.text.toString()
+        )
+        Toast.makeText(context, "HO CREATO L'ANIMALE ZIO TUUTAPPOST", Toast.LENGTH_LONG).show()
     }
 }

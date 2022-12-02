@@ -16,11 +16,12 @@
             android:id="@+id/tv_signuppet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
             android:fontFamily="@font/aclonica"
             android:text="@string/sign_up_your_pet"
             android:textColor="@color/Green"
-            android:layout_centerHorizontal="true"
-            android:textSize="35sp" />
+            android:textSize="35sp"
+            tools:ignore="TextContrastCheck" />
 
     </RelativeLayout>
 
@@ -43,12 +44,12 @@
             android:layout_margin="8dp"
             android:background="@drawable/tv_contour"
             android:backgroundTint="@color/white"
-            android:minHeight="48dp"
             android:hint="@string/name_pet"
             android:inputType="textPersonName"
+            android:minHeight="48dp"
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
-            />
+            tools:ignore="TextContrastCheck" />
 
         <EditText
             android:id="@+id/et_birthday"
@@ -57,12 +58,12 @@
             android:layout_margin="8dp"
             android:background="@drawable/tv_contour"
             android:backgroundTint="@color/white"
-            android:minHeight="48dp"
             android:hint="@string/birthday_g_mm_aaaa"
             android:inputType="date"
+            android:minHeight="48dp"
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
-            />
+            tools:ignore="TextContrastCheck" />
 
         <EditText
             android:id="@+id/et_weight"
@@ -71,12 +72,12 @@
             android:layout_margin="8dp"
             android:background="@drawable/tv_contour"
             android:backgroundTint="@color/white"
-            android:minHeight="48dp"
             android:hint="@string/weight_kg"
             android:inputType="numberDecimal"
+            android:minHeight="48dp"
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
-            />
+            tools:ignore="TextContrastCheck" />
 
         <EditText
             android:id="@+id/et_height"
@@ -85,12 +86,13 @@
             android:layout_margin="8dp"
             android:background="@drawable/tv_contour"
             android:backgroundTint="@color/white"
-            android:minHeight="48dp"
             android:hint="@string/height_cm"
             android:inputType="number"
+            android:minHeight="48dp"
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
-            />
+            tools:ignore="TextContrastCheck" />
+
         <EditText
             android:id="@+id/et_chipnumber"
             android:layout_width="match_parent"
@@ -98,12 +100,12 @@
             android:layout_margin="8dp"
             android:background="@drawable/tv_contour"
             android:backgroundTint="@color/white"
-            android:minHeight="48dp"
-            android:inputType="number"
             android:hint="@string/chip_number"
+            android:inputType="number"
+            android:minHeight="48dp"
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
-            />
+            tools:ignore="TextContrastCheck" />
 
         <EditText
             android:id="@+id/et_gender"
@@ -112,12 +114,12 @@
             android:layout_margin="8dp"
             android:background="@drawable/tv_contour"
             android:backgroundTint="@color/white"
-            android:minHeight="48dp"
             android:hint="@string/gender_pet"
             android:inputType="text"
+            android:minHeight="48dp"
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
-            />
+            tools:ignore="TextContrastCheck" />
 
         <EditText
             android:id="@+id/et_breed"
@@ -126,20 +128,24 @@
             android:layout_margin="8dp"
             android:background="@drawable/tv_contour"
             android:backgroundTint="@color/white"
-            android:minHeight="48dp"
             android:hint="@string/breed"
             android:inputType="text"
+            android:minHeight="48dp"
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
-            />
+            tools:ignore="TextContrastCheck" />
     </GridLayout>
 
     <Button
+        android:id="@+id/button_sign_pet"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/grid_layout"
-        android:layout_margin="16dp"
-        android:text="@string/sign_up"
-        android:backgroundTint="@color/blue"/>
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/blue"
+        android:text="@string/sign_up" />
 
 </RelativeLayout>
