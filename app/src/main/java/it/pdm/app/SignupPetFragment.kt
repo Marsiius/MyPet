@@ -9,16 +9,20 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.fragment_signup_pet.*
 
 class SignupPetFragment : Fragment() {
 
+    private lateinit var database: FirebaseDatabase
+    private lateinit var firebaseUser: FirebaseUser
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
     }
 
     override fun onCreateView(
@@ -32,10 +36,13 @@ class SignupPetFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+        initializeUI()
+
+
         button_sign_pet.setOnClickListener {
-            if (everythingOk()) {
-                signupPet()
-            }
+            writeUser()
+            everythingOk()
         }
     }
 
@@ -58,23 +65,17 @@ class SignupPetFragment : Fragment() {
             et_gender.text.toString(),
             et_breed.text.toString()
         )
-        val id: String? = FirebaseAuth.getInstance().currentUser?.uid
-        val email: String? = FirebaseAuth.getInstance().currentUser?.email
-        val user: User = User(email)
-        val database = Firebase.database.getReference("https://my-pet-application-default-rtdb.europe-west1.firebasedatabase.app/")
-        if (id != null) {
-            database.child("users").child(id).setValue(user)
-            Toast.makeText(context, "HO SCRITTO NEL DB", Toast.LENGTH_LONG).show()
-
-        }
-        Toast.makeText(context, "HO CREATO L'ANIMALE ZIO TUUTAPPOST", Toast.LENGTH_LONG).show()
     }
 
     private fun writeUser(){
-        TODO()
+        val ref = database.getReference("users")
+        val user = User(firebaseUser.email.toString())
+        ref.child(firebaseUser.uid).setValue(user)
+        Toast.makeText(context, "REGISTRATO NEL DB", Toast.LENGTH_LONG).show()
     }
 
     private fun initializeUI(){
-        TODO()
+        database = Firebase.database
+        firebaseUser = FirebaseAuth.getInstance().currentUser!!
     }
 }
