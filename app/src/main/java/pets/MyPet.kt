@@ -1,6 +1,6 @@
 package pets
 
-class Pet(
+class MyPet(
     val name: String,
     val birthday: String,
     val weight: String,

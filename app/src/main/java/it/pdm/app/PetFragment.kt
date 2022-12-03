@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.toolbar.*
 
 var clicked = false
 
-class PetFragment : Fragment() {
+class Pet : Fragment() {
 
     private val SHARED_PREFS = "sharedPrefs"
 
