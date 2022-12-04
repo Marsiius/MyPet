@@ -37,5 +37,9 @@
         android:id="@+id/signupPetFragment"
         android:name="it.pdm.app.SignupPetFragment"
         android:label="fragment_signup_pet"
-        tools:layout="@layout/fragment_signup_pet" /><!-- Label che cambia nella toolbar di ogni fragment -->
+        tools:layout="@layout/fragment_signup_pet" >
+        <action
+            android:id="@+id/action_signupPetFragment_to_petFragment"
+            app:destination="@id/petFragment" />
+    </fragment><!-- Label che cambia nella toolbar di ogni fragment -->
 </navigation>
