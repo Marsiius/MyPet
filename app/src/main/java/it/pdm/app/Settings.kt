@@ -1,8 +1,11 @@
 package it.pdm.app
 
 import android.app.AlertDialog
+import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.google.firebase.auth.FirebaseAuth
@@ -10,11 +13,12 @@ import com.google.firebase.auth.FirebaseUser
 
 
 class Settings : PreferenceFragmentCompat() {
-
+    private val SHARED_PREFS = "sharedPrefs"
     private lateinit var mAuth: FirebaseAuth
     private lateinit var user: FirebaseUser
     private lateinit var prefUser: Preference
     private lateinit var prefPassword: Preference
+    private lateinit var prefLogout: Preference
     private lateinit var prefSubscribe: Preference
     
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
@@ -36,6 +40,11 @@ class Settings : PreferenceFragmentCompat() {
 
             val dialog: AlertDialog = builder.create()
                 dialog.show()
+            true
+        }
+
+        prefLogout.onPreferenceClickListener = Preference.OnPreferenceClickListener {
+            logout()
             true
         }
 
@@ -66,11 +75,28 @@ class Settings : PreferenceFragmentCompat() {
             }
     }
 
+    private fun logout() {
+        Toast.makeText(context, "LOG OUT", Toast.LENGTH_LONG).show()
+
+        val sharedPreferences: SharedPreferences? = context?.getSharedPreferences(SHARED_PREFS,
+            AppCompatActivity.MODE_PRIVATE
+        )
+        val editor: SharedPreferences.Editor? = sharedPreferences?.edit()
+        editor?.putString("name", "")
+        editor?.apply()
+
+        val intent: Intent = Intent(context, RegisterActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        startActivity(intent)
+    }
+
     private fun initializeUI(){
         mAuth = FirebaseAuth.getInstance()
         user = FirebaseAuth.getInstance().currentUser!!
         prefUser = findPreference("user_email")!!
         prefPassword = findPreference("reset_password")!!
+        prefLogout = findPreference("logout")!!
         prefSubscribe = findPreference("delete_account")!!
     }
 }

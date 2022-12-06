@@ -1,7 +1,5 @@
 package it.pdm.app
 
-import android.content.Intent
-import android.content.SharedPreferences
 import android.content.res.ColorStateList
 import android.graphics.Color.*
 import android.os.Bundle
@@ -10,20 +8,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.fragment_pet.*
-import kotlinx.android.synthetic.main.toolbar.*
 
 var clicked = false
 
 class Pet : Fragment() {
 
-    private val SHARED_PREFS = "sharedPrefs"
-
-    //override per la definizione della parte grafica/layout del fragment
-    //questo metodo deve ritornare una vista oppure null (default)
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -33,10 +24,6 @@ class Pet : Fragment() {
         return inflater.inflate(R.layout.fragment_pet, container, false)
     }
 
-    //implementazione FAB botton con override di onViewCreated
-    //Viene chiamato dopo onCreateView() e viene utilizzato principalmente per le inizializzazioni-
-    //-finali (ad esempio, la modifica degli elementi dell'interfaccia utente);-
-    //-questo è deprecato dal livello API 28.
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -47,26 +34,6 @@ class Pet : Fragment() {
         fab_add.setOnClickListener {
             findNavController().navigate(R.id.action_petFragment_to_signupPetFragment)
         }
-
-        ic_logout.setOnClickListener{
-            logout()
-        }
-    }
-
-    private fun logout() {
-        Toast.makeText(context, "LOG OUT", Toast.LENGTH_LONG).show()
-
-        val sharedPreferences: SharedPreferences? = context?.getSharedPreferences(SHARED_PREFS,
-            AppCompatActivity.MODE_PRIVATE
-        )
-        val editor: SharedPreferences.Editor? = sharedPreferences?.edit()
-        editor?.putString("name", "")
-        editor?.apply()
-
-        val intent: Intent = Intent(context, RegisterActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-        startActivity(intent)
     }
 
     private fun setFabAnimation(){

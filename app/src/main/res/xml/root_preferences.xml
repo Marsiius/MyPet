@@ -17,6 +17,12 @@
             android:title="Password"
             android:summary="Click to change password with a link"
             />
+
+        <Preference
+            android:key="logout"
+            android:title="Logout"
+            android:summary="Click to logout"
+            />
     </PreferenceCategory>
 
 
@@ -49,7 +55,6 @@
                 <extra
                     android:name="android.intent.extra.SUBJECT"
                     android:value="Feedback"/>
-
             </intent>
             
         </Preference>
@@ -57,7 +62,7 @@
         <Preference
             android:key="contact_us"
             android:title="Contact us"
-            android:summary="mypet.mc@gmail.com">
+            android:summary="mypet.mc@gmail.com"/>
 
             <intent
                 android:action="android.intent.action.SEND"
@@ -65,10 +70,7 @@
                 <extra
                     android:name="android.intent.extra.EMAIL"
                     android:value="mailto@email.com"/>
-
             </intent>
-
-        </Preference>
 
         <Preference
             android:key="delete_account"
