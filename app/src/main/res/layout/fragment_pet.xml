@@ -8,8 +8,8 @@
     tools:context=".Pet">
 
     <include
-        layout="@layout/toolbar">
-    </include>
+        android:id="@+id/include"
+        layout="@layout/toolbar" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
@@ -20,7 +20,8 @@
         android:src="@drawable/ic_add"
         app:backgroundTint="#4CAF50"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="ImageContrastCheck" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_add"
@@ -64,5 +65,28 @@
         app:layout_constraintEnd_toEndOf="@+id/fab_edit"
         app:layout_constraintStart_toStartOf="@+id/fab_edit"
         app:backgroundTint="@color/white"/>
+
+    <ListView
+        android:id="@+id/list_view"
+        android:layout_width="match_parent"
+        android:layout_height="360dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        tools:listitem="@android:layout/simple_selectable_list_item" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="242dp"
+        android:src="@drawable/app_icon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include"
+        app:layout_constraintVertical_bias="0.01"
+        android:contentDescription="picture_pet" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

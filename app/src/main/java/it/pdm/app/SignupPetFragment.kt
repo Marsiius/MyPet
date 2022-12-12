@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -42,6 +43,11 @@ class SignupPetFragment : Fragment() {
             if(everythingOk()){
                 writeUser()
                 writePet()
+                Toast.makeText(context,"Successful!", Toast.LENGTH_LONG)
+                    .show()
+            }else {
+                Toast.makeText(context,"Please check name and birthday", Toast.LENGTH_LONG)
+                    .show()
             }
         }
     }
@@ -58,7 +64,7 @@ class SignupPetFragment : Fragment() {
     private fun writeUser(){
         val ref = database.getReference("users")
         val user = User(email)
-        ref.child(uId).setValue(user)
+        ref.child(uId)
     }
 
     private fun writePet() {
@@ -71,9 +77,7 @@ class SignupPetFragment : Fragment() {
             et_gender.text.toString(),
             et_breed.text.toString()
         )
-
-        val ref = database.getReference("users")
-        ref.child(uId).child("pets").setValue(pet)
+        FirebaseRealtimeDBHelper.dbRef.child(uId).child("pets").setValue(pet)
         findNavController().navigate(R.id.action_signupPetFragment_to_petFragment)
     }
 
