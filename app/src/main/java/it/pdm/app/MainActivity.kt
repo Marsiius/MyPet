@@ -27,8 +27,6 @@ class MainActivity : AppCompatActivity() {
         navController = Navigation.findNavController(this, R.id.activity_main_nav_host_fragment)
         setupWithNavController(binding.bottomNavigationView, navController)
 
-
-
         //quando non siamo nei fragment principali la navbar viene nascosta
         navController.addOnDestinationChangedListener { _, destination, _ ->
             if(destination.id != R.id.petFragment && destination.id != R.id.homeFragment && destination.id != R.id.settingsFragment) {
@@ -45,8 +43,7 @@ class MainActivity : AppCompatActivity() {
         //findViewById<Toolbar>(R.id.toolbarTb).setupWithNavController(navController, config)
 
         toolbar = binding.toolbarTb
-        setSupportActionBar(toolbar)
-
+        //setSupportActionBar(toolbar)
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             if(destination.id != R.id.petFragment && destination.id != R.id.homeFragment && destination.id != R.id.settingsFragment) {

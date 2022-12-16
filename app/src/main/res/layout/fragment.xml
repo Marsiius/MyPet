@@ -78,6 +78,7 @@
         android:rowCount="1">
 
         <Button
+            android:id="@+id/btn_start"
             android:text="@string/avvia"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="5dp"
@@ -86,6 +87,7 @@
             />
 
         <Button
+            android:id="@+id/btn_stop"
             android:text="@string/termina"
             android:layout_marginStart="5dp"
             android:layout_marginEnd="10dp"

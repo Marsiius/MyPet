@@ -11,6 +11,7 @@ import android.content.Context
 import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
+import android.util.Log
 //import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import it.pdm.app.databinding.FragmentBinding
@@ -21,6 +22,9 @@ import kotlinx.android.synthetic.main.fragment_settings.*
 class BlankFragment : Fragment(), SensorEventListener {
 
     var running = false
+    var starting = false
+    var lastStep = 0
+    var step = 0
     var sensorManager: SensorManager? = null
     private lateinit var binding: FragmentBinding
 
@@ -33,12 +37,18 @@ class BlankFragment : Fragment(), SensorEventListener {
 
     }
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
         sensorManager = activity?.getSystemService(Context.SENSOR_SERVICE) as SensorManager
+    }
+
+    private fun startingBtn(){
+        starting = true
+    }
+
+    private fun stopBtn(){
+        starting = false
     }
 
     override fun onResume() {
@@ -52,6 +62,7 @@ class BlankFragment : Fragment(), SensorEventListener {
             sensorManager?.registerListener(this, stepsSensor, SensorManager.SENSOR_DELAY_UI)
         }
     }
+
     override fun onPause() {
         super.onPause()
         running = false
@@ -64,7 +75,17 @@ class BlankFragment : Fragment(), SensorEventListener {
     override fun onSensorChanged(event: SensorEvent) {
         if (running) {
             stepsValue_tv.setText("" + event.values[0])
+            lastStep = event.values[0].toInt()
+            Log.d("step", lastStep.toString())
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        running = false
+        Toast.makeText(context, "stoppato", Toast.LENGTH_SHORT).show()
+        for(i in 1..10000){
+        }
+        Log.d("stop", lastStep.toString())
+    }
 }
