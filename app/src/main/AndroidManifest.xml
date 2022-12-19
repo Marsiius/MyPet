@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="it.pdm.app">
 
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,6 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.App"
         tools:targetApi="31">
+
+        <service android:name=".StepService"/>
+
         <activity
             android:name=".LoginActivity"
             android:exported="false"
@@ -29,12 +34,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
-        <service
-            android:name=".StepService"
-            android:enabled="true"
-            android:exported="true"
-            android:noHistory="true"/>
 
         <activity
             android:name=".SplashScreenActivity"
