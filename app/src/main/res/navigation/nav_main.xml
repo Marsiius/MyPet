@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_petFragment_to_signupPetFragment"
             app:destination="@id/signupPetFragment" />
+        <action
+            android:id="@+id/action_petFragment_to_petInformationFragment"
+            app:destination="@id/petInformationFragment" />
     </fragment><!-- Label che cambia nella toolbar di ogni fragment -->
     <fragment
         android:id="@+id/settingsFragment"
@@ -41,5 +44,10 @@
         <action
             android:id="@+id/action_signupPetFragment_to_petFragment"
             app:destination="@id/petFragment" />
-    </fragment><!-- Label che cambia nella toolbar di ogni fragment -->
+    </fragment>
+    <fragment
+        android:id="@+id/petInformationFragment"
+        android:name="it.pdm.app.PetInformationFragment"
+        android:label="fragment_pet_information"
+        tools:layout="@layout/fragment_pet_information" /><!-- Label che cambia nella toolbar di ogni fragment -->
 </navigation>

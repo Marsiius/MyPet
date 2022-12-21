@@ -66,17 +66,6 @@
         app:layout_constraintStart_toStartOf="@+id/fab_edit"
         app:backgroundTint="@color/white"/>
 
-    <ListView
-        android:id="@+id/list_view"
-        android:layout_width="match_parent"
-        android:layout_height="360dp"
-        android:clickable="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        tools:listitem="@android:layout/simple_selectable_list_item" />
-
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
@@ -88,5 +77,19 @@
         app:layout_constraintTop_toBottomOf="@+id/include"
         app:layout_constraintVertical_bias="0.01"
         android:contentDescription="picture_pet" />
+
+    <Button
+        android:id="@+id/pet_name_button"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:text="pet_name"
+        android:backgroundTint="@color/white_ghost"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.125" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -34,6 +34,10 @@ class Pet : Fragment() {
         fab_add.setOnClickListener {
             findNavController().navigate(R.id.action_petFragment_to_signupPetFragment)
         }
+
+        pet_name_button.setOnClickListener {
+            findNavController().navigate(R.id.action_petFragment_to_petInformationFragment)
+        }
     }
 
     private fun setFabAnimation(){
