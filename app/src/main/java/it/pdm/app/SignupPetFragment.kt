@@ -62,7 +62,6 @@ class SignupPetFragment : Fragment() {
 
     private fun writeUser(){
         val ref = database.getReference("users")
-        val user = User(email)
         ref.child(uId)
     }
 

@@ -1,5 +1,6 @@
 package it.pdm.app
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Intent
 import android.content.SharedPreferences
@@ -21,6 +22,7 @@ class Settings : PreferenceFragmentCompat() {
     private lateinit var prefLogout: Preference
     private lateinit var prefSubscribe: Preference
     
+    @SuppressLint("SuspiciousIndentation")
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.root_preferences, rootKey)
 

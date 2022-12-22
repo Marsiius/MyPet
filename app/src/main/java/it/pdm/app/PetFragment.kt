@@ -8,12 +8,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.fragment_pet.*
 
 var clicked = false
 
 class Pet : Fragment() {
+
+    private lateinit var user: FirebaseUser
+    private lateinit var uId: String
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,6 +36,10 @@ class Pet : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        init()
+
+        setNamePet()
+
         fab.setOnClickListener{
             setFabAnimation()
         }
@@ -38,6 +51,36 @@ class Pet : Fragment() {
         pet_name_button.setOnClickListener {
             findNavController().navigate(R.id.action_petFragment_to_petInformationFragment)
         }
+    }
+
+    private fun setNamePet(){
+        FirebaseRealtimeDBHelper.dbRef.child(uId).child("pets").child("name")
+            .addValueEventListener(object: ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()){
+                    val data = snapshot.value.toString()
+                    pet_name_button.text = data
+                    setVisibility()
+                }else{
+                    Toast.makeText(context, "Non esiste nessun dato", Toast.LENGTH_LONG)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+    }
+
+    private fun init(){
+        user = FirebaseAuth.getInstance().currentUser!!
+        uId = user.uid
+    }
+
+    private fun setVisibility(){
+        pet_picture.visibility = View.VISIBLE
+        pet_name_button.visibility = View.VISIBLE
     }
 
     private fun setFabAnimation(){

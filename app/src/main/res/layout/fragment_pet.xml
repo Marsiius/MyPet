@@ -11,6 +11,34 @@
         android:id="@+id/include"
         layout="@layout/toolbar" />
 
+    <ImageView
+        android:id="@+id/pet_picture"
+        android:layout_width="match_parent"
+        android:layout_height="242dp"
+        android:visibility="invisible"
+        android:src="@drawable/app_icon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include"
+        app:layout_constraintVertical_bias="0.01"
+        android:contentDescription="picture_pet" />
+
+    <Button
+        android:id="@+id/pet_name_button"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:backgroundTint="@color/white_ghost"
+        android:visibility="invisible"
+        android:text="pet_name"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pet_picture"
+        app:layout_constraintVertical_bias="0.125" />
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
@@ -65,31 +93,5 @@
         app:layout_constraintEnd_toEndOf="@+id/fab_edit"
         app:layout_constraintStart_toStartOf="@+id/fab_edit"
         app:backgroundTint="@color/white"/>
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="242dp"
-        android:src="@drawable/app_icon"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include"
-        app:layout_constraintVertical_bias="0.01"
-        android:contentDescription="picture_pet" />
-
-    <Button
-        android:id="@+id/pet_name_button"
-        android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:text="pet_name"
-        android:backgroundTint="@color/white_ghost"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.125" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
