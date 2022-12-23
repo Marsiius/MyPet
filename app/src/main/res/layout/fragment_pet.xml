@@ -7,37 +7,170 @@
     android:background="@color/white"
     tools:context=".Pet">
 
-    <include
-        android:id="@+id/include"
-        layout="@layout/toolbar" />
-
     <ImageView
         android:id="@+id/pet_picture"
         android:layout_width="match_parent"
         android:layout_height="242dp"
-        android:visibility="invisible"
+        android:contentDescription="@string/picture_pet"
         android:src="@drawable/app_icon"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include"
-        app:layout_constraintVertical_bias="0.01"
-        android:contentDescription="picture_pet" />
-
-    <Button
-        android:id="@+id/pet_name_button"
-        android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:backgroundTint="@color/white_ghost"
         android:visibility="invisible"
-        android:text="pet_name"
-        android:textColor="@color/black"
-        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pet_picture"
-        app:layout_constraintVertical_bias="0.125" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.01" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/rl_pet_fragment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pet_picture">
+
+
+        <TextView
+            android:id="@+id/tv_pet_name"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:background="@drawable/countor_signuppet"
+            android:backgroundTint="@color/Green"
+            android:fontFamily="casual"
+            android:gravity="center"
+            android:text="@string/pet_name"
+            android:textColor="@color/white_ghost"
+            android:textSize="40sp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_pet_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:background="@drawable/top_radius"
+        android:backgroundTint="@color/white_ghost"
+        android:elevation="3dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pet_picture">
+
+        <GridLayout
+            android:id="@+id/grid_layout"
+            android:layout_width="340dp"
+            android:layout_height="250dp"
+            android:layout_centerHorizontal="true"
+            android:backgroundTint="@color/white_ghost"
+            android:layout_marginTop="25dp"
+            android:background="@color/white"
+            android:columnCount="2"
+            android:rowCount="3">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_information"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_margin="5dp"
+                android:clickable="true"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="25dp"
+                app:cardElevation="3dp"
+                android:focusable="true">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/ic_document" />
+
+                </RelativeLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_medical"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_margin="5dp"
+                android:clickable="true"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="25dp"
+                app:cardElevation="3dp"
+                android:focusable="true">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/ic_medical" />
+
+                </RelativeLayout>
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/camera"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_margin="5dp"
+                android:clickable="true"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="25dp"
+                app:cardElevation="3dp"
+                android:focusable="true">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/ic_camera" />
+
+                </RelativeLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/Card4"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                android:layout_margin="5dp"
+                android:clickable="true"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="25dp"
+                app:cardElevation="3dp"
+                android:focusable="true"/>
+
+        </GridLayout>
+
+
+    </RelativeLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
@@ -81,13 +214,13 @@
         app:backgroundTint="@color/white"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_del"
+        android:id="@+id/fab_camera"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         app:fabSize="mini"
         android:contentDescription="@string/app_name"
-        android:src="@drawable/ic_delete"
+        android:src="@drawable/ic_camera"
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/fab_edit"
         app:layout_constraintEnd_toEndOf="@+id/fab_edit"

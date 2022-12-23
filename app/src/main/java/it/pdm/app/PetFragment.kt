@@ -1,8 +1,10 @@
 package it.pdm.app
 
+import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Color.*
 import android.os.Bundle
+import android.provider.MediaStore
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -48,7 +50,13 @@ class Pet : Fragment() {
             findNavController().navigate(R.id.action_petFragment_to_signupPetFragment)
         }
 
-        pet_name_button.setOnClickListener {
+        fab_camera.setOnClickListener {
+            val intent = Intent()
+            intent.action = MediaStore.ACTION_IMAGE_CAPTURE
+            startActivity(intent)
+        }
+
+        card_information.setOnClickListener {
             findNavController().navigate(R.id.action_petFragment_to_petInformationFragment)
         }
     }
@@ -59,7 +67,7 @@ class Pet : Fragment() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
                     val data = snapshot.value.toString()
-                    pet_name_button.text = data
+                    tv_pet_name.text = data
                     setVisibility()
                 }else{
                     Toast.makeText(context, "Non esiste nessun dato", Toast.LENGTH_LONG)
@@ -80,7 +88,8 @@ class Pet : Fragment() {
 
     private fun setVisibility(){
         pet_picture.visibility = View.VISIBLE
-        pet_name_button.visibility = View.VISIBLE
+        tv_pet_name.visibility = View.VISIBLE
+        rl_pet_fragment.visibility = View.VISIBLE
     }
 
     private fun setFabAnimation(){
@@ -89,13 +98,13 @@ class Pet : Fragment() {
             fab.backgroundTintList = ColorStateList.valueOf(rgb(255,0,0))
             fab_add.visibility = View.VISIBLE
             fab_edit.visibility = View.VISIBLE
-            fab_del.visibility = View.VISIBLE
+            fab_camera.visibility = View.VISIBLE
         }else{
             fab.startAnimation(AnimationUtils.loadAnimation(context, R.anim.rotate_backward))
             fab.backgroundTintList = ColorStateList.valueOf(rgb(76,175,80))
             fab_add.visibility = View.INVISIBLE
             fab_edit.visibility = View.INVISIBLE
-            fab_del.visibility = View.INVISIBLE
+            fab_camera.visibility = View.INVISIBLE
         }
         clicked = !clicked
     }
