@@ -1,7 +1,13 @@
 package it.pdm.app
 
+import android.Manifest
+import android.app.Activity
+import android.app.Activity.RESULT_OK
+import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.content.res.ColorStateList
+import android.graphics.Bitmap
 import android.graphics.Color.*
 import android.os.Bundle
 import android.provider.MediaStore
@@ -11,6 +17,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -42,18 +49,16 @@ class Pet : Fragment() {
 
         setNamePet()
 
-        fab.setOnClickListener{
+        /*fab.setOnClickListener{
             setFabAnimation()
-        }
+        }*/
 
-        fab_add.setOnClickListener {
+        fab.setOnClickListener {
             findNavController().navigate(R.id.action_petFragment_to_signupPetFragment)
         }
 
-        fab_camera.setOnClickListener {
-            val intent = Intent()
-            intent.action = MediaStore.ACTION_IMAGE_CAPTURE
-            startActivity(intent)
+        card_camera.setOnClickListener {
+            TODO()
         }
 
         card_information.setOnClickListener {
@@ -68,9 +73,10 @@ class Pet : Fragment() {
                 if(snapshot.exists()){
                     val data = snapshot.value.toString()
                     tv_pet_name.text = data
-                    setVisibility()
+                    setPetVisibility()
                 }else{
-                    Toast.makeText(context, "Non esiste nessun dato", Toast.LENGTH_LONG)
+                    Toast.makeText(context, "Create your first pet!", Toast.LENGTH_LONG).show()
+                    fab.visibility = View.VISIBLE
                 }
             }
 
@@ -86,13 +92,13 @@ class Pet : Fragment() {
         uId = user.uid
     }
 
-    private fun setVisibility(){
+    private fun setPetVisibility(){
         pet_picture.visibility = View.VISIBLE
         tv_pet_name.visibility = View.VISIBLE
         rl_pet_fragment.visibility = View.VISIBLE
     }
 
-    private fun setFabAnimation(){
+    /*private fun setFabAnimation(){
         if(!clicked){
             fab.startAnimation(AnimationUtils.loadAnimation(context,R.anim.rotate_forward))
             fab.backgroundTintList = ColorStateList.valueOf(rgb(255,0,0))
@@ -107,7 +113,7 @@ class Pet : Fragment() {
             fab_camera.visibility = View.INVISIBLE
         }
         clicked = !clicked
-    }
+    }*/
 }
 
 
