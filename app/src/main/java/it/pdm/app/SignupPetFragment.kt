@@ -37,7 +37,6 @@ class SignupPetFragment : Fragment() {
 
         initializeUI()
 
-
         button_sign_pet.setOnClickListener {
             if(everythingOk()){
                 writeUser()
@@ -78,7 +77,6 @@ class SignupPetFragment : Fragment() {
         FirebaseRealtimeDBHelper.dbRef.child(uId).child("pets").setValue(pet)
         findNavController().navigate(R.id.action_signupPetFragment_to_petFragment)
     }
-
 
     private fun initializeUI(){
         database = Firebase.database

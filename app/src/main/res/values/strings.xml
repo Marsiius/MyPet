@@ -21,4 +21,6 @@
     <string name="email">Email</string>
     <string name="picture_pet">picture_pet</string>
     <string name="pet_name">pet_name</string>
+    <string name="ricorda_qui_i_tuoi_impegni">Ricorda qui i tuoi impegni...</string>
+    <string name="aggiungi">AGGIUNGI</string>
 </resources>

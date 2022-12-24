@@ -12,7 +12,11 @@
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_homeFragment_to_blankFragment"
-            app:destination="@id/blankFragment" /><!-- Label che cambia nella toolbar di ogni fragment -->
+            app:destination="@id/blankFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_notesFragment"
+            app:destination="@id/notesFragment" />
+        <!-- Label che cambia nella toolbar di ogni fragment -->
     </fragment>
     <fragment
         android:id="@+id/petFragment"
@@ -49,5 +53,23 @@
         android:id="@+id/petInformationFragment"
         android:name="it.pdm.app.PetInformationFragment"
         android:label="fragment_pet_information"
-        tools:layout="@layout/fragment_pet_information" /><!-- Label che cambia nella toolbar di ogni fragment -->
+        tools:layout="@layout/fragment_pet_information" />
+    <fragment
+        android:id="@+id/notesFragment"
+        android:name="it.pdm.app.NotesFragment"
+        android:label="fragment_notes"
+        tools:layout="@layout/fragment_notes" >
+        <action
+            android:id="@+id/action_notesFragment_to_fragmentAddNotes"
+            app:destination="@id/fragmentAddNotes" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentAddNotes"
+        android:name="it.pdm.app.FragmentAddNotes"
+        android:label="fragment_add_notes"
+        tools:layout="@layout/fragment_add_notes" >
+        <action
+            android:id="@+id/action_fragmentAddNotes_to_notesFragment"
+            app:destination="@id/notesFragment" />
+    </fragment><!-- Label che cambia nella toolbar di ogni fragment -->
 </navigation>

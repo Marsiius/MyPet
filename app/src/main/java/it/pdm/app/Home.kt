@@ -33,5 +33,8 @@ class Home : Fragment() {
         binding.Card2.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_blankFragment)
         }
+        binding.Card3.setOnClickListener{
+            findNavController().navigate(R.id.action_homeFragment_to_notesFragment)
+        }
     }
 }
