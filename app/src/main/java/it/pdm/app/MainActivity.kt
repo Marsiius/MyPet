@@ -42,17 +42,8 @@ class MainActivity : AppCompatActivity() {
         val config = AppBarConfiguration(navController.graph)
         //findViewById<Toolbar>(R.id.toolbarTb).setupWithNavController(navController, config)
 
-        toolbar = binding.toolbarTb
         //setSupportActionBar(toolbar)
-
-        navController.addOnDestinationChangedListener { _, destination, _ ->
-            if(destination.id != R.id.petFragment && destination.id != R.id.homeFragment && destination.id != R.id.settingsFragment) {
-                    supportActionBar?.show() // to show
-                    findViewById<Toolbar>(R.id.toolbarTb).setupWithNavController(navController, config)//per tornare indietro nei fragments
-                }else{
-                supportActionBar?.hide() // to hide
-            }
-        }
+        
     }
 }
 
