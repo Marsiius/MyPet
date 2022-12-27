@@ -1,6 +1,5 @@
 package it.pdm.app
 
-import android.content.SharedPreferences
 import pets.MyPet
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -74,7 +73,7 @@ class SignupPetFragment : Fragment() {
             et_gender.text.toString(),
             et_breed.text.toString()
         )
-        FirebaseRealtimeDBHelper.dbRef.child(uId).child("pets").setValue(pet)
+        FirebaseRealtimeDBHelper.dbRefRT.child("pets").setValue(pet)
         findNavController().navigate(R.id.action_signupPetFragment_to_petFragment)
     }
 
