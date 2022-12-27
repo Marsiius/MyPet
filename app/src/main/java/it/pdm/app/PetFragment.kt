@@ -6,17 +6,15 @@ import android.app.Activity.RESULT_OK
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.content.res.ColorStateList
 import android.graphics.Bitmap
-import android.graphics.Color.*
 import android.os.Bundle
 import android.provider.MediaStore
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.AnimationUtils
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
@@ -26,12 +24,17 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.fragment_pet.*
 
-var clicked = false
+//var clicked = false
 
 class Pet : Fragment() {
 
     private lateinit var user: FirebaseUser
     private lateinit var uId: String
+
+    companion object{
+        const val CAMERA_PERMISSION_CODE = 1
+        const val CAMERA_REQUEST_CODE = 2
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -58,11 +61,55 @@ class Pet : Fragment() {
         }
 
         card_camera.setOnClickListener {
-            TODO()
+            takePicture()
         }
 
         card_information.setOnClickListener {
             findNavController().navigate(R.id.action_petFragment_to_petInformationFragment)
+        }
+    }
+
+    private fun takePicture(){
+        if (context?.let { it1 ->
+                ContextCompat.checkSelfPermission(
+                    it1,
+                    Manifest.permission.CAMERA
+                )
+            } == PackageManager.PERMISSION_GRANTED
+        ) {
+            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            startActivityForResult(intent, CAMERA_REQUEST_CODE)
+        }
+        else{
+            ActivityCompat.requestPermissions(
+                context as Activity, arrayOf(Manifest.permission.CAMERA),
+                CAMERA_PERMISSION_CODE
+            )
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if(requestCode== CAMERA_PERMISSION_CODE)
+            if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                startActivityForResult(intent, CAMERA_REQUEST_CODE)
+            }else{
+                Toast.makeText(context, "Hai negato l'accesso alla camera", Toast.LENGTH_LONG).show()
+            }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(resultCode == RESULT_OK){
+            if(requestCode == CAMERA_REQUEST_CODE){
+                val thumBnail: Bitmap = data!!.extras!!.get("data") as Bitmap
+                pet_picture.setImageBitmap(thumBnail)
+            }
         }
     }
 
