@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.widget.Toolbar
+import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
@@ -16,6 +17,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
+    private lateinit var toolbar: androidx.appcompat.widget.Toolbar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +40,10 @@ class MainActivity : AppCompatActivity() {
 
         val navController = findNavController(R.id.activity_main_nav_host_fragment)
         val config = AppBarConfiguration(navController.graph)
+        //findViewById<Toolbar>(R.id.toolbarTb).setupWithNavController(navController, config)
+
+        toolbar = binding.toolbarTb
+        //setSupportActionBar(toolbar)
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             if(destination.id != R.id.petFragment && destination.id != R.id.homeFragment && destination.id != R.id.settingsFragment) {
