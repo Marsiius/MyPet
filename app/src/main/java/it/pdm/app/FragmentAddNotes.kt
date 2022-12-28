@@ -18,7 +18,6 @@ import kotlinx.android.synthetic.main.fragment_add_notes.*
 class FragmentAddNotes : Fragment() {
 
     private lateinit var binding: FragmentAddNotesBinding
-    private lateinit var noteDao: NoteDao
 
     private lateinit var database: FirebaseDatabase
     private lateinit var firebaseUser: FirebaseUser
@@ -64,7 +63,9 @@ class FragmentAddNotes : Fragment() {
 
     private fun writeNote() {
         val note = noteEditText.text.toString()
-        FirebaseRealtimeDBHelper.dbRefRT.child(uId).child("Notes").push().setValue(note) //con push() si ottiene una chiave univoca del figlio, così da poter creare più note, eliminando l'overwriting.
+        //Firebase.database.reference.child(uId).child("Notes").push().setValue(note)
+        FirebaseRealtimeDBHelper.dbRefRT.child("Notes").push().setValue(note) //con push() si ottiene una chiave univoca del figlio, così da poter creare più note, eliminando l'overwriting.
+        //FirebaseRealtimeDBHelper.dbRefNote.setValue(note)
     }
 
     private fun initializeUI(){

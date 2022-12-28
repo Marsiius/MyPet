@@ -1,14 +1,11 @@
 package it.pdm.app
 
-import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import androidx.preference.PreferenceManager
-import com.google.firebase.auth.FirebaseAuth
 import it.pdm.app.databinding.FragmentHomeBinding
 
 
@@ -36,5 +33,6 @@ class Home : Fragment() {
         binding.Card3.setOnClickListener{
             findNavController().navigate(R.id.action_homeFragment_to_notesFragment)
         }
+
     }
 }
