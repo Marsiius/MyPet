@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".Pet">
+
+    <ImageView
+        android:id="@+id/pet_picture"
+        android:layout_width="match_parent"
+        android:layout_height="242dp"
+        android:contentDescription="@string/picture_pet"
+        android:src="@drawable/app_icon"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.01" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pet_picture">
+
+
+        <TextView
+            android:id="@+id/tv_pet_name"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:background="@drawable/countor_signuppet"
+            android:backgroundTint="@color/Green"
+            android:fontFamily="casual"
+            android:gravity="center"
+            android:text="@string/pet_name"
+            android:textColor="@color/white_ghost"
+            android:textSize="40sp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <GridLayout
+        android:id="@+id/gl_pet_med"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/top_radius"
+        android:columnCount="1"
+        android:elevation="3dp"
+        android:paddingTop="4dp"
+        android:rowCount="3"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+        app:layout_constraintVertical_bias="0.1">
+
+        <Button
+            android:id="@+id/vaccination_button"
+            android:layout_width="match_parent"
+            android:layout_height="64sp"
+            android:layout_marginTop="16dp"
+            android:backgroundTint="@color/white_ghost"
+            android:clickable="true"
+            android:drawableEnd="@drawable/ic_arrow_right"
+            android:focusable="true"
+            android:fontFamily="sans-serif-light"
+            android:text="@string/vaccination"
+            android:textAlignment="textStart"
+            android:textColor="@color/black"
+            android:textSize="24sp" />
+
+        <Button
+            android:id="@+id/medicines_button"
+            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="64sp"
+            android:clickable="true"
+            android:fontFamily="sans-serif-light"
+            android:text="@string/medicines"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/white_ghost"
+            android:drawableEnd="@drawable/ic_arrow_right"
+            android:textAlignment="textStart"
+            android:textSize="24sp"
+            android:focusable="true" />
+
+        <Button
+            android:id="@+id/visits_button"
+            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="64sp"
+            android:clickable="true"
+            android:fontFamily="sans-serif-light"
+            android:text="@string/visits"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/white_ghost"
+            android:drawableEnd="@drawable/ic_arrow_right"
+            android:textAlignment="textStart"
+            android:textSize="24sp"
+            android:focusable="true" />
+
+    </GridLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

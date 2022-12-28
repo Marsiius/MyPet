@@ -70,7 +70,7 @@ class RegisterActivity : AppCompatActivity() {
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                     startActivity(intent)
                 }else{
-                    Toast.makeText(applicationContext, "Registration failed! You have already account",
+                    Toast.makeText(applicationContext, "Registration failed!",
                         Toast.LENGTH_LONG).show()
                     progressBarSignup.visibility = View.INVISIBLE
                 }

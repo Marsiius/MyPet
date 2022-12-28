@@ -55,11 +55,19 @@ class Pet : Fragment() {
             findNavController().navigate(R.id.action_petFragment_to_signupPetFragment)
         }
 
+        card_information.setOnClickListener {
+            findNavController().navigate(R.id.action_petFragment_to_petInformationFragment)
+        }
+
+        card_medical.setOnClickListener {
+            findNavController().navigate(R.id.action_petFragment_to_medFragment)
+        }
+
         card_camera.setOnClickListener {
             val builder: AlertDialog.Builder = AlertDialog.Builder(context)
             builder.setCancelable(true)
             builder.setTitle("How?")
-            builder.setMessage("Open camera or update from local storage?")
+            builder.setMessage("Open camera or select picture from local storage?")
             builder.setPositiveButton("Camera"
             ) { _, _ -> takePicture()}
             builder.setNeutralButton("Gallery"
@@ -68,8 +76,8 @@ class Pet : Fragment() {
             dialog.show()
         }
 
-        card_information.setOnClickListener {
-            findNavController().navigate(R.id.action_petFragment_to_petInformationFragment)
+        Card4.setOnClickListener {
+            TODO()
         }
     }
 
@@ -154,9 +162,10 @@ class Pet : Fragment() {
     }
 
     private fun setPetVisibility(){
+        progressBarPetFragment.visibility = View.INVISIBLE
         pet_picture.visibility = View.VISIBLE
         tv_pet_name.visibility = View.VISIBLE
-        rl_pet_fragment.visibility = View.VISIBLE
+        gl_pet_med.visibility = View.VISIBLE
     }
 }
 

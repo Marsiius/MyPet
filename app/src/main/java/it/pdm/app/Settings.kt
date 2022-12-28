@@ -2,15 +2,20 @@ package it.pdm.app
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 
 
 class Settings : PreferenceFragmentCompat() {
@@ -20,6 +25,7 @@ class Settings : PreferenceFragmentCompat() {
     private lateinit var prefUser: Preference
     private lateinit var prefPassword: Preference
     private lateinit var prefLogout: Preference
+    private lateinit var prefDeletePet : Preference
     private lateinit var prefSubscribe: Preference
     
     @SuppressLint("SuspiciousIndentation")
@@ -62,6 +68,39 @@ class Settings : PreferenceFragmentCompat() {
             dialog.show()
             true
         }
+
+        prefDeletePet.onPreferenceClickListener = Preference.OnPreferenceClickListener {
+            val builder: AlertDialog.Builder = AlertDialog.Builder(context)
+            builder.setCancelable(true)
+            builder.setTitle("DELETE PET")
+            builder.setMessage("Are you sure? Any progress will be lost")
+            builder.setPositiveButton("Ok"
+            ) {_,_ ->
+                deletePet()
+                Toast.makeText(context, "Pet deleted", Toast.LENGTH_LONG).show()
+            }
+            builder.setNegativeButton("Cancel"
+            ){_,_ ->}
+
+            val dialog: AlertDialog = builder.create()
+            dialog.show()
+            true
+        }
+    }
+
+    private fun deletePet(){
+            FirebaseRealtimeDBHelper.dbRefRT.addValueEventListener(object: ValueEventListener
+            {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if(snapshot.exists()){
+                        snapshot.ref.removeValue()
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Log.e(TAG, "onCancelled", error.toException());
+                }
+            })
     }
 
     private fun setEmail(){
@@ -76,6 +115,7 @@ class Settings : PreferenceFragmentCompat() {
                 Toast.makeText(context, "ERROR: try again", Toast.LENGTH_LONG).show()
             }
     }
+
 
     private fun logout() {
         Toast.makeText(context, "LOG OUT", Toast.LENGTH_LONG).show()
@@ -99,6 +139,7 @@ class Settings : PreferenceFragmentCompat() {
         prefUser = findPreference("user_email")!!
         prefPassword = findPreference("reset_password")!!
         prefLogout = findPreference("logout")!!
+        prefDeletePet = findPreference("delete_pet")!!
         prefSubscribe = findPreference("delete_account")!!
     }
 }

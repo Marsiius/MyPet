@@ -29,6 +29,9 @@
         <action
             android:id="@+id/action_petFragment_to_petInformationFragment"
             app:destination="@id/petInformationFragment" />
+        <action
+            android:id="@+id/action_petFragment_to_medFragment"
+            app:destination="@id/medFragment" />
     </fragment><!-- Label che cambia nella toolbar di ogni fragment -->
     <fragment
         android:id="@+id/settingsFragment"
@@ -48,6 +51,9 @@
         <action
             android:id="@+id/action_signupPetFragment_to_petFragment"
             app:destination="@id/petFragment" />
+        <action
+            android:id="@+id/action_signupPetFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/petInformationFragment"
@@ -71,5 +77,35 @@
         <action
             android:id="@+id/action_fragmentAddNotes_to_notesFragment"
             app:destination="@id/notesFragment" />
-    </fragment><!-- Label che cambia nella toolbar di ogni fragment -->
+    </fragment>
+    <fragment
+        android:id="@+id/medFragment"
+        android:name="it.pdm.app.MedFragment"
+        android:label="fragment_med"
+        tools:layout="@layout/fragment_med" >
+        <action
+            android:id="@+id/action_medFragment_to_vaccinationFragment"
+            app:destination="@id/vaccinationFragment" />
+        <action
+            android:id="@+id/action_medFragment_to_medicinesFragment"
+            app:destination="@id/medicinesFragment" />
+        <action
+            android:id="@+id/action_medFragment_to_visitsFragment"
+            app:destination="@id/visitsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/vaccinationFragment"
+        android:name="it.pdm.app.VaccinationFragment"
+        android:label="fragment_vaccination"
+        tools:layout="@layout/fragment_vaccination" />
+    <fragment
+        android:id="@+id/medicinesFragment"
+        android:name="it.pdm.app.MedicinesFragment"
+        android:label="fragment_medicines"
+        tools:layout="@layout/fragment_medicines" />
+    <fragment
+        android:id="@+id/visitsFragment"
+        android:name="it.pdm.app.VisitsFragment"
+        android:label="fragment_visits"
+        tools:layout="@layout/fragment_visits" /><!-- Label che cambia nella toolbar di ogni fragment -->
 </navigation>
