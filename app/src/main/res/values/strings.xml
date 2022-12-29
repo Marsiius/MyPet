@@ -26,4 +26,5 @@
     <string name="vaccination">Vaccination</string>
     <string name="medicines">Medicines</string>
     <string name="visits">visits</string>
+    <string name="inserisci_il_testo">Inserisci il testo...</string>
 </resources>

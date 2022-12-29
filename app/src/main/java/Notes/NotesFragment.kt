@@ -1,17 +1,15 @@
-package it.pdm.app
+package Notes
 
-import android.os.Binder
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
+import android.widget.TextView
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -19,22 +17,15 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import it.pdm.app.databinding.FragmentBinding
-import it.pdm.app.databinding.FragmentHomeBinding
+import it.pdm.app.R
 import it.pdm.app.databinding.FragmentNotesBinding
-import kotlinx.android.synthetic.main.fragment_add_notes.*
 import kotlinx.android.synthetic.main.fragment_notes.*
+import kotlinx.android.synthetic.main.fragment_pop_up_notes.*
 
 
-class NotesFragment : Fragment() {
+class NotesFragment : Fragment(), FragmentPopUpNotes.OnDialogNextBtnClickListener {
 
-    private lateinit var uId: String
     private lateinit var binding: FragmentNotesBinding
-    private lateinit var noteRecyclerView: RecyclerView
-    //private lateinit var noteArray: ArrayList<Note>
-    private lateinit var adapter : MyAdapter
-
-    private lateinit var arrayList: ArrayList<Note>
 
     /*variabili primo codice*/
     private lateinit var auth: FirebaseAuth
@@ -43,6 +34,8 @@ class NotesFragment : Fragment() {
     private lateinit var taskAdapter: toDoAdapter
     private lateinit var toDoItemList: MutableList<Note>
     /*--------------VARIABILI-----------------*/
+    private lateinit var popUpFragment: FragmentPopUpNotes
+    /*--------VARIABILI PER IL POPUP-------*/
 
 
     /*override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,12 +56,22 @@ class NotesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        fab.setOnClickListener{
+        /*fab.setOnClickListener{
             findNavController().navigate(R.id.action_notesFragment_to_fragmentAddNotes)
-        }
+        }*/
 
         init()
         getNoteFromFirebase()
+        registerEvents()
+        /*binding.fab.setOnClickListener{
+            if(popUpFragment != null){
+                childFragmentManager.beginTransaction().remove(popUpFragment!!).commit()
+                popUpFragment = FragmentPopUpNotes()
+                popUpFragment!!.setListener(this)
+
+                popUpFragment!!.show(childFragmentManager, "DialogFragment")
+            }
+        }*/
     }
 
     private fun getNoteFromFirebase(){
@@ -77,6 +80,7 @@ class NotesFragment : Fragment() {
                 toDoItemList.clear()
                 for (noteSnapshot in snapshot.children){
                     val toDoNote = noteSnapshot.key?.let { Note(noteSnapshot.value.toString()) }
+                    //val toDoDate = noteSnapshot.key?.let { Note(noteSnapshot.value.toString()) }
                     if(toDoNote != null){
                         toDoItemList.add(toDoNote)
                     }
@@ -102,6 +106,38 @@ class NotesFragment : Fragment() {
         toDoItemList = mutableListOf()
         taskAdapter = toDoAdapter(toDoItemList)
         binding.noteList.adapter = taskAdapter
+    }
+
+    private fun registerEvents(){
+        binding.fab.setOnClickListener{
+            popUpFragment = FragmentPopUpNotes()
+            popUpFragment.setListener(this)
+            popUpFragment.show(childFragmentManager, "FragmentPopUpNotes")
+        }
+    }
+
+    /*override fun onSaveTask(note: String, tvNote: TextInputEditText) {
+        database.push().setValue(note).addOnCompleteListener {
+            if (it.isSuccessful){
+                Toast.makeText(context, "Nota aggiunta", Toast.LENGTH_SHORT).show()
+                tvNote.text = null
+            }else{
+                Toast.makeText(context, it.exception?.message, Toast.LENGTH_SHORT).show()
+            }
+            popUpFragment.dismiss()
+        }
+    }*/
+
+    override fun onSaveTask(note: String, tvNote: TextInputEditText) {
+        database.push().setValue(note).addOnCompleteListener {
+            if (it.isSuccessful){
+                Toast.makeText(context, "Nota aggiunta", Toast.LENGTH_SHORT).show()
+                tvNote.text = null
+            }else{
+                Toast.makeText(context, it.exception?.message, Toast.LENGTH_SHORT).show()
+            }
+            popUpFragment.dismiss()
+        }
     }
 
 /*---------------------------------------------------------------------------------------------------------*/

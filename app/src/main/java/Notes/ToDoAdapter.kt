@@ -1,6 +1,5 @@
-package it.pdm.app
+package Notes
 
-import Notes.noteAdapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView

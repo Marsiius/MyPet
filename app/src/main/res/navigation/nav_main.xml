@@ -62,7 +62,7 @@
         tools:layout="@layout/fragment_pet_information" />
     <fragment
         android:id="@+id/notesFragment"
-        android:name="it.pdm.app.NotesFragment"
+        android:name="Notes.NotesFragment"
         android:label="fragment_notes"
         tools:layout="@layout/fragment_notes" >
         <action
@@ -71,7 +71,7 @@
     </fragment>
     <fragment
         android:id="@+id/fragmentAddNotes"
-        android:name="it.pdm.app.FragmentAddNotes"
+        android:name="Notes.FragmentAddNotes"
         android:label="fragment_add_notes"
         tools:layout="@layout/fragment_add_notes" >
         <action

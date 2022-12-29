@@ -1,4 +1,4 @@
-package it.pdm.app
+package Notes
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -12,6 +12,8 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import it.pdm.app.FirebaseRealtimeDBHelper
+import it.pdm.app.R
 import it.pdm.app.databinding.FragmentAddNotesBinding
 import kotlinx.android.synthetic.main.fragment_add_notes.*
 

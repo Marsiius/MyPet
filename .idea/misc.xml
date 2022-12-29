@@ -25,13 +25,17 @@
         <entry key="..\:/Users/user/AndroidStudioProjects/App/app/src/main/res/drawable/house.xml" value="0.241" />
         <entry key="..\:/Users/user/AndroidStudioProjects/App/app/src/main/res/drawable/ic_add.xml" value="0.2515" />
         <entry key="..\:/Users/user/AndroidStudioProjects/App/app/src/main/res/drawable/ic_backarrow.xml" value="0.241" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/App/app/src/main/res/drawable/ic_delete.xml" value="0.19" />
         <entry key="..\:/Users/user/AndroidStudioProjects/App/app/src/main/res/drawable/ic_launcher_background.xml" value="0.241" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/App/app/src/main/res/drawable/ic_lock.xml" value="0.19" />
         <entry key="..\:/Users/user/AndroidStudioProjects/App/app/src/main/res/drawable/ic_pet.xml" value="0.241" />
         <entry key="..\:/Users/user/AndroidStudioProjects/App/app/src/main/res/drawable/ic_shop.xml" value="0.241" />
         <entry key="..\:/Users/user/AndroidStudioProjects/App/app/src/main/res/drawable/ic_wave.xml" value="0.239" />
         <entry key="..\:/Users/user/AndroidStudioProjects/App/app/src/main/res/drawable/radius_bg.xml" value="0.2425" />
         <entry key="..\:/Users/user/AndroidStudioProjects/App/app/src/main/res/drawable/shadow.xml" value="0.1135" />
         <entry key="..\:/Users/user/AndroidStudioProjects/App/app/src/main/res/drawable/topRadius.xml" value="0.2425" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/App/app/src/main/res/drawable/tv_contour.xml" value="0.19" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/App/app/src/main/res/drawable/tv_corner_radius.xml" value="0.19" />
         <entry key="..\:/Users/user/AndroidStudioProjects/App/app/src/main/res/drawable/txb_background.xml" value="0.2425" />
         <entry key="..\:/Users/user/AndroidStudioProjects/App/app/src/main/res/layout/activity_fetching.xml" value="0.17831813576494426" />
         <entry key="..\:/Users/user/AndroidStudioProjects/App/app/src/main/res/layout/activity_main.xml" value="0.25" />
@@ -43,6 +47,7 @@
         <entry key="..\:/Users/user/AndroidStudioProjects/App/app/src/main/res/layout/fragment_notes.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/user/AndroidStudioProjects/App/app/src/main/res/layout/fragment_pet.xml" value="0.35260416666666666" />
         <entry key="..\:/Users/user/AndroidStudioProjects/App/app/src/main/res/layout/fragment_pet_information.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/App/app/src/main/res/layout/fragment_pop_up_notes.xml" value="0.26358695652173914" />
         <entry key="..\:/Users/user/AndroidStudioProjects/App/app/src/main/res/layout/fragment_settings.xml" value="0.17134831460674158" />
         <entry key="..\:/Users/user/AndroidStudioProjects/App/app/src/main/res/layout/fragment_shop.xml" value="0.33" />
         <entry key="..\:/Users/user/AndroidStudioProjects/App/app/src/main/res/layout/fragment_signup_pet.xml" value="0.36666666666666664" />
