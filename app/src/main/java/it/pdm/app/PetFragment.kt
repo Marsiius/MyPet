@@ -109,7 +109,7 @@ class Pet : Fragment() {
         }
     }
 
-    /*override fun onRequestPermissionsResult(
+    override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
         grantResults: IntArray
@@ -120,9 +120,9 @@ class Pet : Fragment() {
                 val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
                 startActivityForResult(intent, CAMERA_REQUEST_CODE)
             }else{
-                Toast.makeText(context, "DENIED ACCESS", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "DENIED ACCESS, check device settings", Toast.LENGTH_LONG).show()
             }
-    }*/
+    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
