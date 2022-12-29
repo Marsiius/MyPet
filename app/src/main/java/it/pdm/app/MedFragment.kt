@@ -21,15 +21,15 @@ class MedFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         vaccination_button.setOnClickListener {
-            findNavController().navigate(R.id.action_medFragment_to_vaccinationFragment)
+            findNavController().navigate(R.id.action_petFragment_to_vaccinationFragment)
         }
 
         medicines_button.setOnClickListener {
-            findNavController().navigate(R.id.action_medFragment_to_medicinesFragment)
+            findNavController().navigate(R.id.action_petFragment_to_medicinesFragment)
         }
 
         visits_button.setOnClickListener {
-            findNavController().navigate(R.id.action_medFragment_to_visitsFragment)
+            findNavController().navigate(R.id.action_petFragment_to_visitsFragment)
         }
     }
 }

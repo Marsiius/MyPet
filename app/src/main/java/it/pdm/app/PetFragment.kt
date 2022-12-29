@@ -1,23 +1,13 @@
 package it.pdm.app
 
-import android.Manifest
-import android.app.Activity
-import android.app.Activity.RESULT_OK
-import android.app.AlertDialog
 import android.content.ContentValues.TAG
-import android.content.Intent
-import android.content.pm.PackageManager
-import android.graphics.Bitmap
 import android.os.Bundle
-import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -54,86 +44,7 @@ class Pet : Fragment() {
         setNamePet()
 
         fab.setOnClickListener {
-            findNavController().navigate(R.id.action_petFragment_to_signupPetFragment)
-        }
-
-        card_information.setOnClickListener {
-            findNavController().navigate(R.id.action_petFragment_to_petInformationFragment)
-        }
-
-        card_medical.setOnClickListener {
-            findNavController().navigate(R.id.action_petFragment_to_medFragment)
-        }
-
-        card_camera.setOnClickListener {
-            val builder: AlertDialog.Builder = AlertDialog.Builder(context)
-            builder.setCancelable(true)
-            builder.setTitle("How?")
-            builder.setMessage("Open camera or select picture from local storage?")
-            builder.setPositiveButton("Camera"
-            ) { _, _ -> takePicture()}
-            builder.setNeutralButton("Gallery"
-            ) { _, _ -> selectPicture()}
-            val dialog: AlertDialog = builder.create()
-            dialog.show()
-        }
-
-        Card4.setOnClickListener {
-            TODO()
-        }
-    }
-
-    private fun selectPicture(){
-        val intent = Intent()
-        intent.type = "image/*"
-        intent.action = Intent.ACTION_GET_CONTENT
-        startActivityForResult(intent, GALLERY_REQUEST_CODE)
-    }
-
-    private fun takePicture(){
-        if (context?.let { it1 ->
-                ContextCompat.checkSelfPermission(
-                    it1,
-                    Manifest.permission.CAMERA
-                )
-            } == PackageManager.PERMISSION_GRANTED
-        ) {
-            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            startActivityForResult(intent, CAMERA_REQUEST_CODE)
-        }
-        else{
-            ActivityCompat.requestPermissions(
-                context as Activity, arrayOf(Manifest.permission.CAMERA),
-                CAMERA_PERMISSION_CODE
-            )
-        }
-    }
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if(requestCode== CAMERA_PERMISSION_CODE)
-            if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-                startActivityForResult(intent, CAMERA_REQUEST_CODE)
-            }else{
-                Toast.makeText(context, "DENIED ACCESS, check device settings", Toast.LENGTH_LONG).show()
-            }
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if(resultCode == RESULT_OK){
-            if(requestCode == CAMERA_REQUEST_CODE){
-                val thumbnail: Bitmap = data!!.extras!!.get("data") as Bitmap
-                pet_picture.setImageBitmap(thumbnail)
-            }else if(requestCode == GALLERY_REQUEST_CODE){
-                val uri = data?.data
-                pet_picture.setImageURI(uri)
-            }
+            //findNavController().navigate(R.id.action_petFragment_to_signupPetFragment)
         }
     }
 
@@ -143,6 +54,10 @@ class Pet : Fragment() {
             .addValueEventListener(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
+                    val fragment = PetInformationFragment()
+                    val transaction: FragmentTransaction? = fragmentManager?.beginTransaction()
+                    transaction?.replace(R.id.rl_pet_fragment, fragment)
+                    transaction?.commit()
                     val data = snapshot.getValue(String::class.java)
                     tv_pet_name.text = data
                     setPetVisibility()
@@ -166,7 +81,7 @@ class Pet : Fragment() {
     private fun setPetVisibility(){
         pet_picture.visibility = View.VISIBLE
         tv_pet_name.visibility = View.VISIBLE
-        gl_pet_med.visibility = View.VISIBLE
+        rl_pet_fragment.visibility = View.VISIBLE
     }
 }
 

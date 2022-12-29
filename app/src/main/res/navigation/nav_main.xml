@@ -27,11 +27,17 @@
             android:id="@+id/action_petFragment_to_signupPetFragment"
             app:destination="@id/signupPetFragment" />
         <action
-            android:id="@+id/action_petFragment_to_petInformationFragment"
-            app:destination="@id/petInformationFragment" />
+            android:id="@+id/action_petFragment_to_petIdentityCardFragment"
+            app:destination="@id/petIdentityCardFragment4" />
         <action
-            android:id="@+id/action_petFragment_to_medFragment"
-            app:destination="@id/medFragment" />
+            android:id="@+id/action_petFragment_to_vaccinationFragment"
+            app:destination="@id/vaccinationFragment" />
+        <action
+            android:id="@+id/action_petFragment_to_medicinesFragment"
+            app:destination="@id/medicinesFragment" />
+        <action
+            android:id="@+id/action_petFragment_to_visitsFragment"
+            app:destination="@id/visitsFragment" />
     </fragment><!-- Label che cambia nella toolbar di ogni fragment -->
     <fragment
         android:id="@+id/settingsFragment"
@@ -49,17 +55,9 @@
         android:label="fragment_signup_pet"
         tools:layout="@layout/fragment_signup_pet" >
         <action
-            android:id="@+id/action_signupPetFragment_to_petFragment"
-            app:destination="@id/petFragment" />
-        <action
             android:id="@+id/action_signupPetFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/petInformationFragment"
-        android:name="it.pdm.app.PetInformationFragment"
-        android:label="fragment_pet_information"
-        tools:layout="@layout/fragment_pet_information" />
     <fragment
         android:id="@+id/notesFragment"
         android:name="Notes.NotesFragment"
@@ -79,21 +77,6 @@
             app:destination="@id/notesFragment" />
     </fragment>
     <fragment
-        android:id="@+id/medFragment"
-        android:name="it.pdm.app.MedFragment"
-        android:label="fragment_med"
-        tools:layout="@layout/fragment_med" >
-        <action
-            android:id="@+id/action_medFragment_to_vaccinationFragment"
-            app:destination="@id/vaccinationFragment" />
-        <action
-            android:id="@+id/action_medFragment_to_medicinesFragment"
-            app:destination="@id/medicinesFragment" />
-        <action
-            android:id="@+id/action_medFragment_to_visitsFragment"
-            app:destination="@id/visitsFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/vaccinationFragment"
         android:name="it.pdm.app.VaccinationFragment"
         android:label="fragment_vaccination"
@@ -107,5 +90,10 @@
         android:id="@+id/visitsFragment"
         android:name="it.pdm.app.VisitsFragment"
         android:label="fragment_visits"
-        tools:layout="@layout/fragment_visits" /><!-- Label che cambia nella toolbar di ogni fragment -->
+        tools:layout="@layout/fragment_visits" />
+    <fragment
+        android:id="@+id/petIdentityCardFragment4"
+        android:name="it.pdm.app.PetIdentityCardFragment"
+        android:label="fragment_pet_identity_card"
+        tools:layout="@layout/fragment_pet_identity_card" /><!-- Label che cambia nella toolbar di ogni fragment -->
 </navigation>

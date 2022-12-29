@@ -1,146 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".PetInformationFragment">
-
-    <RelativeLayout
-        android:id="@+id/rl"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp">
-
-        <TextView
-            android:id="@+id/tv_identity_card"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:fontFamily="@font/aclonica"
-            android:text="PET IDENTITY CARD"
-            android:textColor="@color/Green"
-            android:textSize="35sp"
-            tools:ignore="TextContrastCheck" />
-
-    </RelativeLayout>
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".PetInformationFragment"
+    android:layout_gravity="center"
+    android:layout_centerInParent="true">
 
     <GridLayout
         android:id="@+id/grid_layout"
-        android:layout_width="match_parent"
-        android:layout_height="460dp"
-        android:background="@drawable/countor_signuppet"
-        android:backgroundTint="@color/Green"
-        android:layout_margin="10dp"
-        android:paddingTop="8dp"
-        android:layout_below="@id/rl"
-        android:columnCount="1"
-        android:rowCount="7">
+        android:layout_width="340dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="24dp"
+        android:columnCount="2"
+        android:rowCount="3">
 
-        <TextView
-            android:id="@+id/tv_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/name_pet"
-            android:layout_margin="8dp"
-            android:background="@drawable/tv_contour"
-            android:backgroundTint="@color/white"
-            android:gravity="center"
-            android:textSize="24sp"
-            android:minHeight="48dp"
-            android:paddingStart="8dp"
-            android:paddingEnd="8dp"
-            tools:ignore="TextContrastCheck" />
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_information"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="5dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardCornerRadius="25dp"
+            android:elevation="5dp">
 
-        <TextView
-            android:id="@+id/tv_birthday"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/birthday_g_mm_aaaa"
-            android:layout_margin="8dp"
-            android:background="@drawable/tv_contour"
-            android:backgroundTint="@color/white"
-            android:gravity="center"
-            android:textSize="24sp"
-            android:minHeight="48dp"
-            android:paddingStart="8dp"
-            android:paddingEnd="8dp"
-            tools:ignore="TextContrastCheck" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/tv_weight"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/weight_kg"
-            android:layout_margin="8dp"
-            android:background="@drawable/tv_contour"
-            android:backgroundTint="@color/white"
-            android:gravity="center"
-            android:textSize="24sp"
-            android:minHeight="48dp"
-            android:paddingStart="8dp"
-            android:paddingEnd="8dp"
-            tools:ignore="TextContrastCheck" />
+                <ImageView
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/ic_document" />
 
-        <TextView
-            android:id="@+id/tv_height"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/height_cm"
-            android:layout_margin="8dp"
-            android:background="@drawable/tv_contour"
-            android:backgroundTint="@color/white"
-            android:gravity="center"
-            android:textSize="24sp"
-            android:minHeight="48dp"
-            android:paddingStart="8dp"
-            android:paddingEnd="8dp"
-            tools:ignore="TextContrastCheck" />
+            </RelativeLayout>
 
-        <TextView
-            android:id="@+id/tv_chipNumber"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/chip_number"
-            android:layout_margin="8dp"
-            android:background="@drawable/tv_contour"
-            android:backgroundTint="@color/white"
-            android:gravity="center"
-            android:textSize="24sp"
-            android:minHeight="48dp"
-            android:paddingStart="8dp"
-            android:paddingEnd="8dp"
-            tools:ignore="TextContrastCheck" />
+        </com.google.android.material.card.MaterialCardView>
 
-        <TextView
-            android:id="@+id/tv_gender"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/gender_pet"
-            android:layout_margin="8dp"
-            android:background="@drawable/tv_contour"
-            android:backgroundTint="@color/white"
-            android:gravity="center"
-            android:textSize="24sp"
-            android:minHeight="48dp"
-            android:paddingStart="8dp"
-            android:paddingEnd="8dp"
-            tools:ignore="TextContrastCheck" />
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_medical"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="5dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardCornerRadius="25dp"
+            android:elevation="5dp">
 
-        <TextView
-            android:id="@+id/tv_breed"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/breed"
-            android:layout_margin="8dp"
-            android:background="@drawable/tv_contour"
-            android:backgroundTint="@color/white"
-            android:gravity="center"
-            android:textSize="24sp"
-            android:minHeight="48dp"
-            android:paddingStart="8dp"
-            android:paddingEnd="8dp"
-            tools:ignore="TextContrastCheck" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/ic_medical" />
+
+            </RelativeLayout>
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_camera"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="5dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardCornerRadius="25dp"
+            android:elevation="5dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/ic_camera" />
+
+            </RelativeLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/Card4"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="5dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardCornerRadius="25dp"
+            android:elevation="5dp"/>
 
     </GridLayout>
 
-</RelativeLayout>
+</FrameLayout>
