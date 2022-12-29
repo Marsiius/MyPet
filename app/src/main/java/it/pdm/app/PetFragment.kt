@@ -147,7 +147,6 @@ class Pet : Fragment() {
                     tv_pet_name.text = data
                     setPetVisibility()
                 }else{
-                    Toast.makeText(context, "Create your first pet!", Toast.LENGTH_LONG).show()
                     fab.visibility = View.VISIBLE
                 }
                 progressBarPetFragment.visibility = View.INVISIBLE

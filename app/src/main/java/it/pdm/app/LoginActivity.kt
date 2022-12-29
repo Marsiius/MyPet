@@ -49,7 +49,6 @@ class LoginActivity : AppCompatActivity() {
         val sharedPreferences: SharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE)
         val check: String? = sharedPreferences.getString("name","")
         if (check.equals("true")){
-            Toast.makeText(applicationContext, "Login successful!", Toast.LENGTH_LONG).show()
             val intent = Intent(this, MainActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)

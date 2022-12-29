@@ -33,6 +33,5 @@ class Home : Fragment() {
         binding.Card3.setOnClickListener{
             findNavController().navigate(R.id.action_homeFragment_to_notesFragment)
         }
-
     }
 }

@@ -45,7 +45,7 @@ class Settings : PreferenceFragmentCompat() {
                 ) { _, _ -> }
 
             val dialog: AlertDialog = builder.create()
-                dialog.show()
+            dialog.show()
             true
         }
 
