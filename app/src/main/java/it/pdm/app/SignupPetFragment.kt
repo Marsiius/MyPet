@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.FirebaseDatabase
@@ -75,7 +74,10 @@ class SignupPetFragment : Fragment() {
             et_breed.text.toString()
         )
         FirebaseRealtimeDBHelper.dbRefRT.child("pets").setValue(pet)
-        findNavController().navigate(R.id.action_signupPetFragment_to_petFragment)
+        val intent = Intent(context, MainActivity::class.java )
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        startActivity(intent)
     }
 
     private fun initializeUI(){

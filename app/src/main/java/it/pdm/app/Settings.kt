@@ -1,6 +1,5 @@
 package it.pdm.app
 
-import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.ContentValues.TAG
 import android.content.Intent
@@ -28,7 +27,6 @@ class Settings : PreferenceFragmentCompat() {
     private lateinit var prefDeletePet : Preference
     private lateinit var prefSubscribe: Preference
     
-    @SuppressLint("SuspiciousIndentation")
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.root_preferences, rootKey)
 
@@ -77,7 +75,6 @@ class Settings : PreferenceFragmentCompat() {
             builder.setPositiveButton("Ok"
             ) {_,_ ->
                 deletePet()
-                Toast.makeText(context, "Pet deleted", Toast.LENGTH_LONG).show()
             }
             builder.setNegativeButton("Cancel"
             ){_,_ ->}
@@ -94,11 +91,16 @@ class Settings : PreferenceFragmentCompat() {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if(snapshot.exists()){
                         snapshot.ref.removeValue()
+                        val intent = Intent(context, MainActivity::class.java )
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                        startActivity(intent)
+                        Toast.makeText(context, "Pet deleted", Toast.LENGTH_LONG).show()
+
                     }
                 }
-
                 override fun onCancelled(error: DatabaseError) {
-                    Log.e(TAG, "onCancelled", error.toException());
+                    Log.e(TAG, "onCancelled", error.toException())
                 }
             })
     }
@@ -127,7 +129,7 @@ class Settings : PreferenceFragmentCompat() {
         editor?.putString("name", "")
         editor?.apply()
 
-        val intent: Intent = Intent(context, RegisterActivity::class.java)
+        val intent = Intent(context, RegisterActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
         startActivity(intent)

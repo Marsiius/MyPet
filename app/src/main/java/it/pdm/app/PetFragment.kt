@@ -4,11 +4,13 @@ import android.Manifest
 import android.app.Activity
 import android.app.Activity.RESULT_OK
 import android.app.AlertDialog
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -136,23 +138,24 @@ class Pet : Fragment() {
     }
 
     private fun setNamePet(){
+        progressBarPetFragment.visibility = View.VISIBLE
         FirebaseRealtimeDBHelper.dbRefRT.child("pets").child("name")
             .addValueEventListener(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
-                    val data = snapshot.value.toString()
+                    val data = snapshot.getValue(String::class.java)
                     tv_pet_name.text = data
                     setPetVisibility()
                 }else{
                     Toast.makeText(context, "Create your first pet!", Toast.LENGTH_LONG).show()
                     fab.visibility = View.VISIBLE
                 }
+                progressBarPetFragment.visibility = View.INVISIBLE
+
             }
 
             override fun onCancelled(error: DatabaseError) {
-                TODO()
-            }
-
+                Log.w(TAG, "loadPost:onCancelled",error.toException())            }
         })
     }
 
@@ -162,7 +165,6 @@ class Pet : Fragment() {
     }
 
     private fun setPetVisibility(){
-        progressBarPetFragment.visibility = View.INVISIBLE
         pet_picture.visibility = View.VISIBLE
         tv_pet_name.visibility = View.VISIBLE
         gl_pet_med.visibility = View.VISIBLE

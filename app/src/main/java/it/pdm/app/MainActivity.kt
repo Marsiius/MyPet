@@ -3,14 +3,11 @@ package it.pdm.app
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.widget.Toolbar
-import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI.setupWithNavController
-import androidx.navigation.ui.setupWithNavController
 import it.pdm.app.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
