@@ -4,21 +4,45 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     tools:context=".Pet">
 
-    <ImageView
-        android:id="@+id/pet_picture"
+    <FrameLayout
+        android:id="@+id/fl_pet_fragment"
         android:layout_width="match_parent"
-        android:layout_height="242dp"
-        android:contentDescription="@string/picture_pet"
-        android:src="@drawable/app_icon"
-        android:visibility="invisible"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.01" />
+        app:layout_constraintVertical_bias="0.01">
+
+        <ImageView
+            android:id="@+id/pet_picture"
+            android:layout_width="match_parent"
+            android:layout_height="242dp"
+            android:background="@drawable/countor_image_view"
+            android:contentDescription="@string/picture_pet"
+            android:src="@drawable/app_icon"
+            android:visibility="invisible"
+            android:adjustViewBounds="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_camera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="12dp"
+            app:fabSize="mini"
+            android:backgroundTint="@color/Green"
+            android:src="@drawable/ic_camera"
+            android:tint="@color/black"
+            android:visibility="invisible" />
+    </FrameLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
@@ -27,7 +51,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pet_picture"
+        app:layout_constraintTop_toBottomOf="@+id/fl_pet_fragment"
         app:layout_constraintVertical_bias="0.05">
 
         <TextView
@@ -55,13 +79,13 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="8dp"
         android:background="@drawable/radius_bg"
+        android:elevation="10dp"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
-        app:layout_constraintVertical_bias="0.1"
-        android:elevation="10dp">
+        app:layout_constraintVertical_bias="0.1">
 
     </RelativeLayout>
 
@@ -70,9 +94,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="24dp"
-        android:visibility="invisible"
         android:contentDescription="@string/app_name"
         android:src="@drawable/ic_add"
+        android:visibility="invisible"
         app:backgroundTint="#4CAF50"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

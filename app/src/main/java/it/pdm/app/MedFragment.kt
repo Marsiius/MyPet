@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.fragment_med.*
 
@@ -20,16 +21,23 @@ class MedFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        vaccination_button.setOnClickListener {
+        card_vaccinations.setOnClickListener {
             findNavController().navigate(R.id.action_petFragment_to_vaccinationFragment)
         }
 
-        medicines_button.setOnClickListener {
+        card_medicines.setOnClickListener {
             findNavController().navigate(R.id.action_petFragment_to_medicinesFragment)
         }
 
-        visits_button.setOnClickListener {
+        card_visits.setOnClickListener {
             findNavController().navigate(R.id.action_petFragment_to_visitsFragment)
+        }
+
+        card_back.setOnClickListener {
+            val fragment = PetInformationFragment()
+            val transaction: FragmentTransaction? = fragmentManager?.beginTransaction()
+            transaction?.replace(R.id.rl_pet_fragment, fragment)
+            transaction?.commit()
         }
     }
 }

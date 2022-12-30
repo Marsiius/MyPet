@@ -25,6 +25,8 @@
     <string name="aggiungi">AGGIUNGI</string>
     <string name="vaccinations">Vaccinations</string>
     <string name="medicines">Medicines</string>
-    <string name="visits">visits</string>
+    <string name="visits">Visits</string>
     <string name="inserisci_il_testo">Inserisci il testo...</string>
+    <string name="vaccines">Vaccines</string>
+    <string name="back">Back</string>
 </resources>
