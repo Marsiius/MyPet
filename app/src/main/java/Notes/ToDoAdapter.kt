@@ -7,7 +7,12 @@ import it.pdm.app.databinding.ItemRecycleviewBinding
 
 class toDoAdapter(private val list: MutableList<Note>) : RecyclerView.Adapter<toDoAdapter.toDoViewHolder>(){
 
-    class toDoViewHolder(val binding: ItemRecycleviewBinding): RecyclerView.ViewHolder(binding.root){
+    private var listener: adapterClickInterface?= null
+    fun setListener(listener : adapterClickInterface){
+        this.listener = listener
+    }
+
+    inner class toDoViewHolder(val binding: ItemRecycleviewBinding): RecyclerView.ViewHolder(binding.root){
 
     }
 
@@ -19,7 +24,14 @@ class toDoAdapter(private val list: MutableList<Note>) : RecyclerView.Adapter<to
     override fun onBindViewHolder(holder: toDoViewHolder, position: Int) {
         with(holder){
             with(list[position]){
-                binding.tvNoteItem.text = this.textBody
+                binding.tvNoteItem.text = this.textNote
+
+                binding.deleteNote.setOnClickListener{
+                    listener?.onDeleteNoteBtnClicked(this)
+                }
+                binding.editNote.setOnClickListener{
+                    listener?.onEditNoteBtnClicked(this)
+                }
             }
         }
     }
@@ -28,5 +40,9 @@ class toDoAdapter(private val list: MutableList<Note>) : RecyclerView.Adapter<to
         return list.size
     }
 
+    interface adapterClickInterface{
+        fun onDeleteNoteBtnClicked(note: Note)
+        fun onEditNoteBtnClicked(note: Note)
+    }
 
 }

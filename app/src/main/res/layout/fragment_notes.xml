@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="Notes.NotesFragment">
+    tools:context="Notes.NotesFragment"
+    android:background="@drawable/bg_note_fragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/noteList"
@@ -15,6 +16,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="70dp"
+        android:layout_marginBottom="70dp"
         />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

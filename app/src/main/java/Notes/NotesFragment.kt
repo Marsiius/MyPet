@@ -23,7 +23,8 @@ import kotlinx.android.synthetic.main.fragment_notes.*
 import kotlinx.android.synthetic.main.fragment_pop_up_notes.*
 
 
-class NotesFragment : Fragment(), FragmentPopUpNotes.OnDialogNextBtnClickListener {
+class NotesFragment : Fragment(), FragmentPopUpNotes.OnDialogNextBtnClickListener,
+    toDoAdapter.adapterClickInterface {
 
     private lateinit var binding: FragmentNotesBinding
 
@@ -59,9 +60,9 @@ class NotesFragment : Fragment(), FragmentPopUpNotes.OnDialogNextBtnClickListene
         /*fab.setOnClickListener{
             findNavController().navigate(R.id.action_notesFragment_to_fragmentAddNotes)
         }*/
-
         init()
         getNoteFromFirebase()
+
         registerEvents()
         /*binding.fab.setOnClickListener{
             if(popUpFragment != null){
@@ -79,12 +80,13 @@ class NotesFragment : Fragment(), FragmentPopUpNotes.OnDialogNextBtnClickListene
             override fun onDataChange(snapshot: DataSnapshot) {
                 toDoItemList.clear()
                 for (noteSnapshot in snapshot.children){
-                    val toDoNote = noteSnapshot.key?.let { Note(noteSnapshot.value.toString()) }
+                    val toDoNote = noteSnapshot.key?.let { Note(it, noteSnapshot.value.toString()) } //con it, passo nel primo parametro(idNote), l'id della nota
                     //val toDoDate = noteSnapshot.key?.let { Note(noteSnapshot.value.toString()) }
                     if(toDoNote != null){
                         toDoItemList.add(toDoNote)
                     }
                 }
+                taskAdapter.notifyDataSetChanged()
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -105,7 +107,10 @@ class NotesFragment : Fragment(), FragmentPopUpNotes.OnDialogNextBtnClickListene
 
         toDoItemList = mutableListOf()
         taskAdapter = toDoAdapter(toDoItemList)
+        taskAdapter.setListener(this)
         binding.noteList.adapter = taskAdapter
+
+
     }
 
     private fun registerEvents(){
@@ -138,6 +143,20 @@ class NotesFragment : Fragment(), FragmentPopUpNotes.OnDialogNextBtnClickListene
             }
             popUpFragment.dismiss()
         }
+    }
+
+    override fun onDeleteNoteBtnClicked(note: Note) {
+        database.child(note.idNote).removeValue().addOnCompleteListener {
+            if(it.isSuccessful){
+                Toast.makeText(context, "cancellato", Toast.LENGTH_SHORT).show()
+            }else{
+                Toast.makeText(context, it.exception?.message, Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    override fun onEditNoteBtnClicked(note: Note) {
+        TODO("Not yet implemented")
     }
 
 /*---------------------------------------------------------------------------------------------------------*/
