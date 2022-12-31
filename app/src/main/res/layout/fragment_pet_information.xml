@@ -86,12 +86,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <ImageView
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
-                    android:layout_centerInParent="true"
-                    android:background="@drawable/ic_camera" />
-
             </RelativeLayout>
 
         </com.google.android.material.card.MaterialCardView>

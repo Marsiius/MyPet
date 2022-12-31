@@ -49,6 +49,7 @@ class SignupPetFragment : Fragment() {
         }
     }
 
+    //metodo che verifica che sia stato inserito sia il nome sia il compleanno dell'animale
     private fun everythingOk(): Boolean {
         var ok = true
         if (et_name.text.isEmpty())
@@ -58,11 +59,13 @@ class SignupPetFragment : Fragment() {
         return ok
     }
 
+    //metodo che crea il nodo "user_uId" nel real time DB
     private fun writeUser(){
         val ref = database.getReference("users")
         ref.child(uId)
     }
 
+    //metodo che scrive l'animale nel real time DB
     private fun writePet() {
         val pet = MyPet(
             et_name.text.toString(),

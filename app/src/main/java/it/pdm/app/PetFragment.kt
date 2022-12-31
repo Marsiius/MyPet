@@ -4,9 +4,11 @@ import android.Manifest
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.ContentValues.TAG
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
@@ -19,23 +21,28 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.fragment_pet.*
+import java.io.ByteArrayOutputStream
 
 class Pet : Fragment() {
 
     private lateinit var user: FirebaseUser
     private lateinit var uId: String
 
+    //companion object per tenere in riferimento i codici per accedere alla fotocamera/memoria
+    //tramite il metodo StartActivityForResult
     companion object{
         const val CAMERA_PERMISSION_CODE = 1
         const val CAMERA_REQUEST_CODE = 2
         const val GALLERY_REQUEST_CODE = 3
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -51,7 +58,7 @@ class Pet : Fragment() {
 
         init()
 
-        setNamePet()
+        setPet()
 
         fab.setOnClickListener {
             findNavController().navigate(R.id.action_petFragment_to_signupPetFragment)
@@ -71,6 +78,7 @@ class Pet : Fragment() {
         }
     }
 
+    //metodo per aprire la galleria
     private fun selectPicture(){
         val intent = Intent()
         intent.type = "image/*"
@@ -78,6 +86,7 @@ class Pet : Fragment() {
         startActivityForResult(intent, GALLERY_REQUEST_CODE)
     }
 
+    //metodo per aprire la fotocamera
     private fun takePicture(){
         if (context?.let { it1 ->
                 ContextCompat.checkSelfPermission(
@@ -97,6 +106,7 @@ class Pet : Fragment() {
         }
     }
 
+    //override del metodo che verifica l'autorizzazione per l'accesso alla fotocamera
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -112,22 +122,42 @@ class Pet : Fragment() {
             }
     }
 
+    //override che gestisce entrambe le opzioni (galleria/fotocamera) mediante dei controlli if
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if(resultCode == Activity.RESULT_OK){
             if(requestCode == CAMERA_REQUEST_CODE){
                 val thumbnail: Bitmap = data!!.extras!!.get("data") as Bitmap
                 pet_picture.setImageBitmap(thumbnail)
-            }else if(requestCode == GALLERY_REQUEST_CODE){
-                val uri = data?.data
+                val bytes = ByteArrayOutputStream()
+                thumbnail.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
+                val path: String = MediaStore.Images.Media.insertImage(
+                    requireContext().contentResolver,
+                    thumbnail,
+                    "Title",
+                    null
+                )
+                val uri = Uri.parse(path)
+                val imageRef = FirebaseRealtimeDBHelper.dbRefST.child("images/pet_picture.jpg")
+                imageRef.putFile(uri)
                 pet_picture.setImageURI(uri)
+            }else if(requestCode == GALLERY_REQUEST_CODE){
+                val uri = data!!.data
+                pet_picture.setImageURI(uri)
+                val imageRef = FirebaseRealtimeDBHelper.dbRefST.child("images/pet_picture.jpg")
+                if (uri != null)
+                    imageRef.putFile(uri)
             }
         }
     }
 
-    private fun setNamePet(){
+    //questo metodo viene eseguito appena il fragment viene lanciato. Esso scarica dal DB l'immagine
+    //e il nome dell'animale (ancora da correggere la lettura dal DB della foto)
+    private fun setPet(){
         progressBarPetFragment.visibility = View.VISIBLE
-        FirebaseRealtimeDBHelper.dbRefRT.child("pets").child("name")
+        val refRT = FirebaseRealtimeDBHelper.dbRefRT.child("pets").child("name")
+        refRT.keepSynced(true)
+        refRT
             .addValueEventListener(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
@@ -137,12 +167,12 @@ class Pet : Fragment() {
                     transaction?.commit()
                     val data = snapshot.getValue(String::class.java)
                     tv_pet_name.text = data
+                    //setPicturePet()
                     setPetVisibility()
                 }else{
                     fab.visibility = View.VISIBLE
                 }
                 progressBarPetFragment.visibility = View.INVISIBLE
-
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -150,16 +180,25 @@ class Pet : Fragment() {
         })
     }
 
-    private fun init(){
-        user = FirebaseAuth.getInstance().currentUser!!
-        uId = user.uid
+    //metodo che scarica la foto dal DB Storage (da sistemare)
+    private fun setPicturePet(){
+        val refPicture = FirebaseRealtimeDBHelper.dbRefST.child("images/pet_picture.jpg")
+        Glide.with(this /* context */)
+            .load(refPicture)
+            .into(pet_picture)
     }
 
+    //metodo che imposta la visibilità degli elementi del fragment che fanno riferimento all'animale
     private fun setPetVisibility(){
         pet_picture.visibility = View.VISIBLE
         tv_pet_name.visibility = View.VISIBLE
         rl_pet_fragment.visibility = View.VISIBLE
         fab_camera.visibility = View.VISIBLE
+    }
+
+    private fun init(){
+        user = FirebaseAuth.getInstance().currentUser!!
+        uId = user.uid
     }
 }
 

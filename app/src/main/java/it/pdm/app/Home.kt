@@ -24,7 +24,7 @@ class Home : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.Card1.setOnClickListener {
+        binding.cardStep.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_blankFragment)
         }
         binding.Card2.setOnClickListener {
