@@ -32,7 +32,7 @@ class PetIdentityCardFragment : Fragment() {
     }
 
     private fun setInformation() {
-        val ref = FirebaseRealtimeDBHelper.dbRefRT.child("pets")
+        val ref = FirebaseRealtimeDBHelper.dbRefPets
         ref.addValueEventListener(object: ValueEventListener{
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if(snapshot.exists()){

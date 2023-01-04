@@ -11,9 +11,11 @@ class FirebaseRealtimeDBHelper {
             .getReference("users")
             .child(FirebaseAuth.getInstance().currentUser!!.uid)
 
-        val dbRefNote = FirebaseDatabase
-            .getInstance("https://my-pet-application-default-rtdb.europe-west1.firebasedatabase.app")
-            .getReference("Notes")
+        val dbRefPets = dbRefRT
+            .child("pets")
+
+        val dbRefNotes = dbRefRT
+            .child("notes")
 
         val dbRefST = FirebaseStorage
             .getInstance("gs://my-pet-application.appspot.com")

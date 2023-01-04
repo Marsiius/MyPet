@@ -16,12 +16,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot
@@ -59,6 +61,7 @@ class Pet : Fragment() {
         init()
 
         setPet()
+        setPicturePet()
 
         fab.setOnClickListener {
             findNavController().navigate(R.id.action_petFragment_to_signupPetFragment)
@@ -167,7 +170,6 @@ class Pet : Fragment() {
                     transaction?.commit()
                     val data = snapshot.getValue(String::class.java)
                     tv_pet_name.text = data
-                    //setPicturePet()
                     setPetVisibility()
                 }else{
                     fab.visibility = View.VISIBLE
@@ -183,9 +185,9 @@ class Pet : Fragment() {
     //metodo che scarica la foto dal DB Storage (da sistemare)
     private fun setPicturePet(){
         val refPicture = FirebaseRealtimeDBHelper.dbRefST.child("images/pet_picture.jpg")
-        Glide.with(this /* context */)
+        Glide.with(this)
             .load(refPicture)
-            .into(pet_picture)
+            .into(pet_picture);
     }
 
     //metodo che imposta la visibilità degli elementi del fragment che fanno riferimento all'animale

@@ -73,9 +73,7 @@ class Settings : PreferenceFragmentCompat() {
             builder.setTitle("DELETE PET")
             builder.setMessage("Are you sure? Any progress will be lost")
             builder.setPositiveButton("Ok"
-            ) {_,_ ->
-                deletePet()
-            }
+            ) {_,_ -> deletePet() }
             builder.setNegativeButton("Cancel"
             ){_,_ ->}
 

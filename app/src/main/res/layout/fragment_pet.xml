@@ -22,7 +22,6 @@
             android:layout_height="242dp"
             android:background="@drawable/countor_image_view"
             android:contentDescription="@string/picture_pet"
-            android:src="@drawable/app_icon"
             android:visibility="invisible"
             android:adjustViewBounds="true"
             app:layout_constraintBottom_toBottomOf="parent"

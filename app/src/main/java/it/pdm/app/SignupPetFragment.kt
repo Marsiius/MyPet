@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
@@ -17,7 +18,7 @@ import kotlinx.android.synthetic.main.fragment_signup_pet.*
 
 class SignupPetFragment : Fragment() {
 
-    private lateinit var database: FirebaseDatabase
+    private lateinit var database: DatabaseReference
     private lateinit var firebaseUser: FirebaseUser
     private lateinit var email: String
     private lateinit var uId: String
@@ -61,8 +62,7 @@ class SignupPetFragment : Fragment() {
 
     //metodo che crea il nodo "user_uId" nel real time DB
     private fun writeUser(){
-        val ref = database.getReference("users")
-        ref.child(uId)
+        database.child(uId)
     }
 
     //metodo che scrive l'animale nel real time DB
@@ -76,7 +76,8 @@ class SignupPetFragment : Fragment() {
             et_gender.text.toString(),
             et_breed.text.toString()
         )
-        FirebaseRealtimeDBHelper.dbRefRT.child("pets").setValue(pet)
+        //FirebaseRealtimeDBHelper.dbRefPets.push().setValue(pet)
+        FirebaseRealtimeDBHelper.dbRefPets.setValue(pet)
         val intent = Intent(context, MainActivity::class.java )
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
@@ -84,7 +85,7 @@ class SignupPetFragment : Fragment() {
     }
 
     private fun initializeUI(){
-        database = Firebase.database
+        database = FirebaseRealtimeDBHelper.dbRefRT
         firebaseUser = FirebaseAuth.getInstance().currentUser!!
         email = firebaseUser.email.toString()
         uId = firebaseUser.uid
