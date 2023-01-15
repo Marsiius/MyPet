@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.DatePicker
 import android.widget.TextView
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
@@ -21,6 +22,7 @@ import it.pdm.app.R
 import it.pdm.app.databinding.FragmentNotesBinding
 import kotlinx.android.synthetic.main.fragment_notes.*
 import kotlinx.android.synthetic.main.fragment_pop_up_notes.*
+import java.util.*
 
 
 class NotesFragment : Fragment(), FragmentPopUpNotes.OnDialogNextBtnClickListener,
@@ -80,7 +82,12 @@ class NotesFragment : Fragment(), FragmentPopUpNotes.OnDialogNextBtnClickListene
             override fun onDataChange(snapshot: DataSnapshot) {
                 toDoItemList.clear()
                 for (noteSnapshot in snapshot.children){
-                    val toDoNote = noteSnapshot.key?.let { Note(it, noteSnapshot.value.toString()) } //con it, passo nel primo parametro(idNote), l'id della nota
+                    val ns = noteSnapshot.value.toString()
+                    val stringArray = ns.split(",")
+                    val title = stringArray[0]
+                    val noteDate = stringArray[1]
+                    val noteBody = stringArray[2]
+                    val toDoNote = noteSnapshot.key?.let { Note(it, title, noteDate, noteBody) } //con it, passo nel primo parametro(idNote)
                     //val toDoDate = noteSnapshot.key?.let { Note(noteSnapshot.value.toString()) }
                     if(toDoNote != null){
                         toDoItemList.add(toDoNote)
@@ -133,8 +140,9 @@ class NotesFragment : Fragment(), FragmentPopUpNotes.OnDialogNextBtnClickListene
         }
     }*/
 
-    override fun onSaveTask(note: String, tvNote: TextInputEditText) {
-        database.push().setValue(note).addOnCompleteListener {
+    override fun onSaveTask(note: String, tvNote: TextInputEditText, date: String, body : String, tvNoteBody : TextInputEditText) { //tvNote è l'inputEditText nel popUpNotes
+
+        database.push().setValue(note+","+date+","+body).addOnCompleteListener {
             if (it.isSuccessful){
                 Toast.makeText(context, "Nota aggiunta", Toast.LENGTH_SHORT).show()
                 tvNote.text = null
@@ -143,8 +151,21 @@ class NotesFragment : Fragment(), FragmentPopUpNotes.OnDialogNextBtnClickListene
             }
             popUpFragment.dismiss()
         }
-    }
 
+        /*------ salvo la data (trasformata in stringa, ma in una nuova nota)
+
+
+        database.push().setValue(date).addOnCompleteListener{
+            if (it.isSuccessful){
+                Toast.makeText(context, "Nota aggiunta", Toast.LENGTH_SHORT).show()
+                tvNote.text = null
+            }else{
+                Toast.makeText(context, it.exception?.message, Toast.LENGTH_SHORT).show()
+            }
+            popUpFragment.dismiss()
+        }
+        */
+    }
     override fun onDeleteNoteBtnClicked(note: Note) {
         database.child(note.idNote).removeValue().addOnCompleteListener {
             if(it.isSuccessful){

@@ -42,7 +42,7 @@ class FragmentAddNotes : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initializeUI()
+        //initializeUI()
 
         addNoteButton.setOnClickListener{
 
@@ -70,11 +70,11 @@ class FragmentAddNotes : Fragment() {
         //FirebaseRealtimeDBHelper.dbRefNote.setValue(note)
     }
 
-    private fun initializeUI(){
+    /*private fun initializeUI(){
         database = Firebase.database
         firebaseUser = FirebaseAuth.getInstance().currentUser!!
         email = firebaseUser.email.toString()
         uId = firebaseUser.uid
-    }
+    }*/
 
 }

@@ -24,13 +24,12 @@ class toDoAdapter(private val list: MutableList<Note>) : RecyclerView.Adapter<to
     override fun onBindViewHolder(holder: toDoViewHolder, position: Int) {
         with(holder){
             with(list[position]){
-                binding.tvNoteItem.text = this.textNote
+                binding.tvNoteItem.text = this.textNote //questo prende il tvNoteItem dal binding del itemRecycleView
+                binding.tvDateItem.text = this.dateNote
+                binding.tvBodyItem.text = this.bodyNote
 
                 binding.deleteNote.setOnClickListener{
                     listener?.onDeleteNoteBtnClicked(this)
-                }
-                binding.editNote.setOnClickListener{
-                    listener?.onEditNoteBtnClicked(this)
                 }
             }
         }
