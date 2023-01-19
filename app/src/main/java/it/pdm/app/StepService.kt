@@ -30,6 +30,7 @@ class StepService : Service(), SensorEventListener {
     private var passiTotali = 0
     private var totalSteps by Delegates.notNull<Long>()
     private val CHANNEL_ID = "ForegroundService Kotlin"
+    val mySingleton = MySingleton.getInstance()
 
     override fun onCreate() {
         super.onCreate()
@@ -81,6 +82,8 @@ class StepService : Service(), SensorEventListener {
             passiTotali = getPassi()
             passiTotali += getPassi()
             savePassi(passiTotali)
+            mySingleton.myValue = passi.toString()
+            Log.d("Singleton", mySingleton.myValue)
             /*totalSteps = getSteps()
             totalSteps += steps
             saveSteps(totalSteps)*/

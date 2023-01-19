@@ -47,6 +47,9 @@ class BlankFragment : Fragment() {
             val intentFg = Intent(context, StepService::class.java)
             requireActivity().stopService(intentFg)
         }
+        val mySingleton = MySingleton.getInstance()
+        val myValue = mySingleton.myValue
+        stepsValue_tv.text = myValue
     }
 
     /*var running = false
