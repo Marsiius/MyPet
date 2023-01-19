@@ -8,6 +8,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -185,9 +186,12 @@ class Pet : Fragment() {
     //metodo che scarica la foto dal DB Storage (da sistemare)
     private fun setPicturePet(){
         val refPicture = FirebaseRealtimeDBHelper.dbRefST.child("images/pet_picture.jpg")
-        Glide.with(this)
-            .load(refPicture)
-            .into(pet_picture);
+        refPicture.getBytes(100000000000000).addOnSuccessListener {
+            val bitmap = BitmapFactory.decodeByteArray(it,0,it.size)
+            pet_picture.setImageBitmap(bitmap)
+        }.addOnFailureListener {
+            Toast.makeText(context, "ERRORE SFIGATO", Toast.LENGTH_LONG).show()
+        }
     }
 
     //metodo che imposta la visibilità degli elementi del fragment che fanno riferimento all'animale
