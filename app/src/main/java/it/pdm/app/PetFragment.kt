@@ -32,6 +32,8 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.fragment_pet.*
 import java.io.ByteArrayOutputStream
+import java.io.File
+import java.io.FileOutputStream
 
 class Pet : Fragment() {
 
@@ -133,8 +135,10 @@ class Pet : Fragment() {
             if(requestCode == CAMERA_REQUEST_CODE){
                 val thumbnail: Bitmap = data!!.extras!!.get("data") as Bitmap
                 pet_picture.setImageBitmap(thumbnail)
+                saveBitmapToInternalStorage(thumbnail)
                 val bytes = ByteArrayOutputStream()
                 thumbnail.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
+                //pezzo seguente da sistemare
                 val path: String = MediaStore.Images.Media.insertImage(
                     requireContext().contentResolver,
                     thumbnail,
@@ -151,6 +155,8 @@ class Pet : Fragment() {
                 val imageRef = FirebaseRealtimeDBHelper.dbRefST.child("images/pet_picture.jpg")
                 if (uri != null)
                     imageRef.putFile(uri)
+                val bitmap = MediaStore.Images.Media.getBitmap(context?.contentResolver, uri)
+                saveBitmapToInternalStorage(bitmap)
             }
         }
     }
@@ -185,13 +191,29 @@ class Pet : Fragment() {
 
     //metodo che scarica la foto dal DB Storage (da sistemare)
     private fun setPicturePet(){
-        val refPicture = FirebaseRealtimeDBHelper.dbRefST.child("images/pet_picture.jpg")
-        refPicture.getBytes(100000000000000).addOnSuccessListener {
-            val bitmap = BitmapFactory.decodeByteArray(it,0,it.size)
+        val directory = context?.getDir("imageDir", Context.MODE_PRIVATE)
+        val file = File(directory, "your-image.jpg")
+        if(file.exists()){
+            val bitmap = BitmapFactory.decodeFile(file.absolutePath)
             pet_picture.setImageBitmap(bitmap)
-        }.addOnFailureListener {
-            Toast.makeText(context, "ERRORE SFIGATO", Toast.LENGTH_LONG).show()
+        }else{
+            val refPicture = FirebaseRealtimeDBHelper.dbRefST.child("images/pet_picture.jpg")
+            refPicture.getBytes(100000000000000).addOnSuccessListener {
+                val bitmap = BitmapFactory.decodeByteArray(it,0,it.size)
+                pet_picture.setImageBitmap(bitmap)
+            }.addOnFailureListener {
+                Toast.makeText(context, "ERRORE SFIGATO", Toast.LENGTH_LONG).show()
+            }
         }
+    }
+
+    private fun saveBitmapToInternalStorage(bitmap: Bitmap?) {
+        val directory = context?.getDir("imageDir", Context.MODE_PRIVATE)
+        val file = File(directory, "your-image.jpg")
+        val stream = FileOutputStream(file)
+        bitmap?.compress(Bitmap.CompressFormat.JPEG, 100, stream)
+        stream.flush()
+        stream.close()
     }
 
     //metodo che imposta la visibilità degli elementi del fragment che fanno riferimento all'animale
