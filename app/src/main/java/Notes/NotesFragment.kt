@@ -117,7 +117,6 @@ class NotesFragment : Fragment(), FragmentPopUpNotes.OnDialogNextBtnClickListene
         taskAdapter.setListener(this)
         binding.noteList.adapter = taskAdapter
 
-
     }
 
     private fun registerEvents(){
