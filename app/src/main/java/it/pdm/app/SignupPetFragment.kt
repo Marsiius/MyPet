@@ -1,5 +1,6 @@
 package it.pdm.app
 
+import android.content.Context
 import android.content.Intent
 import pets.MyPet
 import android.os.Bundle
@@ -11,10 +12,8 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.fragment_signup_pet.*
+import java.io.File
 
 class SignupPetFragment : Fragment() {
 
@@ -77,7 +76,9 @@ class SignupPetFragment : Fragment() {
             et_breed.text.toString()
         )
         //FirebaseRealtimeDBHelper.dbRefPets.push().setValue(pet)
-        FirebaseRealtimeDBHelper.dbRefPets.setValue(pet)
+        database.setValue(pet).addOnSuccessListener {
+            Toast.makeText(context, "Successfully", Toast.LENGTH_LONG).show()
+        }
         val intent = Intent(context, MainActivity::class.java )
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
@@ -85,7 +86,7 @@ class SignupPetFragment : Fragment() {
     }
 
     private fun initializeUI(){
-        database = FirebaseRealtimeDBHelper.dbRefRT
+        database = FirebaseDBHelper.dbRefRT
         firebaseUser = FirebaseAuth.getInstance().currentUser!!
         email = firebaseUser.email.toString()
         uId = firebaseUser.uid

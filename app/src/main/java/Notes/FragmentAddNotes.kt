@@ -7,12 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
-import it.pdm.app.FirebaseRealtimeDBHelper
+import it.pdm.app.FirebaseDBHelper
 import it.pdm.app.R
 import it.pdm.app.databinding.FragmentAddNotesBinding
 import kotlinx.android.synthetic.main.fragment_add_notes.*
@@ -66,7 +63,7 @@ class FragmentAddNotes : Fragment() {
     private fun writeNote() {
         val note = noteEditText.text.toString()
         //Firebase.database.reference.child(uId).child("Notes").push().setValue(note)
-        FirebaseRealtimeDBHelper.dbRefRT.child("Notes").push().setValue(note) //con push() si ottiene una chiave univoca del figlio, così da poter creare più note, eliminando l'overwriting.
+        FirebaseDBHelper.dbRefRT.child("Notes").push().setValue(note) //con push() si ottiene una chiave univoca del figlio, così da poter creare più note, eliminando l'overwriting.
         //FirebaseRealtimeDBHelper.dbRefNote.setValue(note)
     }
 
@@ -76,5 +73,9 @@ class FragmentAddNotes : Fragment() {
         email = firebaseUser.email.toString()
         uId = firebaseUser.uid
     }*/
+
+    private fun initUI(){
+        uId = firebaseUser.uid
+    }
 
 }

@@ -2,6 +2,7 @@ package it.pdm.app
 
 import android.app.AlertDialog
 import android.content.ContentValues.TAG
+import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -15,6 +16,7 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
+import java.io.File
 
 
 class Settings : PreferenceFragmentCompat() {
@@ -84,17 +86,22 @@ class Settings : PreferenceFragmentCompat() {
     }
 
     private fun deletePet(){
-            FirebaseRealtimeDBHelper.dbRefRT.addValueEventListener(object: ValueEventListener
+        FirebaseDBHelper.dbRefRT.addValueEventListener(object: ValueEventListener
             {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if(snapshot.exists()){
                         snapshot.ref.removeValue()
+                        FirebaseDBHelper.dbRefST.delete()
+                        val directory = context?.getDir("imageDir", Context.MODE_PRIVATE)
+                        val file = File(directory, "your-image.jpeg")
+                        if(file.exists()){
+                            file.delete()
+                        }
                         val intent = Intent(context, MainActivity::class.java )
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                         startActivity(intent)
                         Toast.makeText(context, "Pet deleted", Toast.LENGTH_LONG).show()
-
                     }
                 }
                 override fun onCancelled(error: DatabaseError) {

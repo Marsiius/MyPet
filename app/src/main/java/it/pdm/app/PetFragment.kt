@@ -17,23 +17,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.fragment.findNavController
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.fragment_pet.*
-import java.io.ByteArrayOutputStream
-import java.io.File
-import java.io.FileOutputStream
+import java.io.*
+
 
 class Pet : Fragment() {
 
@@ -78,14 +74,14 @@ class Pet : Fragment() {
             builder.setPositiveButton("Camera"
             ) { _, _ -> takePicture()}
             builder.setNeutralButton("Gallery"
-            ) { _, _ -> selectPicture()}
+            ) { _, _ -> selectPictureFromDevice()}
             val dialog: AlertDialog = builder.create()
             dialog.show()
         }
     }
 
     //metodo per aprire la galleria
-    private fun selectPicture(){
+    private fun selectPictureFromDevice(){
         val intent = Intent()
         intent.type = "image/*"
         intent.action = Intent.ACTION_GET_CONTENT
@@ -112,7 +108,7 @@ class Pet : Fragment() {
         }
     }
 
-    //override del metodo che verifica l'autorizzazione per l'accesso alla fotocamera
+    //override del metodo che verifica l'autorizzazione/permessi per la fotocamera
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -128,35 +124,37 @@ class Pet : Fragment() {
             }
     }
 
-    //override che gestisce entrambe le opzioni (galleria/fotocamera) mediante dei controlli if
+    //override che gestisce entrambe le opzioni (galleria/fotocamera) mediante dei controlli if;
+    //in entrambe le situazioni l'immagine viene presa come bitmap. Per essere caricata sullo storage
+    //bisogna comprimere il bitmap in un jpeg. Dopo, con l'ausilio di un oggetto ByteArrayOutputStream
+    // in cui viene caricata la picture,
+    //l'immagine viene effettivamente caricata sul firebase storage
+    //EDIT: nell'opzione della galleria, se la foto viene caricata come bitmap l'app crasha.
+    //è stato risolto castando l'immagine in un oggetto URI per poi convertirla in bitmap
+    //tramite un apposito metodo. METODO FINITO
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        val imageRef = FirebaseDBHelper.dbRefST.child("images/pet_picture.jpg")
         if(resultCode == Activity.RESULT_OK){
             if(requestCode == CAMERA_REQUEST_CODE){
-                val thumbnail: Bitmap = data!!.extras!!.get("data") as Bitmap
-                pet_picture.setImageBitmap(thumbnail)
-                saveBitmapToInternalStorage(thumbnail)
-                val bytes = ByteArrayOutputStream()
-                thumbnail.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
-                //pezzo seguente da sistemare
-                val path: String = MediaStore.Images.Media.insertImage(
-                    requireContext().contentResolver,
-                    thumbnail,
-                    "Title",
-                    null
-                )
-                val uri = Uri.parse(path)
-                val imageRef = FirebaseRealtimeDBHelper.dbRefST.child("images/pet_picture.jpg")
-                imageRef.putFile(uri)
-                pet_picture.setImageURI(uri)
-            }else if(requestCode == GALLERY_REQUEST_CODE){
-                val uri = data!!.data
-                pet_picture.setImageURI(uri)
-                val imageRef = FirebaseRealtimeDBHelper.dbRefST.child("images/pet_picture.jpg")
-                if (uri != null)
-                    imageRef.putFile(uri)
-                val bitmap = MediaStore.Images.Media.getBitmap(context?.contentResolver, uri)
+                val bitmap: Bitmap = data!!.extras!!.get("data") as Bitmap
+                pet_picture.setImageBitmap(bitmap)
                 saveBitmapToInternalStorage(bitmap)
+                val baos = ByteArrayOutputStream()
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+                val data = baos.toByteArray()
+                imageRef.putBytes(data)
+                pet_picture.setImageBitmap(bitmap)
+            }else if(requestCode == GALLERY_REQUEST_CODE){
+                val uri: Uri = data!!.data as Uri
+                val bitmap = convertUriToBitmap(uri)
+                pet_picture.setImageBitmap(bitmap)
+                saveBitmapToInternalStorage(bitmap)
+                val baos = ByteArrayOutputStream()
+                bitmap?.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+                val data = baos.toByteArray()
+                pet_picture.setImageBitmap(bitmap)
+                imageRef.putBytes(data)
             }
         }
     }
@@ -165,8 +163,7 @@ class Pet : Fragment() {
     //e il nome dell'animale (ancora da correggere la lettura dal DB della foto)
     private fun setPet(){
         progressBarPetFragment.visibility = View.VISIBLE
-        val refRT = FirebaseRealtimeDBHelper.dbRefRT.child("pets").child("name")
-        refRT.keepSynced(true)
+        val refRT = FirebaseDBHelper.dbRefRT.child("pets").child("name")
         refRT
             .addValueEventListener(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -189,27 +186,41 @@ class Pet : Fragment() {
         })
     }
 
-    //metodo che scarica la foto dal DB Storage (da sistemare)
+    //metodo che scarica la foto dal DB Storage oppure, se presente sul dispositivo, viene caricata da esso
     private fun setPicturePet(){
         val directory = context?.getDir("imageDir", Context.MODE_PRIVATE)
-        val file = File(directory, "your-image.jpg")
+        val file = File(directory, "your-image.jpeg")
         if(file.exists()){
             val bitmap = BitmapFactory.decodeFile(file.absolutePath)
             pet_picture.setImageBitmap(bitmap)
         }else{
-            val refPicture = FirebaseRealtimeDBHelper.dbRefST.child("images/pet_picture.jpg")
-            refPicture.getBytes(100000000000000).addOnSuccessListener {
+            val refPicture = FirebaseDBHelper.dbRefST.child("images/pet_picture.jpeg")
+            refPicture.getBytes(1000000000000000000).addOnSuccessListener {
                 val bitmap = BitmapFactory.decodeByteArray(it,0,it.size)
                 pet_picture.setImageBitmap(bitmap)
             }.addOnFailureListener {
-                Toast.makeText(context, "ERRORE SFIGATO", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "Add your pet picture!", Toast.LENGTH_LONG).show()
             }
         }
     }
 
+    //metodo che prende in input un URI e lo converte in BITMAP
+    private fun convertUriToBitmap(uri: Uri): Bitmap? {
+        val inputStream: InputStream?
+        try {
+            inputStream = context?.contentResolver?.openInputStream(uri)
+            return BitmapFactory.decodeStream(inputStream)
+        } catch (e: IOException) {
+            e.printStackTrace()
+            Toast.makeText(context, "Something went wrong", Toast.LENGTH_LONG).show()
+            return null
+        }
+    }
+
+    //metodo che prende in input un bitmap e lo salva in una cartella della app
     private fun saveBitmapToInternalStorage(bitmap: Bitmap?) {
         val directory = context?.getDir("imageDir", Context.MODE_PRIVATE)
-        val file = File(directory, "your-image.jpg")
+        val file = File(directory, "your-image.jpeg")
         val stream = FileOutputStream(file)
         bitmap?.compress(Bitmap.CompressFormat.JPEG, 100, stream)
         stream.flush()
