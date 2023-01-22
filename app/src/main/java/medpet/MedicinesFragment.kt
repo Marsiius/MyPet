@@ -1,4 +1,4 @@
-package it.pdm.app
+package medpet
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.firebase.database.DatabaseReference
+import it.pdm.app.R
 
 class MedicinesFragment : Fragment() {
 

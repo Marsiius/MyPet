@@ -78,17 +78,17 @@
     </fragment>
     <fragment
         android:id="@+id/vaccinationFragment"
-        android:name="it.pdm.app.VaccinationFragment"
+        android:name="medpet.VaccinationFragment"
         android:label="fragment_vaccination"
         tools:layout="@layout/fragment_vaccination" />
     <fragment
         android:id="@+id/medicinesFragment"
-        android:name="it.pdm.app.MedicinesFragment"
+        android:name="medpet.MedicinesFragment"
         android:label="fragment_medicines"
         tools:layout="@layout/fragment_medicines" />
     <fragment
         android:id="@+id/visitsFragment"
-        android:name="it.pdm.app.VisitsFragment"
+        android:name="medpet.VisitsFragment"
         android:label="fragment_visits"
         tools:layout="@layout/fragment_visits" />
     <fragment

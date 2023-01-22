@@ -1,4 +1,4 @@
-package it.pdm.app
+package medpet
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.fragment.findNavController
+import it.pdm.app.PetInformationFragment
+import it.pdm.app.R
 import kotlinx.android.synthetic.main.fragment_med.*
 
 class MedFragment : Fragment() {
