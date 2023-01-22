@@ -199,7 +199,7 @@ class Pet : Fragment() {
                 val bitmap = BitmapFactory.decodeByteArray(it,0,it.size)
                 pet_picture.setImageBitmap(bitmap)
             }.addOnFailureListener {
-                Toast.makeText(context, "Add your pet picture!", Toast.LENGTH_LONG).show()
+
             }
         }
     }

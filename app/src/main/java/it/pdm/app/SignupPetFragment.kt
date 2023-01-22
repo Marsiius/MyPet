@@ -9,11 +9,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentManager
+import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
+import kotlinx.android.synthetic.main.fragment_pop_up_notes.*
 import kotlinx.android.synthetic.main.fragment_signup_pet.*
 import java.io.File
+import java.text.SimpleDateFormat
+import java.util.*
 
 class SignupPetFragment : Fragment() {
 
@@ -47,6 +53,17 @@ class SignupPetFragment : Fragment() {
                     .show()
             }
         }
+
+        et_birthday.setOnClickListener {
+            val builder = MaterialDatePicker.Builder.datePicker()
+            val picker = builder.build()
+            picker.show(childFragmentManager, picker.toString())
+            picker.addOnPositiveButtonClickListener {
+                val formatter = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+                val date = formatter.format(Date(it))
+                et_birthday.setText(date)
+            }
+        }
     }
 
     //metodo che verifica che sia stato inserito sia il nome sia il compleanno dell'animale
@@ -75,8 +92,8 @@ class SignupPetFragment : Fragment() {
             et_gender.text.toString(),
             et_breed.text.toString()
         )
-        //FirebaseRealtimeDBHelper.dbRefPets.push().setValue(pet)
-        database.setValue(pet).addOnSuccessListener {
+        FirebaseDBHelper.dbRefPets.setValue(pet)
+        .addOnSuccessListener {
             Toast.makeText(context, "Successfully", Toast.LENGTH_LONG).show()
         }
         val intent = Intent(context, MainActivity::class.java )
