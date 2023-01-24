@@ -1,3 +1,3 @@
 package medpet
 
-class Vaccine(name: String, date: String, recall: String)
+class Vaccine(val name: String, val date: String, val recall: String)

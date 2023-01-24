@@ -11,8 +11,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import com.google.android.material.datepicker.MaterialDatePicker
+import it.pdm.app.FirebaseDBHelper
 import it.pdm.app.R
 import kotlinx.android.synthetic.main.fragment_signup_pet.*
 import kotlinx.android.synthetic.main.fragment_vaccination.*
@@ -81,8 +83,12 @@ class VaccinationFragment : Fragment() {
     private fun registerVaccine(name: String, date: String, recall: String){
         if(name.isNotEmpty() and date.isNotEmpty()){
             val vaccine = Vaccine(name, date, recall)
+            FirebaseDBHelper.dbRefPets.child("vaccines").child(vaccine.name)
+                .setValue(vaccine)
+                .addOnSuccessListener {
+                    Toast.makeText(context, "Successfully", Toast.LENGTH_LONG).show()
+                }
         }
-
     }
 
     private fun openCalendar(editText: EditText){
