@@ -164,6 +164,7 @@ class Pet : Fragment() {
     private fun setPet(){
         progressBarPetFragment.visibility = View.VISIBLE
         val refRT = FirebaseDBHelper.dbRefRT.child("pets").child("name")
+        refRT.keepSynced(true)
         refRT
             .addValueEventListener(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -207,13 +208,13 @@ class Pet : Fragment() {
     //metodo che prende in input un URI e lo converte in BITMAP
     private fun convertUriToBitmap(uri: Uri): Bitmap? {
         val inputStream: InputStream?
-        try {
+        return try {
             inputStream = context?.contentResolver?.openInputStream(uri)
-            return BitmapFactory.decodeStream(inputStream)
+            BitmapFactory.decodeStream(inputStream)
         } catch (e: IOException) {
             e.printStackTrace()
             Toast.makeText(context, "Something went wrong", Toast.LENGTH_LONG).show()
-            return null
+            null
         }
     }
 

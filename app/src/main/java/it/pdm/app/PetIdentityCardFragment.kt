@@ -33,6 +33,7 @@ class PetIdentityCardFragment : Fragment() {
 
     private fun setInformation() {
         val ref = FirebaseDBHelper.dbRefPets
+        ref.keepSynced(true)
         ref.addValueEventListener(object: ValueEventListener{
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if(snapshot.exists()){
