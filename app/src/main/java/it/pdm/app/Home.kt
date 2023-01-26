@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import it.pdm.app.databinding.FragmentHomeBinding
+import kotlinx.android.synthetic.main.fragment_home.*
 
 
 class Home : Fragment() {
@@ -32,6 +33,10 @@ class Home : Fragment() {
         }
         binding.Card3.setOnClickListener{
             findNavController().navigate(R.id.action_homeFragment_to_notesFragment)
+        }
+
+        emergencyCard.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_emergencyNumbersFragment)
         }
     }
 }

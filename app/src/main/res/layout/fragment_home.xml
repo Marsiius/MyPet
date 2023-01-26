@@ -82,7 +82,7 @@
                 android:rowCount="3">
 
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/cardStep"
+                    android:id="@+id/stepCard"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_rowWeight="1"
@@ -126,7 +126,7 @@
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/Card3"
+                    android:id="@+id/notesCard"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_rowWeight="1"
@@ -152,7 +152,7 @@
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/Card4"
+                    android:id="@+id/emergencyCard"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_rowWeight="1"
@@ -165,9 +165,29 @@
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:layout_centerInParent="true"
+                            android:background="@drawable/ic_emergency2" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="EMERGENCY"
+                            android:layout_centerHorizontal="true"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginBottom="8sp"
+                            android:textColor="@color/red"
+                            android:fontFamily="@font/aclonica"/>
+
+                    </RelativeLayout>
+
 
                 </com.google.android.material.card.MaterialCardView>
+
 
             </GridLayout>
 
@@ -181,7 +201,8 @@
                 android:clickable="true"
                 app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="25dp"
-                app:cardElevation="3dp">
+                app:cardElevation="3dp"
+                android:focusable="true">
 
                 <RelativeLayout
                     android:layout_width="match_parent"

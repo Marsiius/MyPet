@@ -1,10 +1,7 @@
-package medpet
+package it.pdm.app
 
 import android.app.AlertDialog
-import android.content.DialogInterface
-import android.os.Build
 import android.os.Bundle
-import android.text.Layout
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,12 +9,12 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import com.google.android.material.datepicker.MaterialDatePicker
-import it.pdm.app.FirebaseDBHelper
-import it.pdm.app.R
-import kotlinx.android.synthetic.main.fragment_signup_pet.*
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.fragment_vaccination.*
+import medpet.Vaccine
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -100,5 +97,25 @@ class VaccinationFragment : Fragment() {
             val date = formatter.format(Date(it))
             editText.setText(date)
         }
+    }
+
+    private fun getVaccinesFromFirebase(){
+        val ref = FirebaseDBHelper.dbRefPets.child("vaccines")
+        ref.keepSynced(true)
+        ref.addValueEventListener(object: ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()){
+                    val name = snapshot.child("name").toString()
+                    val date = snapshot.child("date").toString()
+                    val recall = snapshot.child("recall").toString()
+
+                    //scaricare vaccini da firebase e memorizarli nella listview
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
     }
 }

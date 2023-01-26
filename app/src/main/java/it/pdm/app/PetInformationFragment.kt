@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.fragment_pet_information.*
-import medpet.MedFragment
 
 class PetInformationFragment : Fragment() {
 
