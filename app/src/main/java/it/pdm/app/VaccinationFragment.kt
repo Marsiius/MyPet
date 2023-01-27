@@ -80,7 +80,7 @@ class VaccinationFragment : Fragment() {
     private fun registerVaccine(name: String, date: String, recall: String){
         if(name.isNotEmpty() and date.isNotEmpty()){
             val vaccine = Vaccine(name, date, recall)
-            FirebaseDBHelper.dbRefPets.child("vaccines").child(vaccine.name)
+            FirebaseDBHelper.dbRefRT.child("vaccines").child(vaccine.name)
                 .setValue(vaccine)
                 .addOnSuccessListener {
                     Toast.makeText(context, "Successfully", Toast.LENGTH_LONG).show()

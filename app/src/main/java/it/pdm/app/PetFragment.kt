@@ -59,7 +59,6 @@ class Pet : Fragment() {
         init()
 
         setPet()
-        setPicturePet()
 
         fab.setOnClickListener {
             findNavController().navigate(R.id.action_petFragment_to_signupPetFragment)
@@ -167,6 +166,7 @@ class Pet : Fragment() {
             .addValueEventListener(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
+                    setPicturePet()
                     val fragment = PetInformationFragment()
                     val transaction: FragmentTransaction? = fragmentManager?.beginTransaction()
                     transaction?.replace(R.id.rl_pet_fragment, fragment)

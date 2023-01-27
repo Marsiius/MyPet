@@ -1,6 +1,8 @@
 package it.pdm.app
 
+import android.content.ContentResolver
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
@@ -53,17 +55,18 @@ class RegisterActivity : AppCompatActivity() {
             return
         }
         if(TextUtils.isEmpty(confirmPasswordTV.toString())){
-            Toast.makeText(applicationContext, "Please confirm password!", Toast.LENGTH_LONG).show()
+            Toast.makeText(applicationContext, "Please confirm password", Toast.LENGTH_LONG).show()
             return
         }
         if(password != confirmation){
-            Toast.makeText(applicationContext, "Confirm password error: try again", Toast.LENGTH_LONG).show()
+            Toast.makeText(applicationContext, "Password error: try again", Toast.LENGTH_LONG).show()
             return
         }
 
         mAuth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener{
                 if(it.isSuccessful){
+                    initFirebaseStorage()
                     Toast.makeText(applicationContext, "Registration successful!", Toast.LENGTH_LONG).show()
                     val intent = Intent(this, LoginActivity::class.java )
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
@@ -75,6 +78,16 @@ class RegisterActivity : AppCompatActivity() {
                     progressBarSignup.visibility = View.INVISIBLE
                 }
             }
+    }
+
+    private fun initFirebaseStorage(){
+        val refST = FirebaseDBHelper.dbRefST.child("images/pet_picture.jpg")
+        val uri =Uri.Builder()
+            .scheme(ContentResolver.SCHEME_ANDROID_RESOURCE)
+            .authority(packageName)
+            .path(R.drawable.app_icon.toString())
+            .build()
+        refST.putFile(uri)
     }
 
     private fun initializeUI() {
