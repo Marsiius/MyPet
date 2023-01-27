@@ -25,17 +25,17 @@ class Home : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.cardStep.setOnClickListener {
+        binding.stepCard.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_blankFragment)
         }
         binding.Card2.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_blankFragment)
         }
-        binding.Card3.setOnClickListener{
+        binding.notesCard.setOnClickListener{
             findNavController().navigate(R.id.action_homeFragment_to_notesFragment)
         }
 
-        emergencyCard.setOnClickListener {
+        binding.emergencyCard.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_emergencyNumbersFragment)
         }
     }

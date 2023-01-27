@@ -65,9 +65,9 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginRight="15dp"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="15dp"
+            android:layout_marginRight="15dp"
             android:background="@drawable/top_radius"
             android:elevation="3dp">
 
@@ -101,7 +101,7 @@
                             android:layout_width="64dp"
                             android:layout_height="64dp"
                             android:layout_centerInParent="true"
-                            android:background="@drawable/ic_run" />
+                            android:background="@drawable/dog_walking" />
 
                     </RelativeLayout>
 
@@ -145,7 +145,7 @@
                             android:layout_width="64dp"
                             android:layout_height="64dp"
                             android:layout_centerInParent="true"
-                            android:background="@drawable/ic_note" />
+                            android:background="@drawable/note_ott" />
 
                     </RelativeLayout>
 
@@ -171,17 +171,17 @@
                             android:layout_width="64dp"
                             android:layout_height="64dp"
                             android:layout_centerInParent="true"
-                            android:background="@drawable/ic_emergency2" />
+                            android:background="@drawable/ambulanza" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="EMERGENCY"
-                            android:layout_centerHorizontal="true"
                             android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
                             android:layout_marginBottom="8sp"
-                            android:textColor="@color/red"
-                            android:fontFamily="@font/aclonica"/>
+                            android:fontFamily="@font/aclonica"
+                            android:text="EMERGENCY"
+                            android:textColor="@color/red" />
 
                     </RelativeLayout>
 
@@ -199,10 +199,10 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="25dp"
                 android:clickable="true"
+                android:focusable="true"
                 app:cardBackgroundColor="@color/white"
                 app:cardCornerRadius="25dp"
-                app:cardElevation="3dp"
-                android:focusable="true">
+                app:cardElevation="3dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
