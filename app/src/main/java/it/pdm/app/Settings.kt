@@ -28,7 +28,7 @@ class Settings : PreferenceFragmentCompat() {
     private lateinit var prefLogout: Preference
     private lateinit var prefDeletePet : Preference
     private lateinit var prefSubscribe: Preference
-    
+
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.root_preferences, rootKey)
 
@@ -91,15 +91,11 @@ class Settings : PreferenceFragmentCompat() {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if(snapshot.exists()){
                         snapshot.ref.removeValue()
-                        FirebaseDBHelper.dbRefST.delete()
-                        val directory = context?.getDir("imageDir", Context.MODE_PRIVATE)
-                        val file = File(directory, "your-image.jpeg")
-                        if(file.exists()){
-                            file.delete()
-                        }
+                        deleteImageFromInternalStorage()
+                        deleteImageFromFirebaseST()
                         val intent = Intent(context, MainActivity::class.java )
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                        //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                        //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                         startActivity(intent)
                         Toast.makeText(context, "Pet deleted", Toast.LENGTH_LONG).show()
                     }
@@ -108,6 +104,23 @@ class Settings : PreferenceFragmentCompat() {
                     Log.e(TAG, "onCancelled", error.toException())
                 }
             })
+    }
+
+    private fun deleteImageFromInternalStorage(){
+        val directory = context?.getDir("imageDir", Context.MODE_PRIVATE)
+        val file = File(directory, "your-image.jpg")
+        if(file.exists()){
+            file.delete()
+        }
+    }
+
+    private fun deleteImageFromFirebaseST(){
+        val refPictureST = FirebaseDBHelper.dbRefST
+        refPictureST.delete().addOnSuccessListener {
+            Toast.makeText(context, "FILE ELIMINATO", Toast.LENGTH_LONG).show()
+        }.addOnSuccessListener {
+            Toast.makeText(context, "FAAAAIIIILLLLL", Toast.LENGTH_LONG).show()
+        }
     }
 
     private fun setEmail(){

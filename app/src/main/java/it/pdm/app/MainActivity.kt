@@ -24,7 +24,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true)
+        FirebaseDatabase.getInstance("https://my-pet-application-default-rtdb.europe-west1.firebasedatabase.app")
+            .setPersistenceEnabled(true)
+        FirebaseDatabase.getInstance("gs://my-pet-application.appspot.com")
+            .setPersistenceEnabled(true)
 
         if(userIsNull()){
             logOut()

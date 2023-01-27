@@ -30,7 +30,6 @@ import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.fragment_pet.*
 import java.io.*
 
-
 class Pet : Fragment() {
 
     private lateinit var user: FirebaseUser
@@ -90,7 +89,7 @@ class Pet : Fragment() {
 
     //metodo per aprire la fotocamera
     private fun takePicture(){
-        if (context?.let { it1 ->
+        if (requireContext().let { it1 ->
                 ContextCompat.checkSelfPermission(
                     it1,
                     Manifest.permission.CAMERA
@@ -102,7 +101,7 @@ class Pet : Fragment() {
         }
         else{
             ActivityCompat.requestPermissions(
-                context as Activity, arrayOf(Manifest.permission.CAMERA),
+                requireActivity(), arrayOf(Manifest.permission.CAMERA),
                 CAMERA_PERMISSION_CODE
             )
         }
@@ -162,9 +161,8 @@ class Pet : Fragment() {
     //questo metodo viene eseguito appena il fragment viene lanciato. Esso scarica dal DB l'immagine
     //e il nome dell'animale (ancora da correggere la lettura dal DB della foto)
     private fun setPet(){
-        progressBarPetFragment.visibility = View.VISIBLE
+        //progressBarPetFragment.visibility = View.VISIBLE
         val refRT = FirebaseDBHelper.dbRefRT.child("pets").child("name")
-        refRT.keepSynced(true)
         refRT
             .addValueEventListener(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -179,7 +177,7 @@ class Pet : Fragment() {
                 }else{
                     fab.visibility = View.VISIBLE
                 }
-                progressBarPetFragment.visibility = View.INVISIBLE
+                //progressBarPetFragment.visibility = View.INVISIBLE
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -190,12 +188,12 @@ class Pet : Fragment() {
     //metodo che scarica la foto dal DB Storage oppure, se presente sul dispositivo, viene caricata da esso
     private fun setPicturePet(){
         val directory = context?.getDir("imageDir", Context.MODE_PRIVATE)
-        val file = File(directory, "your-image.jpeg")
+        val file = File(directory, "your-image.jpg")
         if(file.exists()){
             val bitmap = BitmapFactory.decodeFile(file.absolutePath)
             pet_picture.setImageBitmap(bitmap)
         }else{
-            val refPicture = FirebaseDBHelper.dbRefST.child("images/pet_picture.jpeg")
+            val refPicture = FirebaseDBHelper.dbRefST.child("images/pet_picture.jpg")
             refPicture.getBytes(1000000000000000000).addOnSuccessListener {
                 val bitmap = BitmapFactory.decodeByteArray(it,0,it.size)
                 pet_picture.setImageBitmap(bitmap)
@@ -221,7 +219,7 @@ class Pet : Fragment() {
     //metodo che prende in input un bitmap e lo salva in una cartella della app
     private fun saveBitmapToInternalStorage(bitmap: Bitmap?) {
         val directory = context?.getDir("imageDir", Context.MODE_PRIVATE)
-        val file = File(directory, "your-image.jpeg")
+        val file = File(directory, "your-image.jpg")
         val stream = FileOutputStream(file)
         bitmap?.compress(Bitmap.CompressFormat.JPEG, 100, stream)
         stream.flush()
