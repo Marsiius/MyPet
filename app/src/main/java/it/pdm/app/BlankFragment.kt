@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
@@ -36,14 +37,24 @@ class BlankFragment : Fragment() {
         return binding.root
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        btn_stop.setBackgroundColor(Color.GRAY)
+        btn_stop.isClickable = false
+
         binding.btnStart.setOnClickListener {
+            binding.btnStart.setBackgroundColor(Color.GRAY)
+            binding.btnStop.setBackgroundColor(Color.RED)
+            btn_start.isClickable = false
+            btn_stop.isClickable = true
             val intentFg = Intent(context, StepService::class.java)
             requireActivity().startService(intentFg)
         }
         binding.btnStop.setOnClickListener {
+            binding.btnStart.setBackgroundColor(resources.getColor(R.color.Green))
+            binding.btnStop.setBackgroundColor(Color.GRAY)
+            btn_start.isClickable = true
+            btn_stop.isClickable = false
             val intentFg = Intent(context, StepService::class.java)
             requireActivity().stopService(intentFg)
         }

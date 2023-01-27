@@ -147,6 +147,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         android:backgroundTint="@color/blue"
+        android:background="@drawable/bot_radius"
         android:text="@string/sign_up" />
 
 </RelativeLayout>

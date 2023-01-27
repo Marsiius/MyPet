@@ -1,7 +1,9 @@
 package it.pdm.app
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import pets.MyPet
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -37,8 +39,11 @@ class SignupPetFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_signup_pet, container, false)
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        button_sign_pet.setBackgroundColor(Color.BLUE)
+        button_sign_pet.background = resources.getDrawable(R.drawable.countor_signuppet)
 
         initializeUI()
 
