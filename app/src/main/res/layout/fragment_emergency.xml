@@ -10,15 +10,143 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:text="PER LE EMERGENZE"
-        android:layout_above="@+id/button"
+        android:layout_above="@+id/grid_layout"
         android:textSize="30sp"
         android:layout_marginBottom="20dp"
         />
-    <Button
-        android:id="@+id/button"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+    <GridLayout
+        android:id="@+id/grid_layout"
+        android:layout_width="340dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="24dp"
         android:layout_centerInParent="true"
-        android:background="@drawable/countor_image_view"
-        android:text="Numero di soccorso" />
+        android:columnCount="2"
+        android:rowCount="3">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/emergencyCard1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="5dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:elevation="5dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/ic_vaccines" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="8dp"
+                    android:gravity="center_horizontal|bottom"
+                    android:text="@string/vaccines" />
+
+            </RelativeLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/emergencyCard2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="5dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:elevation="5dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/ic_medicines" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/medicines"
+                    android:gravity="center_horizontal|bottom"
+                    android:layout_marginBottom="8dp"/>
+
+            </RelativeLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/emergencyCard3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="5dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:elevation="5dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/ic_visits" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/visits"
+                    android:gravity="center_horizontal|bottom"
+                    android:layout_marginBottom="8dp"/>
+
+            </RelativeLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/emergencyCard4"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="5dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:elevation="5dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/ic_backarrow" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/back"
+                    android:gravity="center_horizontal|bottom"
+                    android:layout_marginBottom="8dp"/>
+
+            </RelativeLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </GridLayout>
+
 </RelativeLayout>

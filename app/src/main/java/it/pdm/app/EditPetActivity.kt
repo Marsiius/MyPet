@@ -31,7 +31,7 @@ class EditPetActivity : AppCompatActivity() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val name = dataSnapshot.child("name").getValue(String::class.java)
                 val birthday = dataSnapshot.child("birthday").getValue(String::class.java)
-                et_name.text = name
+                et_name.hint = name
                 et_birthday.hint = birthday
                 // utilizza la stringa name
             }

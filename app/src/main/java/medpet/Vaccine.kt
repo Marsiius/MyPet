@@ -1,3 +1,8 @@
 package medpet
 
-class Vaccine(val name: String, val date: String, val recall: String)
+class Vaccine(
+    var idVaccine: String,
+              var nameVaccine: String,
+              var dateVaccine: String,
+              var recallVaccine: String
+              )

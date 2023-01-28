@@ -22,7 +22,16 @@ class EmergencyFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        button.setOnClickListener{
+        emergencyCard1.setOnClickListener{
+            callNumber("1223334444")
+        }
+        emergencyCard2.setOnClickListener{
+            callNumber("3661623293")
+        }
+        emergencyCard3.setOnClickListener{
+            callNumber("1223334444")
+        }
+        emergencyCard4.setOnClickListener{
             callNumber("1223334444")
         }
 

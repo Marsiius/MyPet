@@ -32,7 +32,7 @@ class FragmentPopUpNotes : DialogFragment() {
     var selectedDate = ""
     val date1 = Calendar.getInstance()
     val date2 = Calendar.getInstance()
-    val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+    val dateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
 
     fun setListener(listener: OnDialogNextBtnClickListener){
         this.listener = listener
@@ -89,7 +89,7 @@ class FragmentPopUpNotes : DialogFragment() {
             }
             //
 
-            val dataSelezionata = dateFormat.format(date1.time) //trasforma in stringa la data con il suo formato yyyy-mm-dd
+            val dataSelezionata = dateFormat.format(date1.time) //trasforma in stringa la data con il suo formato dd-MM-yyyy
             if(noteTask.isNotEmpty()){
                 listener?.onSaveTask(noteTask, binding.tvNote, dataSelezionata, bodyTask, binding.tvNoteBody) //noteTask è la stringa che viene presa dal tvNote -------------------------------------------------------
             }else{
