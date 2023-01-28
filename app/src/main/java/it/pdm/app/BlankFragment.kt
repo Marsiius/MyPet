@@ -16,17 +16,26 @@ import android.hardware.SensorEventListener
 import android.util.Log
 //import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 import it.pdm.app.databinding.ActivityLoginBinding.inflate
 import it.pdm.app.databinding.ActivityMainBinding
 import it.pdm.app.databinding.FragmentBinding
 import it.pdm.app.databinding.FragmentHomeBinding
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment.*
+import kotlinx.android.synthetic.main.fragment_pet_identity_card.*
 import kotlinx.android.synthetic.main.fragment_settings.*
 
 class BlankFragment : Fragment() {
 
     private lateinit var binding: FragmentBinding
+    private var passiFatti = 100.00f
+    var peso = 0.00f
+    private var weight = ""
+    private var calPerse = 0.00f
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -61,7 +70,33 @@ class BlankFragment : Fragment() {
         val mySingleton = MySingleton.getInstance()
         val myValue = mySingleton.myValue
         stepsValue_tv.text = myValue
+        passiFatti = myValue.toFloat()
+        calPerse = ((peso*0.02)*passiFatti).toFloat()
+        Log.d("tag", calPerse.toString())
+        Log.d("pesoLetto", peso.toString())
+        Log.d("passiLetti", passiFatti.toString())
+
+
+        val ref = FirebaseDBHelper.dbRefPets
+        ref.addValueEventListener(object: ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if(snapshot.exists()){
+                    weight = snapshot.child("weight").value.toString()
+                    peso = weight.toFloat()
+                    calPerse = ((peso*0.02)*passiFatti).toFloat()
+                    Log.d("peso", peso.toString())
+                    Log.d("passiLetti", passiFatti.toString())
+                    Log.d("tag", calPerse.toString())
+                    val formattedNumber = String.format("%.2f", calPerse)
+                    calValue_tv.text = formattedNumber
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })
     }
+
 
     /*var running = false
     var starting = false
@@ -131,3 +166,5 @@ class BlankFragment : Fragment() {
         Log.d("stop", lastStep.toString())
     }*/
 }
+
+

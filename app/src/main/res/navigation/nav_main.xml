@@ -85,7 +85,7 @@
     </fragment>
     <fragment
         android:id="@+id/vaccinationFragment"
-        android:name="it.pdm.app.VaccinationFragment"
+        android:name="medpet.VaccinationFragment"
         android:label="fragment_vaccination"
         tools:layout="@layout/fragment_vaccination" />
     <fragment

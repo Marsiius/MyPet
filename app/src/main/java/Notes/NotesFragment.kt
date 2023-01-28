@@ -168,7 +168,7 @@ class NotesFragment : Fragment(), FragmentPopUpNotes.OnDialogNextBtnClickListene
     override fun onDeleteNoteBtnClicked(note: Note) {
         database.child(note.idNote).removeValue().addOnCompleteListener {
             if(it.isSuccessful){
-                Toast.makeText(context, "cancellato", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "cancella", Toast.LENGTH_SHORT).show()
             }else{
                 Toast.makeText(context, it.exception?.message, Toast.LENGTH_SHORT).show()
             }

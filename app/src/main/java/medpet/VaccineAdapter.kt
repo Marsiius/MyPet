@@ -1,14 +1,12 @@
-package it.pdm.app
+package medpet
 
-import Notes.Note
-import Notes.toDoAdapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import it.pdm.app.databinding.ItemRecycleviewBinding
-import medpet.Vaccine
 
 class VaccineAdapter(private val list: MutableList<Vaccine>) : RecyclerView.Adapter<VaccineAdapter.VaccineViewHolder>(){
+
     private var listener: adapterClickInterface?= null
     fun setListener(listener: adapterClickInterface){
         this.listener = listener
@@ -31,7 +29,7 @@ class VaccineAdapter(private val list: MutableList<Vaccine>) : RecyclerView.Adap
                 binding.tvBodyItem.text = this.recallVaccine
 
                 binding.deleteNote.setOnClickListener{
-                    listener?.onDeleteNoteBtnClicked(this)
+                    listener?.onDeleteVaccineBtnClicked(this)
                 }
             }
         }
@@ -42,7 +40,7 @@ class VaccineAdapter(private val list: MutableList<Vaccine>) : RecyclerView.Adap
     }
 
     interface adapterClickInterface{
-        fun onDeleteNoteBtnClicked(vaccine: Vaccine)
+        fun onDeleteVaccineBtnClicked(vaccine: Vaccine)
     }
 
 }
