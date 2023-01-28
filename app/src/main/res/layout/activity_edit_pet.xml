@@ -19,8 +19,10 @@
         android:paddingTop="8dp"
         android:rowCount="7"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="10dp">
+        app:layout_constraintVertical_bias="0.1">
 
         <EditText
             android:id="@+id/et_name"
@@ -29,22 +31,22 @@
             android:layout_margin="8dp"
             android:background="@drawable/tv_contour"
             android:backgroundTint="@color/white"
-            android:gravity="center"
             android:hint="@string/name_pet"
+            android:inputType="textPersonName"
             android:minHeight="48dp"
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
             android:textSize="24sp"
             tools:ignore="TextContrastCheck" />
 
-        <TextView
+        <EditText
             android:id="@+id/et_birthday"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:background="@drawable/tv_contour"
             android:backgroundTint="@color/white"
-            android:gravity="center"
+            android:focusableInTouchMode="false"
             android:hint="@string/birthday_g_mm_aaaa"
             android:minHeight="48dp"
             android:paddingStart="8dp"
@@ -52,75 +54,75 @@
             android:textSize="24sp"
             tools:ignore="TextContrastCheck" />
 
-        <TextView
+        <EditText
             android:id="@+id/et_weight"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:background="@drawable/tv_contour"
             android:backgroundTint="@color/white"
-            android:gravity="center"
             android:hint="@string/weight_kg"
+            android:inputType="numberDecimal"
             android:minHeight="48dp"
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
             android:textSize="24sp"
             tools:ignore="TextContrastCheck" />
 
-        <TextView
+        <EditText
             android:id="@+id/et_height"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:background="@drawable/tv_contour"
             android:backgroundTint="@color/white"
-            android:gravity="center"
             android:hint="@string/height_cm"
+            android:inputType="number"
             android:minHeight="48dp"
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
             android:textSize="24sp"
             tools:ignore="TextContrastCheck" />
 
-        <TextView
+        <EditText
             android:id="@+id/et_chipNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:background="@drawable/tv_contour"
             android:backgroundTint="@color/white"
-            android:gravity="center"
             android:hint="@string/chip_number"
+            android:inputType="number"
             android:minHeight="48dp"
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
             android:textSize="24sp"
             tools:ignore="TextContrastCheck" />
 
-        <TextView
+        <EditText
             android:id="@+id/et_gender"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:background="@drawable/tv_contour"
             android:backgroundTint="@color/white"
-            android:gravity="center"
             android:hint="@string/gender_pet"
+            android:inputType="text"
             android:minHeight="48dp"
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
             android:textSize="24sp"
             tools:ignore="TextContrastCheck" />
 
-        <TextView
+        <EditText
             android:id="@+id/et_breed"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:background="@drawable/tv_contour"
             android:backgroundTint="@color/white"
-            android:gravity="center"
             android:hint="@string/breed"
+            android:inputType="text"
             android:minHeight="48dp"
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
@@ -137,5 +139,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/grid_layout" />
+        app:layout_constraintTop_toBottomOf="@+id/grid_layout"
+        app:layout_constraintVertical_bias="0.1"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

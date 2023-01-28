@@ -26,7 +26,6 @@ class PetIdentityCardFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         init()
         setInformation()
     }
@@ -37,25 +36,32 @@ class PetIdentityCardFragment : Fragment() {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if(snapshot.exists()){
                         val name = snapshot.child("name").value.toString()
-                        tv_name.text = name
+                        if(tv_name!=null)
+                            tv_name.text = name
 
                         val birthday = snapshot.child("birthday").value.toString()
-                        tv_birthday.text = birthday
+                        if(tv_birthday!=null)
+                            tv_birthday.text = birthday
 
                         val weight = snapshot.child("weight").value.toString()
-                        tv_weight.text = weight + " kg"
+                        if(tv_weight!=null)
+                            tv_weight.text = weight + " kg"
 
                         val height = snapshot.child("height").value.toString()
-                        tv_height.text = height + " cm"
+                        if(tv_height!=null)
+                            tv_height.text = height + " cm"
 
                         val chipNumber = snapshot.child("chipNumber").value.toString()
-                        tv_chipNumber.text = chipNumber
+                        if(tv_chipNumber!=null)
+                            tv_chipNumber.text = chipNumber
 
                         val gender = snapshot.child("gender").value.toString()
-                        tv_gender.text = gender
+                        if(tv_gender!=null)
+                            tv_gender.text = gender
 
                         val breed = snapshot.child("breed").value.toString()
-                        tv_breed.text = breed
+                        if(tv_breed!=null)
+                            tv_breed.text = breed
                     }
                 }
 
@@ -64,6 +70,7 @@ class PetIdentityCardFragment : Fragment() {
             }
         })
     }
+
 
     private fun init() {
         uId = FirebaseAuth.getInstance().currentUser!!.uid

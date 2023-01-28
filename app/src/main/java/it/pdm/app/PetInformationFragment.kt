@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.fragment_pet_information.*
@@ -35,6 +36,7 @@ class PetInformationFragment : Fragment() {
 
         editPetCard.setOnClickListener {
             val intent = Intent(context,EditPetActivity::class.java)
+            FragmentManager.POP_BACK_STACK_INCLUSIVE
             startActivity(intent)
         }
     }

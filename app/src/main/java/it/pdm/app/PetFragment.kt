@@ -170,11 +170,17 @@ class Pet : Fragment() {
                     val fragment = PetInformationFragment()
                     val transaction: FragmentTransaction? = fragmentManager?.beginTransaction()
                     transaction?.replace(R.id.rl_pet_fragment, fragment)
-                    transaction?.commit()
+                    if(!fragment.isStateSaved){
+                        transaction?.commitNow()
+                    }
                     val data = snapshot.getValue(String::class.java)
-                    tv_pet_name.text = data
+                    if(tv_pet_name!=null){
+                        tv_pet_name.text = data
+
+                    }
                     setPetVisibility()
                 }else{
+
                     fab.visibility = View.VISIBLE
                 }
                 //progressBarPetFragment.visibility = View.INVISIBLE
@@ -230,7 +236,8 @@ class Pet : Fragment() {
     //metodo che imposta la visibilità degli elementi del fragment che fanno riferimento all'animale
     private fun setPetVisibility(){
         pet_picture.visibility = View.VISIBLE
-        tv_pet_name.visibility = View.VISIBLE
+        if(tv_pet_name!=null)
+            tv_pet_name.visibility = View.VISIBLE
         rl_pet_fragment.visibility = View.VISIBLE
         fab_camera.visibility = View.VISIBLE
     }
