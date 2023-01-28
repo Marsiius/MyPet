@@ -197,6 +197,7 @@ class Pet : Fragment() {
             refPicture.getBytes(1000000000000000000).addOnSuccessListener {
                 val bitmap = BitmapFactory.decodeByteArray(it,0,it.size)
                 pet_picture.setImageBitmap(bitmap)
+                saveBitmapToInternalStorage(bitmap)
             }.addOnFailureListener {
 
             }

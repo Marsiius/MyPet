@@ -1,5 +1,6 @@
 package it.pdm.app
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -30,6 +31,11 @@ class PetInformationFragment : Fragment() {
             val transaction: FragmentTransaction? = fragmentManager?.beginTransaction()
             transaction?.replace(R.id.rl_pet_fragment, fragment)
             transaction?.commit()
+        }
+
+        editPetCard.setOnClickListener {
+            val intent = Intent(context,EditPetActivity::class.java)
+            startActivity(intent)
         }
     }
 }
