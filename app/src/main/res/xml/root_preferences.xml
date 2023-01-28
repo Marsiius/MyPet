@@ -42,9 +42,9 @@
         android:title="Help">
 
         <Preference
-            android:key="feedback"
-            android:title="Send feedback"
-            android:summary="Report suggest new features">
+            android:key="contactUs"
+            android:title="Contact us"
+            android:summary="Report suggest new features or contact us for support">
 
             <intent
                 android:action="android.intent.action.SEND"
@@ -65,9 +65,9 @@
             android:summary="Delete pet and any data"/>
 
         <Preference
-            android:key="delete_account"
-            android:title="Delete account"
-            android:summary="All progress will be lost"
+            android:key="info"
+            android:title="Info"
+            android:summary="About us"
             />
     </PreferenceCategory>
 

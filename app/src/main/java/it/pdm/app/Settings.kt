@@ -27,7 +27,7 @@ class Settings : PreferenceFragmentCompat() {
     private lateinit var prefPassword: Preference
     private lateinit var prefLogout: Preference
     private lateinit var prefDeletePet : Preference
-    private lateinit var prefSubscribe: Preference
+    private lateinit var prefInfo: Preference
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.root_preferences, rootKey)
@@ -56,19 +56,6 @@ class Settings : PreferenceFragmentCompat() {
             true
         }
 
-        prefSubscribe.onPreferenceClickListener = Preference.OnPreferenceClickListener {
-            val builder: AlertDialog.Builder = AlertDialog.Builder(context)
-            builder.setCancelable(true)
-            builder.setTitle("DELETE ACCOUNT")
-            builder.setMessage("Contact us to subscribe (mypet.mc@gmail.com)")
-            builder.setPositiveButton("Ok"
-            ) {_,_ ->}
-
-            val dialog: AlertDialog = builder.create()
-            dialog.show()
-            true
-        }
-
         prefDeletePet.onPreferenceClickListener = Preference.OnPreferenceClickListener {
             val builder: AlertDialog.Builder = AlertDialog.Builder(context)
             builder.setCancelable(true)
@@ -78,6 +65,22 @@ class Settings : PreferenceFragmentCompat() {
             ) {_,_ -> deletePet() }
             builder.setNegativeButton("Cancel"
             ){_,_ ->}
+
+            val dialog: AlertDialog = builder.create()
+            dialog.show()
+            true
+        }
+
+        prefInfo.onPreferenceClickListener = Preference.OnPreferenceClickListener {
+            val builder: AlertDialog.Builder = AlertDialog.Builder(context)
+            builder.setCancelable(true)
+            builder.setTitle("Info")
+            builder.setMessage(
+                "MyPet is a project developed by Luca Canali and Eros Marsichina, " +
+                        "University Insubria's students "
+            )
+            builder.setPositiveButton("Ok"
+            ) {_,_ ->}
 
             val dialog: AlertDialog = builder.create()
             dialog.show()
@@ -160,7 +163,7 @@ class Settings : PreferenceFragmentCompat() {
         prefPassword = findPreference("reset_password")!!
         prefLogout = findPreference("logout")!!
         prefDeletePet = findPreference("delete_pet")!!
-        prefSubscribe = findPreference("delete_account")!!
+        prefInfo = findPreference("info")!!
     }
 }
 
