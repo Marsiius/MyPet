@@ -75,7 +75,7 @@
 
         </RelativeLayout>
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/linear_layout"
             android:layout_width="match_parent"
             android:layout_height="180dp"
@@ -86,16 +86,15 @@
 
             <DatePicker
                 android:id="@+id/data_picker"
-                android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:datePickerMode="spinner"
                 android:calendarViewShown="false"
+                android:datePickerMode="spinner"
+                android:layout_centerInParent="true"
                 android:elevation="8dp"
-
                 />
 
-        </LinearLayout>
+        </RelativeLayout>
 
 
         <ImageView
