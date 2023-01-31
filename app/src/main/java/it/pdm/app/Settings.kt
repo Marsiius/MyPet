@@ -6,7 +6,10 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.text.InputType
 import android.util.Log
+import android.widget.EditText
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.Preference
@@ -36,13 +39,40 @@ class Settings : PreferenceFragmentCompat() {
 
         setEmail()
 
+        prefUser.onPreferenceClickListener = Preference.OnPreferenceClickListener {
+            val builder = AlertDialog.Builder(context)
+            builder.setTitle("Insert new email")
+            val etNewEmail = EditText(context)
+            etNewEmail.hint = "email@provide.com"
+            etNewEmail.inputType = InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
+            val etPassword = EditText(context)
+            etPassword.hint = "Insert your password"
+            val layout = LinearLayout(context)
+            layout.orientation = LinearLayout.VERTICAL
+            layout.addView(etNewEmail)
+            layout.addView(etPassword)
+            builder.setView(layout)
+            if(etNewEmail.text!=null){
+                builder.setPositiveButton("Confirm"
+                    ){
+                        _,_,-> if(etPassword.text!=null && confirmPassword(etPassword.text.toString())){
+                            resetEmail(etNewEmail.text.toString())
+                        }
+
+                    }
+            }
+            builder.show()
+            true
+        }
+
         prefPassword.onPreferenceClickListener = Preference.OnPreferenceClickListener {
             val builder: AlertDialog.Builder = AlertDialog.Builder(context)
             builder.setCancelable(true)
             builder.setTitle("Reset password?")
             builder.setMessage("You will receive an email with a link")
             builder.setPositiveButton("Confirm"
-                ) { _, _ -> resetPassword()}
+                ) { _, _ ->
+                resetPassword()}
             builder.setNegativeButton(android.R.string.cancel
                 ) { _, _ -> }
 
@@ -127,9 +157,24 @@ class Settings : PreferenceFragmentCompat() {
             prefUser.summary = user.email.toString()
     }
 
+    private fun resetEmail(email: String){
+        user.updateEmail(email)
+            .addOnCompleteListener {
+                if(it.isSuccessful){
+                    Toast.makeText(context, "Check your email. LOGOUT", Toast.LENGTH_LONG).show()
+                    Log.d(TAG, "Email address updated.")
+                } else {
+                    Toast.makeText(context, "SOMETHING WENT WRONG", Toast.LENGTH_LONG).show()
+
+                    Log.e(TAG, "Failed to update email.", it.exception)
+                }
+            }
+    }
+
     private fun resetPassword() {
         mAuth.sendPasswordResetEmail(user.email.toString()).addOnSuccessListener {
             Toast.makeText(context, "Please, check your email", Toast.LENGTH_LONG).show()
+            logout()
         }
             .addOnFailureListener{
                 Toast.makeText(context, "ERROR: try again", Toast.LENGTH_LONG).show()
@@ -151,6 +196,18 @@ class Settings : PreferenceFragmentCompat() {
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
         startActivity(intent)
+    }
+
+    private fun confirmPassword(input: String): Boolean{
+        var bool = false
+        mAuth.signInWithEmailAndPassword(user.email.toString(), input)
+            .addOnSuccessListener {
+                bool = true
+            }
+            .addOnFailureListener {
+                bool = false
+            }
+        return bool
     }
 
     private fun initializeUI(){
