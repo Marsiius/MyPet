@@ -27,7 +27,7 @@ class VisitsFragment : Fragment() {
 
     }
 
-    private fun openPhoneCalendar(medVisit: Visit){
+    private fun openCalendar(medVisit: Visit){
         val beginTime = Calendar.getInstance()
         //TODO: da finire
         beginTime.set(2022, 4, 19) // set the date and time of the event
