@@ -30,6 +30,7 @@ class Settings : PreferenceFragmentCompat() {
     private lateinit var prefPassword: Preference
     private lateinit var prefLogout: Preference
     private lateinit var prefDeletePet : Preference
+    private lateinit var prefFeedback: Preference
     private lateinit var prefInfo: Preference
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
@@ -116,6 +117,14 @@ class Settings : PreferenceFragmentCompat() {
             dialog.show()
             true
         }
+
+        prefFeedback.onPreferenceClickListener = Preference.OnPreferenceClickListener {
+            val emailIntent = Intent(Intent.ACTION_SEND)
+            emailIntent.type = "plain/text"
+            emailIntent.putExtra(Intent.EXTRA_EMAIL, arrayOf("email_address@example.com"))
+            startActivity(emailIntent)
+            true
+        }
     }
 
     private fun deletePet(){
@@ -155,6 +164,7 @@ class Settings : PreferenceFragmentCompat() {
     }
 
     private fun resetEmail(email: String){
+
         user.updateEmail(email)
             .addOnCompleteListener {
                 if(it.isSuccessful){
@@ -212,6 +222,7 @@ class Settings : PreferenceFragmentCompat() {
         prefLogout = findPreference("logout")!!
         prefDeletePet = findPreference("delete_pet")!!
         prefInfo = findPreference("info")!!
+        prefFeedback = findPreference("feedback")!!
     }
 }
 

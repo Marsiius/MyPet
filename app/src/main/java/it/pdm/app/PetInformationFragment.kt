@@ -34,6 +34,10 @@ class PetInformationFragment : Fragment() {
             transaction?.commit()
         }
 
+        card_run.setOnClickListener {
+            findNavController().navigate(R.id.action_petFragment_to_blankFragment)
+        }
+
         editPetCard.setOnClickListener {
             val intent = Intent(context,EditPetActivity::class.java)
             FragmentManager.POP_BACK_STACK_INCLUSIVE

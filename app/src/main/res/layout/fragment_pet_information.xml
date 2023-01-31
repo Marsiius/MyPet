@@ -28,17 +28,14 @@
             android:focusable="true"
             app:cardCornerRadius="25dp"
             android:elevation="5dp">
-
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-
                 <ImageView
                     android:layout_width="64dp"
                     android:layout_height="64dp"
                     android:layout_centerInParent="true"
                     android:background="@drawable/ic_document" />
-
             </RelativeLayout>
 
         </com.google.android.material.card.MaterialCardView>
@@ -66,7 +63,7 @@
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/card_camera"
+            android:id="@+id/card_run"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_rowWeight="1"
@@ -79,6 +76,11 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+                <ImageView
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/ic_run" />
             </RelativeLayout>
         </com.google.android.material.card.MaterialCardView>
 

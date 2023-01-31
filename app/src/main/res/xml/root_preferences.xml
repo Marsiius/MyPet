@@ -45,18 +45,6 @@
             android:key="feedback"
             android:title="Send feedback"
             android:summary="Report suggest new features">
-
-            <intent
-                android:action="android.intent.action.SEND"
-                android:mimeType="text/email">
-                <extra
-                    android:name="android.intent.extra.EMAIL"
-                    android:value="mailto@email.com"/>
-                <extra
-                    android:name="android.intent.extra.SUBJECT"
-                    android:value="Feedback"/>
-            </intent>
-            
         </Preference>
 
         <Preference

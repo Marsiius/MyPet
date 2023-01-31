@@ -44,6 +44,9 @@
         <action
             android:id="@+id/action_petFragment_to_visitsFragment"
             app:destination="@id/visitsFragment" />
+        <action
+            android:id="@+id/action_petFragment_to_blankFragment"
+            app:destination="@id/blankFragment" />
     </fragment><!-- Label che cambia nella toolbar di ogni fragment -->
     <fragment
         android:id="@+id/settingsFragment"
@@ -110,5 +113,14 @@
         android:id="@+id/emergencyNumbersFragment"
         android:name="it.pdm.app.EmergencyFragment"
         android:label="fragment_emergency_numbers"
-        tools:layout="@layout/fragment_emergency" /><!-- Label che cambia nella toolbar di ogni fragment -->
+        tools:layout="@layout/fragment_emergency" />
+    <fragment
+        android:id="@+id/petInformationFragment"
+        android:name="it.pdm.app.PetInformationFragment"
+        android:label="fragment_pet_information"
+        tools:layout="@layout/fragment_pet_information" >
+        <action
+            android:id="@+id/action_petInformationFragment_to_blankFragment"
+            app:destination="@id/blankFragment" />
+    </fragment><!-- Label che cambia nella toolbar di ogni fragment -->
 </navigation>
