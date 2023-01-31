@@ -2,7 +2,7 @@ package pets
 
 import java.util.*
 
-class Visit(
+class Visits(
     var date: Date,
     var description: String
     )

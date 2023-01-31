@@ -106,8 +106,8 @@ class VaccinationFragment : Fragment(), VaccineAdapter.adapterClickInterface, Va
         }
     }
 
-    override fun onDeleteVaccineBtnClicked(vaccineId: Vaccine) {
-        database.child(vaccineId.idVaccine).removeValue().addOnCompleteListener {
+    override fun onDeleteVaccineBtnClicked(vaccine: Vaccine) {
+        database.child(vaccine.idVaccine).removeValue().addOnCompleteListener {
             if(it.isSuccessful){
                 Toast.makeText(context, "cancellato", Toast.LENGTH_SHORT).show()
             }else{
