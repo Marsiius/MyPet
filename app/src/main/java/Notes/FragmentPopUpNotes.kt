@@ -7,10 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.DatePicker
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.core.view.get
 import androidx.fragment.app.DialogFragment
@@ -31,11 +28,12 @@ class FragmentPopUpNotes : DialogFragment() {
     private lateinit var binding: FragmentPopUpNotesBinding
     private var listener: OnDialogNextBtnClickListener? = null
     @RequiresApi(Build.VERSION_CODES.O)
-    val currentDate = LocalDate.now()
+    /*val currentDate = LocalDate.now()
     var selectedDate = ""
     val date1 = Calendar.getInstance()
-    val date2 = Calendar.getInstance()
+    val date2 = Calendar.getInstance()*/
     val dateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+    var dataSelezionata = ""
 
     fun setListener(listener: OnDialogNextBtnClickListener){
         this.listener = listener
@@ -71,6 +69,9 @@ class FragmentPopUpNotes : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         registerEvents()
+        data_picker.setOnClickListener{
+            openCalendar(data_picker)
+        }
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -80,7 +81,7 @@ class FragmentPopUpNotes : DialogFragment() {
             val bodyTask = binding.tvNoteBody.text.toString()
 
             //
-            date1.set(data_picker.year, data_picker.month, data_picker.dayOfMonth)
+            /*date1.set(data_picker.year, data_picker.month, data_picker.dayOfMonth)
             if (date1.before(date2)) {
                 Log.d("La Data", "Selezionata è prima di quella corrente")
                 //aggiungere al firebase
@@ -91,15 +92,14 @@ class FragmentPopUpNotes : DialogFragment() {
                 //aggiungere al firebase
             }
             //
+            */
 
-            val dataSelezionata = dateFormat.format(date1.time) //trasforma in stringa la data con il suo formato dd-MM-yyyy
+            //val dataSelezionata = dateFormat.format(date1.time) //trasforma in stringa la data con il suo formato dd-MM-yyyy
             if(noteTask.isNotEmpty()){
                 listener?.onSaveTask(noteTask, binding.tvNote, dataSelezionata, bodyTask, binding.tvNoteBody) //noteTask è la stringa che viene presa dal tvNote -------------------------------------------------------
             }else{
                 Toast.makeText(context, "Non puoi lasciare il campo vuoto", Toast.LENGTH_SHORT).show()
             }
-
-
 
             /*if (noteTask.isNotEmpty()){
                 if(selectedDate.after(currentDate)){
@@ -114,11 +114,20 @@ class FragmentPopUpNotes : DialogFragment() {
                 Toast.makeText(context, "Non puoi lasciare il campo vuoto", Toast.LENGTH_SHORT).show()
 
             }*/
-
-            binding.popUpClose.setOnClickListener{
-                dismiss()
-
             }
+        binding.popUpClose.setOnClickListener{
+            dismiss()
+        }
+    }
+
+    private fun openCalendar(et: Button) {
+        val builder = MaterialDatePicker.Builder.datePicker()
+        val picker = builder.build()
+        picker.show(childFragmentManager, picker.toString())
+        picker.addOnPositiveButtonClickListener {
+            val formatter = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+            dataSelezionata = formatter.format(Date(it))
+            et.setText(dataSelezionata)
         }
     }
 
@@ -127,3 +136,4 @@ class FragmentPopUpNotes : DialogFragment() {
     }
 
 }
+

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="400dp"
     android:layout_height="wrap_content"
+    app:cardElevation="8dp"
     tools:context="Notes.FragmentPopUpNotes">
 
 
@@ -77,22 +78,22 @@
 
         <RelativeLayout
             android:id="@+id/linear_layout"
-            android:layout_width="match_parent"
-            android:layout_height="180dp"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardView2"
             android:layout_marginHorizontal="0dp">
 
-            <DatePicker
+            <Button
                 android:id="@+id/data_picker"
-                android:layout_width="wrap_content"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:calendarViewShown="false"
-                android:datePickerMode="spinner"
                 android:layout_centerInParent="true"
-                android:elevation="8dp"
-                />
+                android:text="Seleziona la data"
+                android:background="@drawable/bot_radius">
+
+            </Button>
 
         </RelativeLayout>
 
