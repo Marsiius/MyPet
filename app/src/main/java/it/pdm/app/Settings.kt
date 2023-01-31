@@ -122,10 +122,8 @@ class Settings : PreferenceFragmentCompat() {
                     if(snapshot.exists()){
                         snapshot.ref.removeValue()
                         deleteImageFromInternalStorage()
-                        deleteImageFromFirebaseST()
+                        //deleteImageFromFirebaseST()
                         val intent = Intent(context, MainActivity::class.java )
-                        //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                        //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                         startActivity(intent)
                         Toast.makeText(context, "Pet deleted", Toast.LENGTH_LONG).show()
                     }
@@ -144,14 +142,10 @@ class Settings : PreferenceFragmentCompat() {
         }
     }
 
-    private fun deleteImageFromFirebaseST(){
-        val refPictureST = FirebaseDBHelper.dbRefST
-        refPictureST.delete().addOnSuccessListener {
-            Toast.makeText(context, "FILE ELIMINATO", Toast.LENGTH_LONG).show()
-        }.addOnSuccessListener {
-            Toast.makeText(context, "FAAAAIIIILLLLL", Toast.LENGTH_LONG).show()
-        }
-    }
+    /*private fun deleteImageFromFirebaseST() {
+        val refPictureST = FirebaseDBHelper.dbRefST.child("images").child("pet_picture.jpg")
+        refPictureST.delete()
+    }*/
 
     private fun setEmail(){
             prefUser.summary = user.email.toString()
@@ -162,11 +156,8 @@ class Settings : PreferenceFragmentCompat() {
             .addOnCompleteListener {
                 if(it.isSuccessful){
                     Toast.makeText(context, "Check your email. LOGOUT", Toast.LENGTH_LONG).show()
-                    Log.d(TAG, "Email address updated.")
                 } else {
                     Toast.makeText(context, "SOMETHING WENT WRONG", Toast.LENGTH_LONG).show()
-
-                    Log.e(TAG, "Failed to update email.", it.exception)
                 }
             }
     }

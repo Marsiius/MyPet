@@ -176,12 +176,12 @@ class Pet : Fragment() {
                     val data = snapshot.getValue(String::class.java)
                     if(tv_pet_name!=null){
                         tv_pet_name.text = data
-
                     }
                     setPetVisibility()
-                }else{
-
-                    fab.visibility = View.VISIBLE
+                } else {
+                    if(fab!=null){
+                        fab.visibility = View.VISIBLE
+                    }
                 }
                 //progressBarPetFragment.visibility = View.INVISIBLE
             }
@@ -202,8 +202,10 @@ class Pet : Fragment() {
             val refPicture = FirebaseDBHelper.dbRefST.child("images/pet_picture.jpg")
             refPicture.getBytes(1000000000000000000).addOnSuccessListener {
                 val bitmap = BitmapFactory.decodeByteArray(it,0,it.size)
-                pet_picture.setImageBitmap(bitmap)
-                saveBitmapToInternalStorage(bitmap)
+                if(bitmap!=null){
+                    saveBitmapToInternalStorage(bitmap)
+                    pet_picture.setImageBitmap(bitmap)
+                }
             }.addOnFailureListener {
 
             }
@@ -235,11 +237,15 @@ class Pet : Fragment() {
 
     //metodo che imposta la visibilità degli elementi del fragment che fanno riferimento all'animale
     private fun setPetVisibility(){
-        pet_picture.visibility = View.VISIBLE
+        if(pet_picture!=null) {
+            pet_picture.visibility = View.VISIBLE
+        }
         if(tv_pet_name!=null)
             tv_pet_name.visibility = View.VISIBLE
-        rl_pet_fragment.visibility = View.VISIBLE
-        fab_camera.visibility = View.VISIBLE
+        if(rl_pet_fragment!=null)
+            rl_pet_fragment.visibility = View.VISIBLE
+        if(fab_camera!=null)
+            fab_camera.visibility = View.VISIBLE
     }
 
     private fun init(){
