@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import it.pdm.app.databinding.FragmentHomeBinding
-import kotlinx.android.synthetic.main.fragment_home.*
 
 
 class Home : Fragment() {
@@ -28,8 +27,8 @@ class Home : Fragment() {
         binding.stepCard.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_blankFragment)
         }
-        binding.Card2.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_blankFragment)
+        binding.visitsCard.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_visitsFragment)
         }
         binding.notesCard.setOnClickListener{
             findNavController().navigate(R.id.action_homeFragment_to_notesFragment)

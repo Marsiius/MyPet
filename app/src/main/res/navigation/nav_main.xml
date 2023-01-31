@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_homeFragment_to_emergencyNumbersFragment"
             app:destination="@id/emergencyNumbersFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_visitsFragment"
+            app:destination="@id/visitsFragment" />
         <!-- Label che cambia nella toolbar di ogni fragment -->
     </fragment>
     <fragment

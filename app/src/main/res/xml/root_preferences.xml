@@ -26,7 +26,7 @@
     </PreferenceCategory>
 
 
-    <PreferenceCategory
+    <!--<PreferenceCategory
         android:title="Notifications"
         app:icon="@drawable/ic_notification">
 
@@ -34,7 +34,7 @@
             android:key="notifications"
             android:title="Enable notifications"
         />
-    </PreferenceCategory>
+    </PreferenceCategory>-->
 
     <PreferenceCategory
         android:key="help_category"
@@ -65,9 +65,9 @@
             android:summary="Delete pet and any data"/>
 
         <Preference
-            android:key="delete_account"
-            android:title="Delete account"
-            android:summary="All progress will be lost"
+            android:key="info"
+            android:title="Info"
+            android:summary="About us"
             />
     </PreferenceCategory>
 

@@ -115,6 +115,7 @@ class Pet : Fragment() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if(requestCode== CAMERA_PERMISSION_CODE)
             if(grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                ActivityCompat.requestPermissions(requireActivity(), permissions, requestCode)
                 val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
                 startActivityForResult(intent, CAMERA_REQUEST_CODE)
             }else{
@@ -237,9 +238,8 @@ class Pet : Fragment() {
 
     //metodo che imposta la visibilità degli elementi del fragment che fanno riferimento all'animale
     private fun setPetVisibility(){
-        if(pet_picture!=null) {
+        if(pet_picture!=null)
             pet_picture.visibility = View.VISIBLE
-        }
         if(tv_pet_name!=null)
             tv_pet_name.visibility = View.VISIBLE
         if(rl_pet_fragment!=null)

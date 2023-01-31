@@ -1,12 +1,13 @@
 package it.pdm.app
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.fragment_emergency.*
 
 class EmergencyFragment : Fragment() {
@@ -22,14 +23,24 @@ class EmergencyFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        emergencyCard1.setOnClickListener{
-            callNumber("1223334444")
+        card112.setOnClickListener{
+            val builder = AlertDialog.Builder(context)
+            builder.setTitle("Are you sure?")
+            builder.setPositiveButton("Yes"){
+                _,_-> callNumber("112")
+            }
+            builder.setNegativeButton("Cancel"){_,_->}
+            val dialog = builder.create()
+            dialog.show()
         }
-        emergencyCard2.setOnClickListener{
-            callNumber("3661623293")
+        enpaCard.setOnClickListener{
+            callNumber("02.97064220")
         }
-        emergencyCard3.setOnClickListener{
-            callNumber("1223334444")
+        websiteCard.setOnClickListener{
+            val url = "https://www.salute.gov.it/portale/caniGatti/homeCaniGatti.jsp"
+            val i = Intent(Intent.ACTION_VIEW)
+            i.data = Uri.parse(url)
+            startActivity(i)
         }
         emergencyCard4.setOnClickListener{
             callNumber("1223334444")

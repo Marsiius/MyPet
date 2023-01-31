@@ -119,6 +119,8 @@ class EditPetActivity : AppCompatActivity() {
                 petReference.setValue(pet).addOnSuccessListener {
                     finish()
                     startActivity(intent)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                 }
                     .addOnFailureListener {
                         Toast.makeText(applicationContext, "Something went wrong: try again", Toast.LENGTH_LONG).show()
