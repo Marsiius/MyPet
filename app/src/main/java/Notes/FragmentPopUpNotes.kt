@@ -8,15 +8,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.DatePicker
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.core.view.get
 import androidx.fragment.app.DialogFragment
+import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.textfield.TextInputEditText
+import com.maxkeppeker.sheets.core.models.base.rememberSheetState
+import com.maxkeppeler.sheets.calendar.CalendarDialog
+import com.maxkeppeler.sheets.calendar.models.CalendarSelection
 import it.pdm.app.R
 import it.pdm.app.databinding.FragmentPopUpNotesBinding
 import kotlinx.android.synthetic.main.fragment_pop_up_notes.*
+import java.lang.reflect.Modifier
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.Year
@@ -113,7 +119,8 @@ class FragmentPopUpNotes : DialogFragment() {
             }*/
 
             binding.popUpClose.setOnClickListener{
-                 dismiss()
+                dismiss()
+
             }
         }
     }
