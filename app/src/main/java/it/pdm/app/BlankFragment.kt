@@ -75,20 +75,21 @@ class BlankFragment : Fragment() {
         Log.d("tag", calPerse.toString())
         Log.d("pesoLetto", peso.toString())
         Log.d("passiLetti", passiFatti.toString())
-
-
+        
         val ref = FirebaseDBHelper.dbRefPets
         ref.addValueEventListener(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if(snapshot.exists()){
                     weight = snapshot.child("weight").value.toString()
-                    peso = weight.toFloat()
-                    calPerse = ((peso*0.02)*passiFatti).toFloat()
-                    Log.d("peso", peso.toString())
-                    Log.d("passiLetti", passiFatti.toString())
-                    Log.d("tag", calPerse.toString())
-                    val formattedNumber = String.format("%.2f", calPerse)
-                    calValue_tv.text = formattedNumber
+                    if(weight.isNotEmpty()){
+                        peso = weight.toFloat()
+                        calPerse = ((peso*0.02)*passiFatti).toFloat()
+                        Log.d("peso", peso.toString())
+                        Log.d("passiLetti", passiFatti.toString())
+                        Log.d("tag", calPerse.toString())
+                        val formattedNumber = String.format("%.2f", calPerse)
+                        calValue_tv.text = formattedNumber
+                    }
                 }
             }
             override fun onCancelled(error: DatabaseError) {
