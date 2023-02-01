@@ -105,6 +105,11 @@ class Settings : PreferenceFragmentCompat() {
                     if(snapshot.exists()){
                         snapshot.ref.removeValue()
                         deleteImageFromInternalStorage()
+                        if(context!=null){
+                            val intent = Intent(activity, MainActivity::class.java )
+                            startActivity(intent)
+                            Toast.makeText(context, "Pet deleted", Toast.LENGTH_LONG).show()
+                        }
                         val intent = Intent(context, MainActivity::class.java )
                         startActivity(intent)
                         Toast.makeText(context, "Pet deleted", Toast.LENGTH_LONG).show()

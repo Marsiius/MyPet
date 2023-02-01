@@ -2,13 +2,14 @@ package it.pdm.app
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.fragment.findNavController
+import kotlinx.android.synthetic.main.fragment_pet.*
 import kotlinx.android.synthetic.main.fragment_pet_information.*
 import medpet.MedFragment
 
@@ -29,10 +30,14 @@ class PetInformationFragment : Fragment() {
         }
 
         card_medical.setOnClickListener {
-            val fragment = MedFragment()
-            val transaction: FragmentTransaction? = fragmentManager?.beginTransaction()
-            transaction?.replace(R.id.rl_pet_fragment, fragment)
-            transaction?.commit()
+            if(fragmentManager!=null) {
+                if(rl_pet_fragment!=null) {
+                    val fragment = MedFragment()
+                    val transaction: FragmentTransaction? = fragmentManager?.beginTransaction()
+                    transaction?.replace(R.id.rl_pet_fragment, fragment)
+                    transaction?.commit()
+                }
+            }
         }
 
         card_run.setOnClickListener {
@@ -40,7 +45,7 @@ class PetInformationFragment : Fragment() {
         }
 
         editPetCard.setOnClickListener {
-            val intent = Intent(context,EditPetActivity::class.java)
+            val intent = Intent(activity,EditPetActivity::class.java)
             FragmentManager.POP_BACK_STACK_INCLUSIVE
             startActivity(intent)
         }

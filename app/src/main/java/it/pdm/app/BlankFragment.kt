@@ -88,7 +88,8 @@ class BlankFragment : Fragment() {
                         Log.d("passiLetti", passiFatti.toString())
                         Log.d("tag", calPerse.toString())
                         val formattedNumber = String.format("%.2f", calPerse)
-                        calValue_tv.text = formattedNumber
+                        if(calValue_tv.text!=null)
+                            calValue_tv.text = formattedNumber
                     }
                 }
             }
