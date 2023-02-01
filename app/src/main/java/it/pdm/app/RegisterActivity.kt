@@ -2,6 +2,8 @@ package it.pdm.app
 
 import android.content.ContentResolver
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -12,6 +14,7 @@ import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_register.*
+import java.io.ByteArrayOutputStream
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var emailTV: TextView
@@ -82,12 +85,19 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun initFirebaseStorage(){
         val refST = FirebaseDBHelper.dbRefST.child("images/pet_picture.jpg")
-        val uri =Uri.Builder()
-            .scheme(ContentResolver.SCHEME_ANDROID_RESOURCE)
-            .authority(packageName)
-            .path(R.drawable.app_icon.toString())
-            .build()
-        refST.putFile(uri)
+
+        val bitmap = BitmapFactory.decodeResource(resources, R.drawable.app_icon)
+        val baos = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+        val data = baos.toByteArray()
+
+        refST.putBytes(data)
+            .addOnSuccessListener {
+                // Upload completato con successo
+            }
+            .addOnFailureListener {
+                // Upload non riuscito
+            }
     }
 
     private fun initializeUI() {

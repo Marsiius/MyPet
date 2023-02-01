@@ -96,12 +96,12 @@
         tools:layout="@layout/fragment_vaccination" />
     <fragment
         android:id="@+id/medicinesFragment"
-        android:name="it.pdm.app.MedicinesFragment"
+        android:name="medpet.MedicinesFragment"
         android:label="fragment_medicines"
         tools:layout="@layout/fragment_medicines" />
     <fragment
         android:id="@+id/visitsFragment"
-        android:name="it.pdm.app.VisitsFragment"
+        android:name="medpet.VisitsFragment"
         android:label="fragment_visits"
         tools:layout="@layout/fragment_visits" />
     <fragment
@@ -113,7 +113,11 @@
         android:id="@+id/emergencyNumbersFragment"
         android:name="it.pdm.app.EmergencyFragment"
         android:label="fragment_emergency_numbers"
-        tools:layout="@layout/fragment_emergency" />
+        tools:layout="@layout/fragment_emergency" >
+        <action
+            android:id="@+id/action_emergencyNumbersFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
     <fragment
         android:id="@+id/petInformationFragment"
         android:name="it.pdm.app.PetInformationFragment"
