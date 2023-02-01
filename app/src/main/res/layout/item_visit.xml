@@ -25,6 +25,7 @@
                 android:background="@drawable/calendar_button">
 
                 <ImageButton
+                    android:id="@+id/calendar_button"
                     android:layout_width="33dp"
                     android:layout_height="33dp"
                     android:layout_centerInParent="true"

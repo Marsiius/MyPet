@@ -1,4 +1,4 @@
-package it.pdm.app
+package medpet
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

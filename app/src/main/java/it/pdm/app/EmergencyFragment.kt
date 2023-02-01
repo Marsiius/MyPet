@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.fragment_emergency.*
 
 class EmergencyFragment : Fragment() {
@@ -33,25 +34,21 @@ class EmergencyFragment : Fragment() {
             val dialog = builder.create()
             dialog.show()
         }
+
         enpaCard.setOnClickListener{
             callNumber("02.97064220")
         }
+
         websiteCard.setOnClickListener{
             val url = "https://www.salute.gov.it/portale/caniGatti/homeCaniGatti.jsp"
             val i = Intent(Intent.ACTION_VIEW)
             i.data = Uri.parse(url)
             startActivity(i)
         }
-        emergencyCard4.setOnClickListener{
-            callNumber("1223334444")
+
+        backArrowCard.setOnClickListener{
+            findNavController().navigate(R.id.action_emergencyNumbersFragment_to_homeFragment)
         }
-
-        //implementare fragment con numeri di emergenza (112, numeri verde per gli animali,
-        //numero per animali selvatici e domestici...)
-
-        //FACOLTATIVO: piccolo pdf con all'interno informazioni su come comportarsi in caso
-        //di emergenza con animale domestico e/o selvatico
-
     }
 
     private fun callNumber(phoneNumber: String){

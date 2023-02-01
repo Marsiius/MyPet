@@ -1,7 +1,9 @@
 package Visit
 
 import Notes.FragmentPopUpNotes
+import android.content.Intent
 import android.os.Bundle
+import android.provider.CalendarContract
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -19,7 +21,9 @@ import kotlinx.android.synthetic.main.fragment_pop_up_notes.*
 import kotlinx.android.synthetic.main.fragment_vaccine_pop_up.*
 import kotlinx.android.synthetic.main.fragment_visit_pop_up.*
 import kotlinx.android.synthetic.main.fragment_visit_pop_up.data_picker
+import kotlinx.android.synthetic.main.item_visit.*
 import medpet.VaccinePopUp
+import pets.Visits
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -40,9 +44,14 @@ class VisitPopUp : DialogFragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentVisitPopUpBinding.inflate(inflater, container, false)
         return binding.root
+
+        calendar_button.setOnClickListener {
+            
+            openCalendar()
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -51,6 +60,21 @@ class VisitPopUp : DialogFragment() {
         data_picker.setOnClickListener{
             openCalendar(data_picker)
         }
+    }
+
+    private fun openPhoneCalendar(medVisit: Visits){
+        val beginTime = Calendar.getInstance()
+        //TODO: da finire
+        beginTime.set(2022, 4, 19) // set the date and time of the event
+        val endTime = Calendar.getInstance()
+        endTime.set(2022, 4, 19) // set the date and time of the event
+        //TODO
+        val calendarIntent = Intent(Intent.ACTION_INSERT)
+        calendarIntent.data = CalendarContract.Events.CONTENT_URI
+        calendarIntent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, beginTime.timeInMillis)
+        calendarIntent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME, endTime.timeInMillis)
+        calendarIntent.putExtra(CalendarContract.Events.DESCRIPTION, medVisit.description)
+        startActivity(calendarIntent)
     }
 
     private fun registerEvents(){
