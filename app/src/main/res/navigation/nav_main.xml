@@ -30,9 +30,6 @@
         android:label="fragment_pet"
         tools:layout="@layout/fragment_pet" >
         <action
-            android:id="@+id/action_petFragment_to_signupPetFragment"
-            app:destination="@id/signupPetFragment" />
-        <action
             android:id="@+id/action_petFragment_to_petIdentityCardFragment"
             app:destination="@id/petIdentityCardFragment4" />
         <action
@@ -62,15 +59,6 @@
         android:name="it.pdm.app.BlankFragment"
         android:label="fragment"
         tools:layout="@layout/fragment" />
-    <fragment
-        android:id="@+id/signupPetFragment"
-        android:name="it.pdm.app.SignupPetFragment"
-        android:label="fragment_signup_pet"
-        tools:layout="@layout/fragment_signup_pet" >
-        <action
-            android:id="@+id/action_signupPetFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
-    </fragment>
     <fragment
         android:id="@+id/notesFragment"
         android:name="Notes.NotesFragment"

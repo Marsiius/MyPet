@@ -106,12 +106,13 @@ class Settings : PreferenceFragmentCompat() {
                         snapshot.ref.removeValue()
                         deleteImageFromInternalStorage()
                         if(context!=null){
-                            val intent = Intent(activity, MainActivity::class.java )
+                            val intent = Intent(context, MainActivity::class.java )
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                             startActivity(intent)
-                            Toast.makeText(activity, "Pet deleted", Toast.LENGTH_LONG).show()
+                            Toast.makeText(context, "Pet deleted", Toast.LENGTH_LONG).show()
                         }
+
                     }
                 }
                 override fun onCancelled(error: DatabaseError) {
