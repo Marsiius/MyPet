@@ -92,12 +92,6 @@ class RegisterActivity : AppCompatActivity() {
         val data = baos.toByteArray()
 
         refST.putBytes(data)
-            .addOnSuccessListener {
-                // Upload completato con successo
-            }
-            .addOnFailureListener {
-                // Upload non riuscito
-            }
     }
 
     private fun initializeUI() {

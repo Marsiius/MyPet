@@ -108,11 +108,11 @@ class Settings : PreferenceFragmentCompat() {
                         if(context!=null){
                             val intent = Intent(activity, MainActivity::class.java )
                             startActivity(intent)
-                            Toast.makeText(context, "Pet deleted", Toast.LENGTH_LONG).show()
+                            Toast.makeText(activity, "Pet deleted", Toast.LENGTH_LONG).show()
                         }
-                        val intent = Intent(context, MainActivity::class.java )
-                        startActivity(intent)
-                        Toast.makeText(context, "Pet deleted", Toast.LENGTH_LONG).show()
+                        //val intent = Intent(activity, MainActivity::class.java )
+                        //startActivity(intent)
+                        //Toast.makeText(activity, "Pet deleted", Toast.LENGTH_LONG).show()
                     }
                 }
                 override fun onCancelled(error: DatabaseError) {

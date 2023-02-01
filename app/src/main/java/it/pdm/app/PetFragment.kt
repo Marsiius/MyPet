@@ -61,7 +61,11 @@ class Pet : Fragment() {
         setPet()
 
         fab.setOnClickListener {
-            findNavController().navigate(R.id.action_petFragment_to_signupPetFragment)
+            //findNavController().navigate(R.id.action_petFragment_to_signupPetFragment)
+            val intent = Intent(context, RegisterPet::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            startActivity(intent)
         }
 
         fab_camera.setOnClickListener {
@@ -203,8 +207,9 @@ class Pet : Fragment() {
             refPicture.getBytes(1000000000000000000).addOnSuccessListener {
                 val bitmap = BitmapFactory.decodeByteArray(it,0,it.size)
                 if(bitmap!=null){
-                    saveBitmapToInternalStorage(bitmap)
-                    pet_picture.setImageBitmap(bitmap)
+                    //saveBitmapToInternalStorage(bitmap)
+                    if(pet_picture!=null)
+                        pet_picture.setImageBitmap(bitmap)
                 }
             }.addOnFailureListener {
 
