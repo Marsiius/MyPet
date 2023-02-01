@@ -37,14 +37,14 @@
                     android:layout_width="64dp"
                     android:layout_height="64dp"
                     android:layout_centerInParent="true"
-                    android:background="@drawable/ic_vaccine2" />
+                    android:background="@drawable/ic_vaccine" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="@string/vaccines"
+                    android:layout_marginBottom="8dp"
                     android:gravity="center_horizontal|bottom"
-                    android:layout_marginBottom="8dp"/>
+                    android:text="@string/vaccines" />
 
             </RelativeLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -69,14 +69,14 @@
                     android:layout_width="64dp"
                     android:layout_height="64dp"
                     android:layout_centerInParent="true"
-                    android:background="@drawable/ic_medicine2" />
+                    android:background="@drawable/ic_medicine" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="@string/medicines"
+                    android:layout_marginBottom="8dp"
                     android:gravity="center_horizontal|bottom"
-                    android:layout_marginBottom="8dp"/>
+                    android:text="@string/medicines" />
 
             </RelativeLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -101,14 +101,14 @@
                     android:layout_width="64dp"
                     android:layout_height="64dp"
                     android:layout_centerInParent="true"
-                    android:background="@drawable/ic_veterinarian" />
+                    android:background="@drawable/vet_icon" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="@string/visits"
+                    android:layout_marginBottom="8dp"
                     android:gravity="center_horizontal|bottom"
-                    android:layout_marginBottom="8dp"/>
+                    android:text="@string/visits" />
 
             </RelativeLayout>
         </com.google.android.material.card.MaterialCardView>

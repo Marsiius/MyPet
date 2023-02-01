@@ -93,7 +93,6 @@ class VisitPopUp : DialogFragment() {
             val formatter = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
             dataSelezionata = formatter.format(Date(it))
             et.setText(dataSelezionata)
-
             date1 = Date(it)
             dateString = dateFormat.format(date1)
         }
