@@ -196,7 +196,8 @@ class Pet : Fragment() {
         val file = File(directory, "your-image.jpg")
         if(file.exists()){
             val bitmap = BitmapFactory.decodeFile(file.absolutePath)
-            pet_picture.setImageBitmap(bitmap)
+            if(pet_picture!=null)
+                pet_picture.setImageBitmap(bitmap)
         }else{
             val refPicture = FirebaseDBHelper.dbRefST.child("images/pet_picture.jpg")
             refPicture.getBytes(1000000000000000000).addOnSuccessListener {
