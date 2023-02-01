@@ -18,6 +18,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import it.pdm.app.FirebaseDBHelper
 import it.pdm.app.R
 import it.pdm.app.databinding.FragmentNotesBinding
 import kotlinx.android.synthetic.main.fragment_notes.*
@@ -107,7 +108,7 @@ class NotesFragment : Fragment(), FragmentPopUpNotes.OnDialogNextBtnClickListene
 
         auth = FirebaseAuth.getInstance()
         authId = auth.currentUser!!.uid
-        database = Firebase.database.reference.child("users").child(authId).child("Notes")
+        database = FirebaseDBHelper.dbRefRT.child("Notes")
 
         binding.noteList.setHasFixedSize(true)
         binding.noteList.layoutManager = LinearLayoutManager(context)

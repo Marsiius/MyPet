@@ -1,7 +1,5 @@
 package it.pdm.app
 
-import Notes.FragmentPopUpNotes
-import Notes.Note
 import Visit.Visit
 import Visit.VisitAdapter
 import Visit.VisitPopUp
@@ -22,7 +20,6 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import it.pdm.app.databinding.FragmentNotesBinding
 import it.pdm.app.databinding.FragmentVisitsBinding
 import pets.Visits
 import java.util.*
@@ -44,7 +41,7 @@ class VisitsFragment : Fragment(), VisitPopUp.OnDialogNextBtnClickListener,
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = FragmentVisitsBinding.inflate(inflater, container, false)
         return binding.root
@@ -57,7 +54,7 @@ class VisitsFragment : Fragment(), VisitPopUp.OnDialogNextBtnClickListener,
         registerEvents()
     }
 
-    private fun openCalendar(medVisit: Visits){
+    private fun openPhoneCalendar(medVisit: Visits){
         val beginTime = Calendar.getInstance()
         //TODO: da finire
         beginTime.set(2022, 4, 19) // set the date and time of the event

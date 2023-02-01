@@ -97,7 +97,6 @@ class LoginActivity : AppCompatActivity() {
                         val editor: SharedPreferences.Editor = sharedPreferences.edit()
                         editor.putString("name", "true")
                         editor.apply()
-                        Toast.makeText(applicationContext, "Welcome", Toast.LENGTH_LONG).show()
                     }
                     Toast.makeText(applicationContext, "Login successful!", Toast.LENGTH_LONG).show()
                     val intent = Intent(this, MainActivity::class.java)
