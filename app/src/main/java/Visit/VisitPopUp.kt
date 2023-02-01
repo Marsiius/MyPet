@@ -47,11 +47,6 @@ class VisitPopUp : DialogFragment() {
     ): View {
         binding = FragmentVisitPopUpBinding.inflate(inflater, container, false)
         return binding.root
-
-        calendar_button.setOnClickListener {
-            
-            openCalendar()
-        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
