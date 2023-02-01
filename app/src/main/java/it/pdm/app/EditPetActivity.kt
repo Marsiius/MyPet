@@ -51,12 +51,19 @@ class EditPetActivity : AppCompatActivity() {
                 val gender = dataSnapshot.child("gender").getValue(String::class.java)
                 val breed = dataSnapshot.child("breed").getValue(String::class.java)
 
+                et_edit1.hint = name
                 et_name.hint = name
+                et_edit2.hint = birthday
                 et_birthday.hint = birthday
-                et_weight.hint = weight
-                et_height.hint = height
+                et_edit3.hint = weight+"Kg"
+                et_weight.hint = weight+"Kg"
+                et_edit4.hint = height+" cm"
+                et_height.hint = height+" cm"
+                et_edit5.hint = chipNumber
                 et_chipNumber.hint = chipNumber
+                et_edit6.hint = gender
                 et_gender.hint = gender
+                et_edit7.hint = breed
                 et_breed.hint = breed
             }
 
@@ -72,43 +79,43 @@ class EditPetActivity : AppCompatActivity() {
 
                 val intent = Intent(this@EditPetActivity, MainActivity::class.java)
 
-                val name: String = if(et_name.text.isEmpty()){
+                val name: String = if(et_name.text?.isEmpty() == true){
                     et_name.hint.toString()
                 }else{
                     et_name.text.toString()
                 }
 
-                val birthday: String = if(et_birthday.text.isEmpty()){
+                val birthday: String = if(et_birthday.text?.isEmpty() == true){
                     et_birthday.hint.toString()
                 }else{
                     et_birthday.text.toString()
                 }
 
-                val weight: String = if(et_weight.text.isEmpty()){
+                val weight: String = if(et_weight.text?.isEmpty() == true){
                     et_weight.hint.toString()
                 }else{
                     et_weight.text.toString()
                 }
 
-                val height = if(et_height.text.isEmpty()){
+                val height = if(et_height.text?.isEmpty() == true){
                     et_height.hint.toString()
                 }else{
                     et_height.text.toString()
                 }
 
-                val chipNumber = if(et_chipNumber.text.isEmpty()){
+                val chipNumber = if(et_chipNumber.text?.isEmpty() == true){
                     et_chipNumber.hint.toString()
                 }else{
                     et_chipNumber.text.toString()
                 }
 
-                val gender = if(et_gender.text.isEmpty()){
+                val gender = if(et_gender.text?.isEmpty() == true){
                     et_gender.hint.toString()
                 }else{
                     et_gender.text.toString()
                 }
 
-                val breed = if(et_breed.text.isEmpty()){
+                val breed = if(et_breed.text?.isEmpty() == true){
                     et_breed.hint.toString()
                 }else{
                     et_breed.text.toString()
