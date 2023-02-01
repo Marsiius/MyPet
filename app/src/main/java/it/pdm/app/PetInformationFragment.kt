@@ -30,14 +30,12 @@ class PetInformationFragment : Fragment() {
         }
 
         card_medical.setOnClickListener {
-            if(rl_pet_fragment!=null) {
-                if (rl_pet_fragment != null) {
-                    val fragment = MedFragment()
-                    val transaction: FragmentTransaction? = fragmentManager?.beginTransaction()
-                    transaction?.replace(R.id.rl_pet_fragment, fragment)
-                    transaction?.commit()
-                }
-            }
+
+            val fragment = MedFragment()
+            val transaction: FragmentTransaction? = fragmentManager?.beginTransaction()
+            transaction!!.replace(R.id.rl_pet_fragment, fragment)
+            transaction.commit()
+
         }
 
         card_run.setOnClickListener {
