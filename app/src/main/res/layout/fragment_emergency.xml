@@ -40,10 +40,10 @@
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:layout_width="64dp"
+                    android:layout_width="100dp"
                     android:layout_height="64dp"
                     android:layout_centerInParent="true"
-                    android:background="@drawable/ic_emergency" />
+                    android:background="@drawable/emergenza_112" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -71,17 +71,17 @@
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:layout_width="64dp"
+                    android:layout_width="128dp"
                     android:layout_height="64dp"
                     android:layout_centerInParent="true"
-                    android:background="@drawable/ic_emergency" />
+                    android:background="@drawable/logo_enpa" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="ENPA"
+                    android:layout_marginBottom="8dp"
                     android:gravity="center_horizontal|bottom"
-                    android:layout_marginBottom="8dp"/>
+                    android:text="ENPA" />
 
             </RelativeLayout>
         </com.google.android.material.card.MaterialCardView>
@@ -102,17 +102,17 @@
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
                     android:layout_centerInParent="true"
-                    android:background="@drawable/ic_emergency" />
+                    android:background="@drawable/ministero_salute" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="website"
+                    android:layout_marginBottom="8dp"
                     android:gravity="center_horizontal|bottom"
-                    android:layout_marginBottom="8dp"/>
+                    android:text="website" />
 
             </RelativeLayout>
         </com.google.android.material.card.MaterialCardView>
