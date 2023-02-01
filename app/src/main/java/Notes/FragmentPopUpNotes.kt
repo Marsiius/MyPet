@@ -29,11 +29,13 @@ class FragmentPopUpNotes : DialogFragment() {
     private var listener: OnDialogNextBtnClickListener? = null
     @RequiresApi(Build.VERSION_CODES.O)
     /*val currentDate = LocalDate.now()
-    var selectedDate = ""
-    val date1 = Calendar.getInstance()
-    val date2 = Calendar.getInstance()*/
+    var selectedDate = ""*/
+    //val date1 = Calendar.getInstance()
+    val date2 = Date()
     val dateFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
     var dataSelezionata = ""
+    var dateString = ""
+    var date1 : Date = Date()
 
     fun setListener(listener: OnDialogNextBtnClickListener){
         this.listener = listener
@@ -80,26 +82,29 @@ class FragmentPopUpNotes : DialogFragment() {
             val noteTask = binding.tvNote.text.toString()
             val bodyTask = binding.tvNoteBody.text.toString()
 
-            //
-            /*date1.set(data_picker.year, data_picker.month, data_picker.dayOfMonth)
-            if (date1.before(date2)) {
-                Log.d("La Data", "Selezionata è prima di quella corrente")
-                //aggiungere al firebase
-            }else if(date1.after(date2)){
-                Log.d("La Data", "Selezionata è dopo quella corrente")
+            if (date1.before(date2)) {                     //La data Selezionata è prima di quella corrente
+                Toast.makeText(context, "Non puoi selezionare una data già passata", Toast.LENGTH_SHORT).show()
+            }else if(date1.after(date2)){                  // la data Selezionata è dopo quella corrente
+                if(noteTask.isNotEmpty()){
+                    listener?.onSaveTask(noteTask, binding.tvNote, dataSelezionata, bodyTask, binding.tvNoteBody) //noteTask è la stringa che viene presa dal tvNote -------------------------------------------------------
+                }else{
+                    Toast.makeText(context, "Non puoi lasciare il campo vuoto", Toast.LENGTH_SHORT).show()
+                }
             }else{
                 Log.d("La Data", "Selezionata è la stessa di quella corrente")
                 //aggiungere al firebase
             }
             //
-            */
-
+            /*date2String = dateFormat.format(date2)
+            Log.d("data2", date2String)
+            Log.d("datatrasf", dateString)*/
             //val dataSelezionata = dateFormat.format(date1.time) //trasforma in stringa la data con il suo formato dd-MM-yyyy
-            if(noteTask.isNotEmpty()){
+
+            /*if(noteTask.isNotEmpty()){
                 listener?.onSaveTask(noteTask, binding.tvNote, dataSelezionata, bodyTask, binding.tvNoteBody) //noteTask è la stringa che viene presa dal tvNote -------------------------------------------------------
             }else{
                 Toast.makeText(context, "Non puoi lasciare il campo vuoto", Toast.LENGTH_SHORT).show()
-            }
+            }*/
 
             /*if (noteTask.isNotEmpty()){
                 if(selectedDate.after(currentDate)){
@@ -128,6 +133,9 @@ class FragmentPopUpNotes : DialogFragment() {
             val formatter = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
             dataSelezionata = formatter.format(Date(it))
             et.setText(dataSelezionata)
+
+            date1 = Date(it)
+            dateString = dateFormat.format(date1)
         }
     }
 

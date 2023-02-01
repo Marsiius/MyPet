@@ -90,8 +90,8 @@
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:text="Seleziona la data"
-                android:background="@drawable/bot_radius">
+                android:background="@drawable/bot_radius"
+                android:text="Seleziona la data">
 
             </Button>
 

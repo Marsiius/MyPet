@@ -1,5 +1,6 @@
 package medpet
 
+import Visit.Visit
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -17,12 +18,15 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import it.pdm.app.R
+import it.pdm.app.databinding.FragmentNotesBinding
+import it.pdm.app.databinding.FragmentVaccinationBinding
 import kotlinx.android.synthetic.main.fragment_vaccination.*
 
 class VaccinationFragment : Fragment(), VaccineAdapter.adapterClickInterface, VaccinePopUp.OnDialogNextBtnClickListener {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var authId: String
+    private lateinit var binding: FragmentVaccinationBinding
     private lateinit var database: DatabaseReference
     private lateinit var vacAdapter: VaccineAdapter
     private lateinit var vaccineItemList: MutableList<Vaccine>
@@ -33,7 +37,8 @@ class VaccinationFragment : Fragment(), VaccineAdapter.adapterClickInterface, Va
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_vaccination, container, false)
+        binding = FragmentVaccinationBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -53,10 +58,10 @@ class VaccinationFragment : Fragment(), VaccineAdapter.adapterClickInterface, Va
                     val name = stringArray[0]
                     val date = stringArray[1]
                     val recall = stringArray[2]
-                    val toDoNote = snapshot.key?.let { Vaccine(it, name, date, recall) } //con it, passo nel primo parametro(idNote)
+                    val toDoVaccine = snapshot.key?.let { Vaccine(it, name, date, recall) } //con it, passo nel primo parametro(idNote)
                     //val toDoDate = noteSnapshot.key?.let { Note(noteSnapshot.value.toString()) }
-                    if(toDoNote != null){
-                        vaccineItemList.add(toDoNote)
+                    if(toDoVaccine != null){
+                        vaccineItemList.add(toDoVaccine)
                         Log.d("vaccino", name+date+recall)
                     }
                     //scaricare vaccini da firebase e memorizarli nella listview
@@ -75,18 +80,18 @@ class VaccinationFragment : Fragment(), VaccineAdapter.adapterClickInterface, Va
         authId = auth.currentUser!!.uid
         database = Firebase.database.reference.child("users").child(authId).child("vaccines")
 
-        vaccinesList.setHasFixedSize(true)
-        vaccinesList.layoutManager = LinearLayoutManager(context)
+        binding.vaccinesList.setHasFixedSize(true)
+        binding.vaccinesList.layoutManager = LinearLayoutManager(context)
 
         vaccineItemList = mutableListOf()
         vacAdapter = VaccineAdapter(vaccineItemList)
         vacAdapter.setListener(this)
-        vaccinesList.adapter = vacAdapter
+        binding.vaccinesList.adapter = vacAdapter
 
     }
 
     private fun registerEvents(){
-        fab.setOnClickListener{
+        binding.fab.setOnClickListener{
             popUpFragment = VaccinePopUp()
             popUpFragment.setListener(this)
             popUpFragment.show(childFragmentManager, "VaccinePopUp")
@@ -109,10 +114,13 @@ class VaccinationFragment : Fragment(), VaccineAdapter.adapterClickInterface, Va
     override fun onDeleteVaccineBtnClicked(vaccine: Vaccine) {
         database.child(vaccine.idVaccine).removeValue().addOnCompleteListener {
             if(it.isSuccessful){
-                Toast.makeText(context, "cancellato", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "cancella", Toast.LENGTH_SHORT).show()
             }else{
                 Toast.makeText(context, it.exception?.message, Toast.LENGTH_SHORT).show()
             }
         }
     }
+
+
+
 }
