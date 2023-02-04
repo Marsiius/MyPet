@@ -196,19 +196,17 @@ class Pet : Fragment() {
     //metodo che scarica la foto dal DB Storage oppure, se presente sul dispositivo, viene caricata da esso
     private fun setPicturePet(){
         val directory = context?.getDir("imageDir", Context.MODE_PRIVATE)
-        val file = File(directory, "pet_picture.jpg")
+        val file = File(directory, "your-image.jpg")
         if(file.exists()){
             val bitmap = BitmapFactory.decodeFile(file.absolutePath)
             if(pet_picture!=null)
                 pet_picture.setImageBitmap(bitmap)
-
-
         }else{
             val refPicture = FirebaseDBHelper.dbRefST.child("images/pet_picture.jpg")
             refPicture.getBytes(1000000000000000000).addOnSuccessListener {
                 val bitmap = BitmapFactory.decodeByteArray(it,0,it.size)
                 if(bitmap!=null){
-                    saveBitmapToInternalStorage(bitmap)
+                    //saveBitmapToInternalStorage(bitmap)
                     if(pet_picture!=null)
                         pet_picture.setImageBitmap(bitmap)
                 }
@@ -233,16 +231,12 @@ class Pet : Fragment() {
 
     //metodo che prende in input un bitmap e lo salva in una cartella della app
     private fun saveBitmapToInternalStorage(bitmap: Bitmap?) {
-        val directory =  context?.getDir("imageDir", Context.MODE_PRIVATE)
-        val file = File(directory, "pet_picture.jpg")
-        try {
-            val stream = FileOutputStream(file)
-            bitmap?.compress(Bitmap.CompressFormat.JPEG, 100, stream)
-            stream.flush()
-            stream.close()
-        } catch (e: FileNotFoundException) {
-            e.printStackTrace()
-        }
+        val directory = context?.getDir("imageDir", Context.MODE_PRIVATE)
+        val file = File(directory, "your-image.jpg")
+        val stream = FileOutputStream(file)
+        bitmap?.compress(Bitmap.CompressFormat.JPEG, 100, stream)
+        stream.flush()
+        stream.close()
     }
 
     //metodo che imposta la visibilità degli elementi del fragment che fanno riferimento all'animale

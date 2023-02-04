@@ -123,7 +123,7 @@ class Settings : PreferenceFragmentCompat() {
 
     private fun deleteImageFromInternalStorage(){
         val directory = context?.getDir("imageDir", Context.MODE_PRIVATE)
-        val file = File(directory, "pet_picture.jpg")
+        val file = File(directory, "your-image.jpg")
         if(file.exists()){
             file.delete()
         }
