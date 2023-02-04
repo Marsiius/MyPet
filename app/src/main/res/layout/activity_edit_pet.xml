@@ -83,6 +83,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/countor_signuppet"
+                android:inputType="numberDecimal"
                 android:paddingStart="12dp"
                 android:paddingTop="15dp" />
 
@@ -102,6 +103,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/countor_signuppet"
+                android:inputType="numberDecimal"
                 android:paddingStart="12dp"
                 android:paddingTop="15dp" />
 
@@ -121,6 +123,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/countor_signuppet"
+                android:inputType="number"
                 android:paddingStart="12dp"
                 android:paddingTop="15dp" />
 
@@ -140,6 +143,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/countor_signuppet"
+                android:inputType="text"
                 android:paddingStart="12dp"
                 android:paddingTop="15dp" />
 
@@ -159,6 +163,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/countor_signuppet"
+                android:inputType="text"
                 android:paddingStart="12dp"
                 android:paddingTop="15dp" />
 

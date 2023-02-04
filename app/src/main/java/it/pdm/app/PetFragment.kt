@@ -175,9 +175,8 @@ class Pet : Fragment() {
                     val fragment = PetInformationFragment()
                     val transaction: FragmentTransaction? = fragmentManager?.beginTransaction()
                     transaction?.replace(R.id.rl_pet_fragment, fragment)
-                    if(!fragment.isStateSaved){
-                        transaction?.commit()
-                    }
+                    transaction?.commit()
+
                     val data = snapshot.getValue(String::class.java)
                     if(tv_pet_name!=null){
                         tv_pet_name.text = data
