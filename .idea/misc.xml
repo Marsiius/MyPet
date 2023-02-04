@@ -69,6 +69,7 @@
         <entry key="..\:/Users/user/AndroidStudioProjects/App/app/src/main/res/layout/activity_login.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/user/AndroidStudioProjects/App/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/user/AndroidStudioProjects/App/app/src/main/res/layout/activity_register.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/App/app/src/main/res/layout/activity_register_pet.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/user/AndroidStudioProjects/App/app/src/main/res/layout/activity_splash_screen.xml" value="0.358695652173913" />
         <entry key="..\:/Users/user/AndroidStudioProjects/App/app/src/main/res/layout/fragment.xml" value="0.33" />
         <entry key="..\:/Users/user/AndroidStudioProjects/App/app/src/main/res/layout/fragment_add_notes.xml" value="0.35260416666666666" />
@@ -90,8 +91,10 @@
         <entry key="..\:/Users/user/AndroidStudioProjects/App/app/src/main/res/layout/fragment_visits.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/user/AndroidStudioProjects/App/app/src/main/res/layout/item_recycleview.xml" value="0.33" />
         <entry key="..\:/Users/user/AndroidStudioProjects/App/app/src/main/res/layout/item_visit.xml" value="0.5" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/App/app/src/main/res/layout/list_item.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/user/AndroidStudioProjects/App/app/src/main/res/layout/popup_prova.xml" value="0.365625" />
         <entry key="..\:/Users/user/AndroidStudioProjects/App/app/src/main/res/menu/bottom_nav_menu.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/App/app/src/main/res/xml/root_preferences.xml" value="0.36666666666666664" />
       </map>
     </option>
   </component>

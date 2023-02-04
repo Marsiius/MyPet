@@ -30,4 +30,9 @@
     <string name="vaccines">Vaccines</string>
     <string name="back">Back</string>
     <string name="_112">112</string>
+
+    <string-array name="gender">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
 </resources>

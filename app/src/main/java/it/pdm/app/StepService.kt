@@ -18,6 +18,7 @@ import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import it.pdm.app.databinding.FragmentBinding
 import kotlinx.android.synthetic.main.fragment_settings.*
+import java.util.*
 import kotlin.properties.Delegates
 
 class StepService : Service(), SensorEventListener {
@@ -31,6 +32,7 @@ class StepService : Service(), SensorEventListener {
     private var totalSteps by Delegates.notNull<Long>()
     private val CHANNEL_ID = "ForegroundService Kotlin"
     val mySingleton = MySingleton.getInstance()
+    val currentDate = Date()
 
     override fun onCreate() {
         super.onCreate()
@@ -112,6 +114,11 @@ class StepService : Service(), SensorEventListener {
         editor?.apply {
             putInt("passi", passi)
         }?.apply()
+        if(mySingleton.resetShared == true){
+            editor.clear()
+            Log.d("tag", "shared ripristinate")
+            mySingleton.resetShared = false
+        }
     }
     //salvo gli step
     private fun saveSteps(steps : Long) {

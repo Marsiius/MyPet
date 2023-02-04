@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.Color
 import android.hardware.Sensor
 import android.hardware.SensorEvent
@@ -27,6 +28,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment.*
 import kotlinx.android.synthetic.main.fragment_pet_identity_card.*
 import kotlinx.android.synthetic.main.fragment_settings.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 class BlankFragment : Fragment() {
 
@@ -35,7 +38,9 @@ class BlankFragment : Fragment() {
     var peso = 0.00f
     private var weight = ""
     private var calPerse = 0.00f
-
+    val currentDate = Date()
+    val date1 = Date()
+    val mySingleton = MySingleton.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,6 +57,19 @@ class BlankFragment : Fragment() {
         btn_stop.isClickable = false
 
         binding.btnStart.setOnClickListener {
+
+            /*//una volta premuto start, se la data memorizza è null, gli memorizzo la data corrente
+            if(mySingleton.date == null){
+                mySingleton.date = currentDate
+                Toast.makeText(context, "nuova data memorizzata ${mySingleton.date}", Toast.LENGTH_SHORT).show()
+            }// se invece la data memorizzata non è null, la confronto per capire se il giorno è lo stesso oppure se è un nuovo giorno, se è un nuovo giorno setto a true il boolean per resettare la shared pref
+            else if(currentDate > mySingleton.date){
+                Log.d("tag", "la data è vecchia quindi resetShared = true")
+                mySingleton.resetShared = true
+            }else{
+                Log.d("tag", "la data è la stessa")
+            }*/
+
             binding.btnStart.setBackgroundColor(Color.GRAY)
             binding.btnStop.setBackgroundColor(Color.RED)
             btn_start.isClickable = false
@@ -97,6 +115,15 @@ class BlankFragment : Fragment() {
                 TODO("Not yet implemented")
             }
         })
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    fun saveDateToSharedPreferences(context: Context, date: Date) {
+        val sharedPreferences: SharedPreferences = context.getSharedPreferences("date_prefs", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        val dateFormat = SimpleDateFormat("dd-MM-yyyy")
+        editor.putString("date", dateFormat.format(date))
+        editor.apply()
     }
 
 

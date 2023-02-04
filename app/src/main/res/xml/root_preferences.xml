@@ -23,6 +23,11 @@
             android:title="Logout"
             android:summary="Click to logout"
             />
+        <Preference
+            android:key="Clear_shared"
+            android:title="Clear step counter"
+            android:summary="Click to set step to 0"
+            />
     </PreferenceCategory>
 
 

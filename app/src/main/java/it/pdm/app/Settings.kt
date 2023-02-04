@@ -26,9 +26,11 @@ class Settings : PreferenceFragmentCompat() {
     private lateinit var prefUser: Preference
     private lateinit var prefPassword: Preference
     private lateinit var prefLogout: Preference
+    private lateinit var prefClearShared: Preference
     private lateinit var prefDeletePet : Preference
     private lateinit var prefFeedback: Preference
     private lateinit var prefInfo: Preference
+    val mySingleton = MySingleton.getInstance()
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.root_preferences, rootKey)
@@ -55,6 +57,11 @@ class Settings : PreferenceFragmentCompat() {
 
         prefLogout.onPreferenceClickListener = Preference.OnPreferenceClickListener {
             logout()
+            true
+        }
+        prefClearShared.onPreferenceClickListener = Preference.OnPreferenceClickListener {
+            mySingleton.resetShared = true
+            Toast.makeText(context, "Step reset", Toast.LENGTH_SHORT).show()
             true
         }
 
@@ -166,6 +173,7 @@ class Settings : PreferenceFragmentCompat() {
         prefUser = findPreference("user_email")!!
         prefPassword = findPreference("reset_password")!!
         prefLogout = findPreference("logout")!!
+        prefClearShared = findPreference("Clear_shared")!!
         prefDeletePet = findPreference("delete_pet")!!
         prefInfo = findPreference("info")!!
         prefFeedback = findPreference("feedback")!!

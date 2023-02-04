@@ -3,6 +3,7 @@ package it.pdm.app
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.Toast
 import com.google.android.material.datepicker.MaterialDatePicker
@@ -12,10 +13,19 @@ import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_edit_pet.*
 import kotlinx.android.synthetic.main.activity_edit_pet.et_birthday
 import kotlinx.android.synthetic.main.activity_edit_pet.et_breed
+import kotlinx.android.synthetic.main.activity_edit_pet.et_chipNumber
+import kotlinx.android.synthetic.main.activity_edit_pet.et_edit1
+import kotlinx.android.synthetic.main.activity_edit_pet.et_edit2
+import kotlinx.android.synthetic.main.activity_edit_pet.et_edit3
+import kotlinx.android.synthetic.main.activity_edit_pet.et_edit4
+import kotlinx.android.synthetic.main.activity_edit_pet.et_edit5
+import kotlinx.android.synthetic.main.activity_edit_pet.et_edit6
+import kotlinx.android.synthetic.main.activity_edit_pet.et_edit7
 import kotlinx.android.synthetic.main.activity_edit_pet.et_gender
 import kotlinx.android.synthetic.main.activity_edit_pet.et_height
 import kotlinx.android.synthetic.main.activity_edit_pet.et_name
 import kotlinx.android.synthetic.main.activity_edit_pet.et_weight
+import kotlinx.android.synthetic.main.activity_register_pet.*
 import pets.MyPet
 import java.text.SimpleDateFormat
 import java.util.*
@@ -26,6 +36,10 @@ class EditPetActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_pet)
+
+        val gender = resources.getStringArray(R.array.gender)
+        val arrayAdapter = ArrayAdapter(this, R.layout.list_item, gender)
+        et_gender.setAdapter(arrayAdapter)
 
         initView()
 

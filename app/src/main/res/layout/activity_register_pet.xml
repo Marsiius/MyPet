@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".SignupPetFragment">
+    tools:context=".RegisterPet">
 
     <RelativeLayout
         android:id="@+id/rl"
@@ -28,7 +28,7 @@
     <GridLayout
         android:id="@+id/grid_layout"
         android:layout_width="match_parent"
-        android:layout_height="460dp"
+        android:layout_height="540dp"
         android:background="@drawable/countor_signuppet"
         android:backgroundTint="@color/Green"
         android:layout_margin="10dp"
@@ -37,104 +37,146 @@
         android:columnCount="1"
         android:rowCount="7">
 
-        <EditText
-            android:id="@+id/et_name"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/et_edit1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:background="@drawable/tv_contour"
-            android:backgroundTint="@color/white"
-            android:hint="@string/name_pet"
-            android:inputType="textPersonName"
-            android:minHeight="48dp"
-            android:paddingStart="8dp"
-            android:paddingEnd="8dp"
-            tools:ignore="TextContrastCheck" />
+            android:hint="Name"
+            android:background="@drawable/countor_signuppet"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-        <EditText
-            android:id="@+id/et_birthday"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/countor_signuppet"
+                android:paddingStart="12dp"
+                android:paddingTop="15dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/et_edit2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:background="@drawable/tv_contour"
-            android:backgroundTint="@color/white"
-            android:hint="@string/birthday_g_mm_aaaa"
+            android:hint="Birthday"
+            android:background="@drawable/countor_signuppet"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_birthday"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/countor_signuppet"
+                android:focusable="false"
+                android:paddingStart="12dp"
+                android:paddingTop="15dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/et_edit3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:hint="Weight"
+            android:background="@drawable/countor_signuppet"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_weight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/countor_signuppet"
+                android:inputType="numberDecimal"
+                android:paddingStart="12dp"
+                android:paddingTop="15dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/et_edit4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:hint="Height"
+            android:background="@drawable/countor_signuppet"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_height"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/countor_signuppet"
+                android:inputType="numberDecimal"
+                android:paddingStart="12dp"
+                android:paddingTop="15dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/et_edit5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:hint="ChipNumber"
+            android:background="@drawable/countor_signuppet"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_chipNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/countor_signuppet"
+                android:inputType="number"
+                android:paddingStart="12dp"
+                android:paddingTop="15dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/et_edit6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:hint="Gender"
             android:focusable="false"
-            android:focusableInTouchMode="false"
-            android:minHeight="48dp"
-            android:paddingStart="8dp"
-            android:paddingEnd="8dp"
-            tools:ignore="TextContrastCheck" />
+            android:background="@drawable/countor_signuppet"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
 
-        <EditText
-            android:id="@+id/et_weight"
+            <AutoCompleteTextView
+                android:id="@+id/et_gender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/countor_signuppet"
+                android:inputType="text"
+                android:paddingStart="12dp"
+                android:focusable="false"
+                android:paddingTop="15dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/et_edit7"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:background="@drawable/tv_contour"
-            android:backgroundTint="@color/white"
-            android:hint="@string/weight_kg"
-            android:inputType="numberDecimal"
-            android:minHeight="48dp"
-            android:paddingStart="8dp"
-            android:paddingEnd="8dp"
-            tools:ignore="TextContrastCheck" />
+            android:hint="Breed"
+            android:background="@drawable/countor_signuppet"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-        <EditText
-            android:id="@+id/et_height"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:background="@drawable/tv_contour"
-            android:backgroundTint="@color/white"
-            android:hint="@string/height_cm"
-            android:inputType="number"
-            android:minHeight="48dp"
-            android:paddingStart="8dp"
-            android:paddingEnd="8dp"
-            tools:ignore="TextContrastCheck" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_breed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/countor_signuppet"
+                android:inputType="text"
+                android:paddingStart="12dp"
+                android:paddingTop="15dp" />
 
-        <EditText
-            android:id="@+id/et_chipnumber"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:background="@drawable/tv_contour"
-            android:backgroundTint="@color/white"
-            android:hint="@string/chip_number"
-            android:inputType="number"
-            android:minHeight="48dp"
-            android:paddingStart="8dp"
-            android:paddingEnd="8dp"
-            tools:ignore="TextContrastCheck" />
-
-        <EditText
-            android:id="@+id/et_gender"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:background="@drawable/tv_contour"
-            android:backgroundTint="@color/white"
-            android:hint="@string/gender_pet"
-            android:inputType="text"
-            android:minHeight="48dp"
-            android:paddingStart="8dp"
-            android:paddingEnd="8dp"
-            tools:ignore="TextContrastCheck" />
-
-        <EditText
-            android:id="@+id/et_breed"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:background="@drawable/tv_contour"
-            android:backgroundTint="@color/white"
-            android:hint="@string/breed"
-            android:inputType="text"
-            android:minHeight="48dp"
-            android:paddingStart="8dp"
-            android:paddingEnd="8dp"
-            tools:ignore="TextContrastCheck" />
+        </com.google.android.material.textfield.TextInputLayout>
     </GridLayout>
 
     <Button

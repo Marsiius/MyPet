@@ -135,16 +135,18 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:hint="Gender"
+            android:focusable="false"
             android:background="@drawable/countor_signuppet"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <AutoCompleteTextView
                 android:id="@+id/et_gender"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/countor_signuppet"
                 android:inputType="text"
                 android:paddingStart="12dp"
+                android:focusable="false"
                 android:paddingTop="15dp" />
 
         </com.google.android.material.textfield.TextInputLayout>

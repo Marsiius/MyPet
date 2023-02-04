@@ -1,5 +1,7 @@
 package it.pdm.app
 
+import java.util.*
+
 class MySingleton {
     companion object {
         private var instance: MySingleton? = null
@@ -11,4 +13,6 @@ class MySingleton {
         }
     }
     var myValue: String = "0"
+    var date : Date? = null
+    var resetShared: Boolean = false
 }
