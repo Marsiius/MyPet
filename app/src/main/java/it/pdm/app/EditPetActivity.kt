@@ -69,10 +69,10 @@ class EditPetActivity : AppCompatActivity() {
                 et_name.hint = name
                 et_edit2.hint = birthday
                 et_birthday.hint = birthday
-                et_edit3.hint = weight+"Kg"
-                et_weight.hint = weight+"Kg"
-                et_edit4.hint = "$height cm"
-                et_height.hint = "$height cm"
+                et_edit3.hint = weight + "kg"
+                et_weight.hint = weight
+                et_edit4.hint = height +"cm"
+                et_height.hint = height
                 et_edit5.hint = chipNumber
                 et_chipNumber.hint = chipNumber
                 et_edit6.hint = gender
