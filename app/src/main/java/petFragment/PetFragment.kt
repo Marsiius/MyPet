@@ -206,13 +206,9 @@ class Pet : Fragment() {
             val refPicture = FirebaseDBHelper.dbRefST.child("images/pet_picture.jpg")
             refPicture.getBytes(1000000000000000000).addOnSuccessListener {
                 val bitmap = BitmapFactory.decodeByteArray(it,0,it.size)
-                if(bitmap!=null){
                     //saveBitmapToInternalStorage(bitmap)
                     if(pet_picture!=null)
                         pet_picture.setImageBitmap(bitmap)
-                }
-            }.addOnFailureListener {
-
             }
         }
     }

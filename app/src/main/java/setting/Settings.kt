@@ -18,6 +18,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import data.FirebaseDBHelper
 import it.pdm.app.MainActivity
@@ -174,6 +175,7 @@ class Settings : PreferenceFragmentCompat() {
     private fun logout() {
         Toast.makeText(context, "LOG OUT", Toast.LENGTH_LONG).show()
 
+        deleteImageFromInternalStorage()
         val sharedPreferences: SharedPreferences? = context?.getSharedPreferences(SHARED_PREFS,
             AppCompatActivity.MODE_PRIVATE
         )
