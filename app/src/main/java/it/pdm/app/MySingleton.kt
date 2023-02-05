@@ -15,4 +15,6 @@ class MySingleton {
     var myValue: String = "0"
     var date : Date? = null
     var resetShared: Boolean = false
+    var btnStartIsClickable: Boolean = false
+    var btnStopIsClickable: Boolean = false
 }

@@ -33,6 +33,7 @@ class StepCounterFragment : Fragment() {
     var peso = 0.00f
     private var weight = ""
     private var calPerse = 0.00f
+    val mySingleton = MySingleton.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,6 +42,7 @@ class StepCounterFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentStepCounterBinding.inflate(inflater, container, false)
         return binding.root
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -48,9 +50,19 @@ class StepCounterFragment : Fragment() {
         btn_stop.setBackgroundColor(Color.GRAY)
         btn_stop.isClickable = false
 
+        if (mySingleton.btnStartIsClickable == true){
+            binding.btnStart.setBackgroundColor(Color.GRAY)
+            binding.btnStop.setBackgroundColor(Color.RED)
+        }else if (mySingleton.btnStopIsClickable == true){
+            binding.btnStart.setBackgroundColor(resources.getColor(R.color.Green))
+            binding.btnStop.setBackgroundColor(Color.GRAY)
+        }
+
         binding.btnStart.setOnClickListener {
             binding.btnStart.setBackgroundColor(Color.GRAY)
             binding.btnStop.setBackgroundColor(Color.RED)
+            mySingleton.btnStartIsClickable=true
+            mySingleton.btnStopIsClickable=false
             btn_start.isClickable = false
             btn_stop.isClickable = true
             val intentFg = Intent(context, StepService::class.java)
@@ -60,6 +72,8 @@ class StepCounterFragment : Fragment() {
         binding.btnStop.setOnClickListener {
             binding.btnStart.setBackgroundColor(resources.getColor(R.color.Green))
             binding.btnStop.setBackgroundColor(Color.GRAY)
+            mySingleton.btnStartIsClickable=false
+            mySingleton.btnStopIsClickable=true
             btn_start.isClickable = true
             btn_stop.isClickable = false
             val intentFg = Intent(context, StepService::class.java)
