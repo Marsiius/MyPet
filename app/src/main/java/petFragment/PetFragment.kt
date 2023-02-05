@@ -21,13 +21,15 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
-import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
+import data.FirebaseDBHelper
 import kotlinx.android.synthetic.main.fragment_pet.*
+import petFragment.PetInformationFragment
+import petFragment.RegisterPet
 import java.io.*
 
 class Pet : Fragment() {

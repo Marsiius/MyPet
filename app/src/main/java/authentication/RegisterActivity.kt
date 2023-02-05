@@ -1,10 +1,8 @@
-package it.pdm.app
+package authentication
 
-import android.content.ContentResolver
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
@@ -13,6 +11,8 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import data.FirebaseDBHelper
+import it.pdm.app.R
 import kotlinx.android.synthetic.main.activity_register.*
 import java.io.ByteArrayOutputStream
 
@@ -42,6 +42,7 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
+    //metodo per la creazione effettiva del nuovo account
     private fun registerNewUser() {
 
         val email = emailTV.text.toString()

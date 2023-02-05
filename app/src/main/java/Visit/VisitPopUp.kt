@@ -1,11 +1,9 @@
 package Visit
 
-import Notes.FragmentPopUpNotes
 import android.content.Intent
 import android.os.Bundle
 import android.provider.CalendarContract
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,16 +12,9 @@ import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.textfield.TextInputEditText
-import it.pdm.app.R
-import it.pdm.app.databinding.FragmentVaccinePopUpBinding
 import it.pdm.app.databinding.FragmentVisitPopUpBinding
-import kotlinx.android.synthetic.main.fragment_pop_up_notes.*
-import kotlinx.android.synthetic.main.fragment_vaccine_pop_up.*
-import kotlinx.android.synthetic.main.fragment_visit_pop_up.*
 import kotlinx.android.synthetic.main.fragment_visit_pop_up.data_picker
-import kotlinx.android.synthetic.main.item_visit.*
-import medpet.VaccinePopUp
-import pets.Visits
+import pets.Visit
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -58,7 +49,7 @@ class VisitPopUp : DialogFragment() {
         }
     }
 
-    private fun openPhoneCalendar(medVisit: Visits){
+    private fun openPhoneCalendar(medVisit: Visit){
         val beginTime = Calendar.getInstance()
         //TODO: da finire
         beginTime.set(2022, 4, 19) // set the date and time of the event
@@ -69,7 +60,7 @@ class VisitPopUp : DialogFragment() {
         calendarIntent.data = CalendarContract.Events.CONTENT_URI
         calendarIntent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, beginTime.timeInMillis)
         calendarIntent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME, endTime.timeInMillis)
-        calendarIntent.putExtra(CalendarContract.Events.DESCRIPTION, medVisit.description)
+        calendarIntent.putExtra(CalendarContract.Events.DESCRIPTION, medVisit.textVisit)
         startActivity(calendarIntent)
     }
 

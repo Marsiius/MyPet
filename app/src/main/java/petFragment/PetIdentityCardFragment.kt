@@ -1,4 +1,4 @@
-package it.pdm.app
+package petFragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,6 +9,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
+import data.FirebaseDBHelper
+import it.pdm.app.R
 import kotlinx.android.synthetic.main.fragment_pet_identity_card.*
 
 

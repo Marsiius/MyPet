@@ -1,4 +1,4 @@
-package Visit
+package pets
 
 data class Visit(
     var idVisit: String = "",

@@ -1,4 +1,4 @@
-package it.pdm.app
+package stepCounter
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -16,14 +16,16 @@ import android.os.IBinder
 import android.util.Log
 import android.widget.Toast
 import androidx.core.app.NotificationCompat
-import it.pdm.app.databinding.FragmentBinding
-import kotlinx.android.synthetic.main.fragment_settings.*
+import it.pdm.app.MainActivity
+import it.pdm.app.MySingleton
+import it.pdm.app.R
+import it.pdm.app.databinding.FragmentStepCounterBinding
 import java.util.*
 import kotlin.properties.Delegates
 
 class StepService : Service(), SensorEventListener {
 
-    private lateinit var binding: FragmentBinding
+    private lateinit var binding: FragmentStepCounterBinding
     private var sensorManager : SensorManager? = null
     private var running : Boolean = false
     private var steps : Long = 0

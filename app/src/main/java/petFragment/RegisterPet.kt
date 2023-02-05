@@ -1,17 +1,19 @@
-package it.pdm.app
+package petFragment
 
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.widget.ArrayAdapter
-import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
+import data.FirebaseDBHelper
+import it.pdm.app.MainActivity
+import it.pdm.app.R
 import it.pdm.app.databinding.ActivityRegisterPetBinding
 import kotlinx.android.synthetic.main.activity_register_pet.*
 import kotlinx.android.synthetic.main.fragment_pop_up_notes.*

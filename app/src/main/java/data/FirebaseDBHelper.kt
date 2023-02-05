@@ -1,9 +1,11 @@
-package it.pdm.app
+package data
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 
+//questa classe serve per tenere traccia dei riferimenti a firebase e per inizializzare la sincroniz-
+//zazione offline
 class FirebaseDBHelper {
     companion object{
 

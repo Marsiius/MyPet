@@ -1,8 +1,7 @@
-package it.pdm.app
+package stepCounter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
-import android.hardware.SensorManager
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
@@ -11,29 +10,25 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Color
-import android.hardware.Sensor
-import android.hardware.SensorEvent
-import android.hardware.SensorEventListener
 import android.util.Log
-//import android.support.v7.app.AppCompatActivity
-import android.widget.Toast
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
-import it.pdm.app.databinding.ActivityLoginBinding.inflate
-import it.pdm.app.databinding.ActivityMainBinding
-import it.pdm.app.databinding.FragmentBinding
-import it.pdm.app.databinding.FragmentHomeBinding
+import data.FirebaseDBHelper
+import it.pdm.app.MySingleton
+import it.pdm.app.R
+import it.pdm.app.databinding.FragmentStepCounterBinding
+import it.pdm.app.databinding.FragmentStepCounterBinding.*
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment.*
 import kotlinx.android.synthetic.main.fragment_pet_identity_card.*
 import kotlinx.android.synthetic.main.fragment_settings.*
+import kotlinx.android.synthetic.main.fragment_step_counter.*
 import java.text.SimpleDateFormat
 import java.util.*
 
-class BlankFragment : Fragment() {
+class StepCounterFragment : Fragment() {
 
-    private lateinit var binding: FragmentBinding
+    private lateinit var binding: FragmentStepCounterBinding
     private var passiFatti = 100.00f
     var peso = 0.00f
     private var weight = ""
@@ -47,7 +42,7 @@ class BlankFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentBinding.inflate(inflater, container, false)
+        binding = FragmentStepCounterBinding.inflate(inflater, container, false)
         return binding.root
     }
 

@@ -1,4 +1,4 @@
-package it.pdm.app
+package setting
 
 import android.app.AlertDialog
 import android.content.ContentValues.TAG
@@ -11,11 +11,16 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
+import authentication.RegisterActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
+import data.FirebaseDBHelper
+import it.pdm.app.MainActivity
+import it.pdm.app.MySingleton
+import it.pdm.app.R
 import java.io.File
 
 

@@ -9,7 +9,7 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.FirebaseDatabase
-import it.pdm.app.FirebaseDBHelper
+import data.FirebaseDBHelper
 import it.pdm.app.R
 import it.pdm.app.databinding.FragmentAddNotesBinding
 import kotlinx.android.synthetic.main.fragment_add_notes.*

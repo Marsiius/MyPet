@@ -1,4 +1,4 @@
-package it.pdm.app
+package home
 
 import android.app.AlertDialog
 import android.content.Intent
@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import it.pdm.app.R
 import kotlinx.android.synthetic.main.fragment_emergency.*
 
 class EmergencyFragment : Fragment() {
@@ -51,6 +52,7 @@ class EmergencyFragment : Fragment() {
         }
     }
 
+    //metodo che apre la app del telefono con un numero già digitato
     private fun callNumber(phoneNumber: String){
         val intent = Intent(Intent.ACTION_DIAL)
         intent.data = Uri.parse("tel:$phoneNumber")

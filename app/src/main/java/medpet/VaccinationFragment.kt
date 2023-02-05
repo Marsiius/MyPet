@@ -1,6 +1,5 @@
 package medpet
 
-import Visit.Visit
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -17,10 +16,8 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import it.pdm.app.R
-import it.pdm.app.databinding.FragmentNotesBinding
 import it.pdm.app.databinding.FragmentVaccinationBinding
-import kotlinx.android.synthetic.main.fragment_vaccination.*
+import pets.Vaccine
 
 class VaccinationFragment : Fragment(), VaccineAdapter.adapterClickInterface, VaccinePopUp.OnDialogNextBtnClickListener {
 

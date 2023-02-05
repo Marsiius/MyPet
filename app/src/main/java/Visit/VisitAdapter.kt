@@ -3,8 +3,8 @@ package Visit
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import it.pdm.app.databinding.ItemRecycleviewBinding
 import it.pdm.app.databinding.ItemVisitBinding
+import pets.Visit
 
 class VisitAdapter(private val list: MutableList<Visit>) : RecyclerView.Adapter<VisitAdapter.visitViewHolder>() {
 

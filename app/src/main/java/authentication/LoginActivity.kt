@@ -1,4 +1,4 @@
-package it.pdm.app
+package authentication
 
 import android.content.Intent
 import android.content.SharedPreferences
@@ -10,6 +10,8 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import it.pdm.app.MainActivity
+import it.pdm.app.R
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity() {
@@ -45,6 +47,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    //metodon che verifica la checkBox per aggiornare la SHARED:PREFS
     private fun checkbox() {
         val sharedPreferences: SharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE)
         val check: String? = sharedPreferences.getString("name","")
@@ -72,6 +75,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    //metodo che serve per il login effettivo
     private fun loginUserAccount() {
         val email = emailTV.text.toString()
         val password = passwordTV.text.toString()

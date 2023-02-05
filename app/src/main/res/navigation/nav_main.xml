@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="it.pdm.app.Home"
+        android:name="home.Home"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -47,7 +47,7 @@
     </fragment><!-- Label che cambia nella toolbar di ogni fragment -->
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="it.pdm.app.Settings"
+        android:name="setting.Settings"
         android:label="fragment_shop"
         tools:layout="@layout/fragment_settings" >
         <action
@@ -56,9 +56,9 @@
     </fragment><!-- Label che cambia nella toolbar di ogni fragment -->
     <fragment
         android:id="@+id/blankFragment"
-        android:name="it.pdm.app.BlankFragment"
+        android:name="stepCounter.StepCounterFragment"
         android:label="fragment"
-        tools:layout="@layout/fragment" />
+        tools:layout="@layout/fragment_step_counter" />
     <fragment
         android:id="@+id/notesFragment"
         android:name="Notes.NotesFragment"
@@ -94,12 +94,12 @@
         tools:layout="@layout/fragment_visits" />
     <fragment
         android:id="@+id/petIdentityCardFragment4"
-        android:name="it.pdm.app.PetIdentityCardFragment"
+        android:name="petFragment.PetIdentityCardFragment"
         android:label="fragment_pet_identity_card"
         tools:layout="@layout/fragment_pet_identity_card" />
     <fragment
         android:id="@+id/emergencyNumbersFragment"
-        android:name="it.pdm.app.EmergencyFragment"
+        android:name="home.EmergencyFragment"
         android:label="fragment_emergency_numbers"
         tools:layout="@layout/fragment_emergency" >
         <action
@@ -108,7 +108,7 @@
     </fragment>
     <fragment
         android:id="@+id/petInformationFragment"
-        android:name="it.pdm.app.PetInformationFragment"
+        android:name="petFragment.PetInformationFragment"
         android:label="fragment_pet_information"
         tools:layout="@layout/fragment_pet_information" >
         <action

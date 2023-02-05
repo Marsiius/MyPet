@@ -5,10 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.DatePicker
-import android.widget.TextView
 import android.widget.Toast
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
@@ -16,14 +13,8 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
-import it.pdm.app.FirebaseDBHelper
-import it.pdm.app.R
+import data.FirebaseDBHelper
 import it.pdm.app.databinding.FragmentNotesBinding
-import kotlinx.android.synthetic.main.fragment_notes.*
-import kotlinx.android.synthetic.main.fragment_pop_up_notes.*
-import java.util.*
 
 
 class NotesFragment : Fragment(), FragmentPopUpNotes.OnDialogNextBtnClickListener,

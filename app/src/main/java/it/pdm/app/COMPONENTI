@@ -1,23 +1,48 @@
 ---COMPONENTI---
-fragment Profilo Animale/i{
-    widget conta passi
-    -libretto sanitario vaccini (legalmente dovrebbe essere sempre portato dietro dal padrone,
-    se fosse in app sarebbe molto utile e comodo)
-    -segnare i vaccini del cane e le intolleranze
-}
-fragment HOME{
-    Fragment Conta Passi
-    Fragment calendario
-    Fragment con mappe per trovare negozi nelle vicinanze
-    piccolo widget con i chilometri fatti settimanali o mensili
-    Fragment su cosa gli animali possono mangiare e cosa no
-    Fragment consigli sugli animali (es. quante volte portarli fuori e quanti km)\\
-    }
-fragment SETTINGS{
-    possibile darkmode
-    settare notifiche
-    informazioni sull'app e sviluppo
-}
+PACKAGE:
+- authentication
+    .LoginActivity
+    .RegisterActivity
 
+-data
+    .FirebaseDBHelper
 
+-home
+    .EmergencyFragment
+    .Home
+    .SplashScreenActivity
+
+- medpet
+    .MedFragment
+    .MedicinesFragment
+    .VaccinationFragment
+    .VaccineAdapter
+    .VaccinePopUp
+    .VisitsFragment
+
+- Notes
+    .FragmentAddNotes
+    .FragmentPopUpNotes
+    .Note
+    .NotesFragment
+    .ToDoAdapter
+
+- petFragment
+    .EditPetActivity
+    .PetFragment
+    .PetIdentityCardFragment
+    .PetInformationFragment
+    .RegisterPetActivity
+
+- pets
+    .Medicines
+    .MyPet
+    .Vaccine
+    .Visit
+
+- stepCounter
+    .StepCounterFragment
+    .StepService
+
+Nel package it.pdm.app rimane il modulo della MainActivity e l'oggetto MySingleton
 

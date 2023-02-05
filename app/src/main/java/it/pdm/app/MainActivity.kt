@@ -10,8 +10,8 @@ import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI.setupWithNavController
+import authentication.RegisterActivity
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.FirebaseDatabase
 import it.pdm.app.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

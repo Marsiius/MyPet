@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import it.pdm.app.databinding.ItemRecycleviewBinding
+import pets.Vaccine
 
 class VaccineAdapter(private val list: MutableList<Vaccine>) : RecyclerView.Adapter<VaccineAdapter.VaccineViewHolder>(){
 

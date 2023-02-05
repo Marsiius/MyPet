@@ -25,24 +25,24 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".RegisterPet"
+            android:name="petFragment.RegisterPet"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".EditPetActivity"
+            android:name="petFragment.EditPetActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
 
-        <service android:name=".StepService" />
+        <service android:name="stepCounter.StepService" />
 
         <activity
-            android:name=".LoginActivity"
+            android:name="authentication.LoginActivity"
             android:exported="false"
             android:noHistory="true">
             <meta-data
@@ -50,7 +50,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".RegisterActivity"
+            android:name="authentication.RegisterActivity"
             android:exported="false"
             android:noHistory="true">
             <meta-data
@@ -58,7 +58,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".SplashScreenActivity"
+            android:name="home.SplashScreenActivity"
             android:exported="true"
             android:noHistory="true">
             <intent-filter>

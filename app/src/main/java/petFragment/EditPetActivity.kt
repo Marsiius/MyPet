@@ -1,4 +1,4 @@
-package it.pdm.app
+package petFragment
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -10,6 +10,9 @@ import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
+import data.FirebaseDBHelper
+import it.pdm.app.MainActivity
+import it.pdm.app.R
 import kotlinx.android.synthetic.main.activity_edit_pet.*
 import kotlinx.android.synthetic.main.activity_edit_pet.et_birthday
 import kotlinx.android.synthetic.main.activity_edit_pet.et_breed
@@ -25,7 +28,6 @@ import kotlinx.android.synthetic.main.activity_edit_pet.et_gender
 import kotlinx.android.synthetic.main.activity_edit_pet.et_height
 import kotlinx.android.synthetic.main.activity_edit_pet.et_name
 import kotlinx.android.synthetic.main.activity_edit_pet.et_weight
-import kotlinx.android.synthetic.main.activity_register_pet.*
 import pets.MyPet
 import java.text.SimpleDateFormat
 import java.util.*

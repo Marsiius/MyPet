@@ -1,11 +1,9 @@
 package medpet
 
-import Visit.Visit
+import pets.Visit
 import Visit.VisitAdapter
 import Visit.VisitPopUp
-import android.content.Intent
 import android.os.Bundle
-import android.provider.CalendarContract
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -18,10 +16,8 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
-import it.pdm.app.FirebaseDBHelper
+import data.FirebaseDBHelper
 import it.pdm.app.databinding.FragmentVisitsBinding
-import pets.Visits
-import java.util.*
 
 class VisitsFragment : Fragment(), VisitPopUp.OnDialogNextBtnClickListener,
     VisitAdapter.adapterClickInterface {
