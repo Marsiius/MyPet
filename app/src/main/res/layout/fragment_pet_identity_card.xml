@@ -28,119 +28,172 @@
     <GridLayout
         android:id="@+id/grid_layout"
         android:layout_width="match_parent"
-        android:layout_height="460dp"
+        android:layout_height="580dp"
+        android:layout_below="@id/rl"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/countor_signuppet"
         android:backgroundTint="@color/Green"
-        android:layout_margin="10dp"
-        android:paddingTop="8dp"
-        android:layout_below="@id/rl"
         android:columnCount="1"
+        android:paddingTop="8dp"
         android:rowCount="7">
 
-        <TextView
-            android:id="@+id/tv_name"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/et_edit1"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/name_pet"
+            android:layout_height="65dp"
             android:layout_margin="8dp"
             android:background="@drawable/countor_signuppet"
-            android:backgroundTint="@color/white"
-            android:gravity="center"
-            android:textSize="24sp"
-            android:minHeight="48dp"
-            android:paddingStart="8dp"
-            android:paddingEnd="8dp"
-            tools:ignore="TextContrastCheck" />
+            android:focusable="false"
+            android:hint="Name">
 
-        <TextView
-            android:id="@+id/tv_birthday"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/birthday_g_mm_aaaa"
-            android:layout_margin="8dp"
-            android:background="@drawable/countor_signuppet"
-            android:backgroundTint="@color/white"
-            android:gravity="center"
-            android:textSize="24sp"
-            android:minHeight="48dp"
-            android:paddingStart="8dp"
-            android:paddingEnd="8dp"
-            tools:ignore="TextContrastCheck" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tv_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/countor_signuppet"
+                android:focusable="false"
+                android:gravity="center"
+                android:textSize="21sp"
+                tools:ignore="TextContrastCheck" />
 
-        <TextView
-            android:id="@+id/tv_weight"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/weight_kg"
-            android:layout_margin="8dp"
-            android:background="@drawable/countor_signuppet"
-            android:backgroundTint="@color/white"
-            android:gravity="center"
-            android:textSize="24sp"
-            android:minHeight="48dp"
-            android:paddingStart="8dp"
-            android:paddingEnd="8dp"
-            tools:ignore="TextContrastCheck" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:id="@+id/tv_height"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/et_edit2"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/height_cm"
+            android:layout_height="65dp"
             android:layout_margin="8dp"
             android:background="@drawable/countor_signuppet"
-            android:backgroundTint="@color/white"
-            android:gravity="center"
-            android:textSize="24sp"
-            android:minHeight="48dp"
-            android:paddingStart="8dp"
-            android:paddingEnd="8dp"
-            tools:ignore="TextContrastCheck" />
+            android:focusable="false"
+            android:hint="@string/birthday_g_mm_aaaa">
 
-        <TextView
-            android:id="@+id/tv_chipNumber"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/chip_number"
-            android:layout_margin="8dp"
-            android:background="@drawable/countor_signuppet"
-            android:backgroundTint="@color/white"
-            android:gravity="center"
-            android:textSize="24sp"
-            android:minHeight="48dp"
-            android:paddingStart="8dp"
-            android:paddingEnd="8dp"
-            tools:ignore="TextContrastCheck" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tv_birthday"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/countor_signuppet"
+                android:focusable="false"
+                android:gravity="center"
+                android:textSize="21sp"
+                tools:ignore="TextContrastCheck" />
 
-        <TextView
-            android:id="@+id/tv_gender"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/gender_pet"
-            android:layout_margin="8dp"
-            android:background="@drawable/countor_signuppet"
-            android:backgroundTint="@color/white"
-            android:gravity="center"
-            android:textSize="24sp"
-            android:minHeight="48dp"
-            android:paddingStart="8dp"
-            android:paddingEnd="8dp"
-            tools:ignore="TextContrastCheck" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:id="@+id/tv_breed"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/et_edit3"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/breed"
+            android:layout_height="65dp"
             android:layout_margin="8dp"
             android:background="@drawable/countor_signuppet"
-            android:backgroundTint="@color/white"
-            android:gravity="center"
-            android:textSize="24sp"
-            android:minHeight="48dp"
-            android:paddingStart="8dp"
-            android:paddingEnd="8dp"
-            tools:ignore="TextContrastCheck" />
+            android:focusable="false"
+            android:hint="@string/weight_kg">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tv_weight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/countor_signuppet"
+                android:focusable="false"
+                android:gravity="center"
+                android:textSize="21sp"
+                tools:ignore="TextContrastCheck" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/et_edit4"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:layout_margin="8dp"
+            android:background="@drawable/countor_signuppet"
+            android:focusable="false"
+            android:hint="@string/height_cm">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tv_height"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/countor_signuppet"
+                android:focusable="false"
+                android:gravity="center"
+                android:textSize="21sp"
+                tools:ignore="TextContrastCheck" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/et_edit5"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:layout_margin="8dp"
+            android:background="@drawable/countor_signuppet"
+            android:focusable="false"
+            android:hint="@string/chip_number">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tv_chipNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/countor_signuppet"
+                android:focusable="false"
+                android:gravity="center"
+                android:textSize="21sp"
+                tools:ignore="TextContrastCheck" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/et_edit6"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:layout_margin="8dp"
+            android:background="@drawable/countor_signuppet"
+            android:focusable="false"
+            android:hint="@string/gender_pet">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tv_gender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/countor_signuppet"
+                android:focusable="false"
+                android:gravity="center"
+                android:textSize="21sp"
+                tools:ignore="TextContrastCheck" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/et_edit7"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:layout_margin="8dp"
+            android:background="@drawable/countor_signuppet"
+            android:focusable="false"
+            android:hint="@string/breed">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tv_breed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/countor_signuppet"
+                android:focusable="false"
+                android:gravity="center"
+                android:textSize="21sp"
+                tools:ignore="TextContrastCheck" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
 
     </GridLayout>
 

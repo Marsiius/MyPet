@@ -37,8 +37,16 @@
                     android:layout_height="80dp"
                     android:layout_centerInParent="true"
                     android:background="@drawable/pet_id"
-                    android:scaleX="1.2"
-                    android:scaleY="1.2" />
+                    android:scaleX="1"
+                    android:scaleY="1"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="8dp"
+                    android:gravity="center_horizontal|bottom"
+                    android:text="@string/paw_counter" />
             </RelativeLayout>
 
         </com.google.android.material.card.MaterialCardView>
@@ -62,7 +70,19 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_centerInParent="true"
-                    android:background="@drawable/clinica" />
+                    android:background="@drawable/clinica"
+                    android:scaleX="0.9"
+                    android:scaleY="0.9"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="8dp"
+                    android:gravity="center_horizontal|bottom"
+
+                    android:text="Manage task " />
+
             </RelativeLayout>
         </com.google.android.material.card.MaterialCardView>
 
@@ -82,10 +102,18 @@
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
                     android:layout_centerInParent="true"
                     android:background="@drawable/dog_walking" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="8dp"
+                    android:gravity="center_horizontal|bottom"
+                    android:text="@string/paw_counter" />
+
             </RelativeLayout>
         </com.google.android.material.card.MaterialCardView>
 
@@ -109,6 +137,14 @@
                     android:layout_height="64dp"
                     android:layout_centerInParent="true"
                     android:background="@drawable/pencil_icon" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="8dp"
+                    android:gravity="center_horizontal|bottom"
+                    android:text="@string/edit_pet" />
+
             </RelativeLayout>
         </com.google.android.material.card.MaterialCardView>
 

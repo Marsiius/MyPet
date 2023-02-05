@@ -35,6 +35,9 @@
     <string name="item_2">Item 2</string>
     <string name="date_2">date_2</string>
     <string name="date_1">Date 1</string>
+    <string name="notes">Notes</string>
+    <string name="paw_counter">Paw counter</string>
+    <string name="edit_pet">Edit pet</string>
 
     <string-array name="gender">
         <item>Male</item>

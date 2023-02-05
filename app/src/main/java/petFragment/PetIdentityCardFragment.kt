@@ -39,31 +39,31 @@ class PetIdentityCardFragment : Fragment() {
                     if(snapshot.exists()){
                         val name = snapshot.child("name").value.toString()
                         if(tv_name!=null)
-                            tv_name.text = name
+                            tv_name.setText(name)
 
                         val birthday = snapshot.child("birthday").value.toString()
                         if(tv_birthday!=null)
-                            tv_birthday.text = birthday
+                            tv_birthday.setText(birthday)
 
                         val weight = snapshot.child("weight").value.toString()
                         if(tv_weight!=null)
-                            tv_weight.text = weight + " kg"
+                            tv_weight.setText(weight + " kg")
 
                         val height = snapshot.child("height").value.toString()
                         if(tv_height!=null)
-                            tv_height.text = height + " cm"
+                            tv_height.setText(height + " cm")
 
                         val chipNumber = snapshot.child("chipNumber").value.toString()
                         if(tv_chipNumber!=null)
-                            tv_chipNumber.text = chipNumber
+                            tv_chipNumber.setText(chipNumber)
 
                         val gender = snapshot.child("gender").value.toString()
                         if(tv_gender!=null)
-                            tv_gender.text = gender
+                            tv_gender.setText(gender)
 
                         val breed = snapshot.child("breed").value.toString()
                         if(tv_breed!=null)
-                            tv_breed.text = breed
+                            tv_breed.setText(breed)
                     }
                 }
 

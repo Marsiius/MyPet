@@ -100,6 +100,13 @@
                             android:layout_centerInParent="true"
                             android:background="@drawable/dog_walking" />
 
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="8dp"
+                            android:gravity="center_horizontal|bottom"
+                            android:text="@string/paw_counter" />
+
                     </RelativeLayout>
 
                 </com.google.android.material.card.MaterialCardView>
@@ -126,6 +133,13 @@
                             android:layout_centerInParent="true"
                             android:background="@drawable/vet_icon" />
 
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="8dp"
+                            android:gravity="center_horizontal|bottom"
+                            android:text="@string/visits" />
+
                     </RelativeLayout>
 
                 </com.google.android.material.card.MaterialCardView>
@@ -151,6 +165,13 @@
                             android:layout_height="64dp"
                             android:layout_centerInParent="true"
                             android:background="@drawable/note_ott" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="8dp"
+                            android:gravity="center_horizontal|bottom"
+                            android:text="@string/notes" />
 
                     </RelativeLayout>
 
@@ -184,8 +205,7 @@
                             android:layout_alignParentBottom="true"
                             android:layout_centerHorizontal="true"
                             android:layout_marginBottom="8sp"
-                            android:fontFamily="@font/aclonica"
-                            android:text="EMERGENCY"
+                            android:text="Emergency"
                             android:textColor="@color/red" />
 
                     </RelativeLayout>
@@ -196,24 +216,6 @@
 
             </GridLayout>
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/Card5"
-                android:layout_width="350dp"
-                android:layout_height="50dp"
-                android:layout_below="@+id/grid_layout"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="25dp"
-                android:clickable="true"
-                android:focusable="true"
-                app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="25dp"
-                app:cardElevation="3dp">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-
-            </com.google.android.material.card.MaterialCardView>
 
         </RelativeLayout>
 
