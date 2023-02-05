@@ -22,7 +22,7 @@
             android:clipToOutline="true"
             android:contentDescription="@string/picture_pet"
             android:scaleType="centerCrop"
-            android:src="@drawable/app_icon"
+            android:src="@drawable/default_picture"
             android:visibility="invisible" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton

@@ -3,6 +3,7 @@ package authentication
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
@@ -85,14 +86,12 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun initFirebaseStorage(){
-        val refST = FirebaseDBHelper.dbRefST.child("images/pet_picture.jpg")
-
-        val bitmap = BitmapFactory.decodeResource(resources, R.drawable.app_icon)
+        val imageRef = FirebaseDBHelper.dbRefST.child("images/pet_picture.jpg")
+        val bitmap = BitmapFactory.decodeResource(resources, R.drawable.default_picture)
         val baos = ByteArrayOutputStream()
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
         val data = baos.toByteArray()
-
-        refST.putBytes(data)
+        imageRef.putBytes(data)
     }
 
     private fun initializeUI() {

@@ -5,6 +5,8 @@ import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -21,6 +23,7 @@ import data.FirebaseDBHelper
 import it.pdm.app.MainActivity
 import it.pdm.app.MySingleton
 import it.pdm.app.R
+import java.io.ByteArrayOutputStream
 import java.io.File
 
 
@@ -117,6 +120,7 @@ class Settings : PreferenceFragmentCompat() {
                     if(snapshot.exists()){
                         snapshot.ref.removeValue()
                         deleteImageFromInternalStorage()
+                        deleteImageFromFirebase()
                         if(context!=null){
                             val intent = Intent(context, MainActivity::class.java )
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
@@ -138,6 +142,17 @@ class Settings : PreferenceFragmentCompat() {
         val file = File(directory, "your-image.jpg")
         if(file.exists()){
             file.delete()
+        }
+    }
+
+    private fun deleteImageFromFirebase(){
+        if(isAdded){
+            val imageRef = FirebaseDBHelper.dbRefST.child("images/pet_picture.jpg")
+            val bitmap = BitmapFactory.decodeResource(resources, R.drawable.default_picture)
+            val baos = ByteArrayOutputStream()
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+            val data = baos.toByteArray()
+            imageRef.putBytes(data)
         }
     }
 
@@ -170,6 +185,7 @@ class Settings : PreferenceFragmentCompat() {
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
         startActivity(intent)
+
     }
 
     private fun initializeUI(){
