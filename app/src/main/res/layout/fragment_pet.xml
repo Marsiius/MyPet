@@ -58,7 +58,7 @@
                 android:layout_height="64dp"
                 android:background="@drawable/countor_signuppet"
                 android:backgroundTint="@color/Green"
-                android:fontFamily="casual"
+                android:fontFamily="sans-serif"
                 android:gravity="center"
                 android:text="@string/pet_name"
                 android:textColor="@color/white_ghost"
