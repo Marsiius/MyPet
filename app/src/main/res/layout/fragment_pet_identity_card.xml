@@ -28,16 +28,14 @@
     <GridLayout
         android:id="@+id/grid_layout"
         android:layout_width="match_parent"
-        android:layout_height="580dp"
+        android:layout_height="570dp"
         android:layout_below="@id/rl"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         android:background="@drawable/countor_signuppet"
         android:backgroundTint="@color/Green"
         android:columnCount="1"
-        android:paddingTop="8dp"
         android:rowCount="7">
 
         <com.google.android.material.textfield.TextInputLayout
