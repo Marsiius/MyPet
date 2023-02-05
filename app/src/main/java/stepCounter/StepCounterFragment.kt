@@ -52,19 +52,6 @@ class StepCounterFragment : Fragment() {
         btn_stop.isClickable = false
 
         binding.btnStart.setOnClickListener {
-
-            /*//una volta premuto start, se la data memorizza è null, gli memorizzo la data corrente
-            if(mySingleton.date == null){
-                mySingleton.date = currentDate
-                Toast.makeText(context, "nuova data memorizzata ${mySingleton.date}", Toast.LENGTH_SHORT).show()
-            }// se invece la data memorizzata non è null, la confronto per capire se il giorno è lo stesso oppure se è un nuovo giorno, se è un nuovo giorno setto a true il boolean per resettare la shared pref
-            else if(currentDate > mySingleton.date){
-                Log.d("tag", "la data è vecchia quindi resetShared = true")
-                mySingleton.resetShared = true
-            }else{
-                Log.d("tag", "la data è la stessa")
-            }*/
-
             binding.btnStart.setBackgroundColor(Color.GRAY)
             binding.btnStop.setBackgroundColor(Color.RED)
             btn_start.isClickable = false
@@ -72,6 +59,7 @@ class StepCounterFragment : Fragment() {
             val intentFg = Intent(context, StepService::class.java)
             requireActivity().startService(intentFg)
         }
+
         binding.btnStop.setOnClickListener {
             binding.btnStart.setBackgroundColor(resources.getColor(R.color.Green))
             binding.btnStop.setBackgroundColor(Color.GRAY)
@@ -111,84 +99,6 @@ class StepCounterFragment : Fragment() {
             }
         })
     }
-
-    @SuppressLint("SimpleDateFormat")
-    fun saveDateToSharedPreferences(context: Context, date: Date) {
-        val sharedPreferences: SharedPreferences = context.getSharedPreferences("date_prefs", Context.MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
-        val dateFormat = SimpleDateFormat("dd-MM-yyyy")
-        editor.putString("date", dateFormat.format(date))
-        editor.apply()
-    }
-
-
-    /*var running = false
-    var starting = false
-    var lastStep = 0
-    var step = 0
-    var sensorManager: SensorManager? = null
-    private lateinit var binding: FragmentBinding
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentBinding.inflate(inflater, container, false)
-        return binding.root
-
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        //sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
-        sensorManager = activity?.getSystemService(Context.SENSOR_SERVICE) as SensorManager
-    }
-
-    private fun startingBtn(){
-        starting = true
-    }
-
-    private fun stopBtn(){
-        starting = false
-    }
-
-    override fun onResume() {
-        super.onResume()
-        running = true
-        var stepsSensor = sensorManager?.getDefaultSensor(Sensor.TYPE_STEP_COUNTER)
-
-        if (stepsSensor == null) {
-            Toast.makeText(activity, "No Step Counter Sensor !", Toast.LENGTH_SHORT).show()
-        } else {
-            sensorManager?.registerListener(this, stepsSensor, SensorManager.SENSOR_DELAY_UI)
-        }
-    }
-
-    override fun onPause() {
-        super.onPause()
-        running = false
-        sensorManager?.unregisterListener(this)
-    }
-    override fun onAccuracyChanged(p0: Sensor?, p1: Int) {
-    }
-
-    @SuppressLint("SetTextI18n")
-    override fun onSensorChanged(event: SensorEvent) {
-        if (running) {
-            stepsValue_tv.setText("" + event.values[0])
-            lastStep = event.values[0].toInt()
-            Log.d("step", lastStep.toString())
-        }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        running = false
-        Toast.makeText(context, "stoppato", Toast.LENGTH_SHORT).show()
-        for(i in 1..10000){
-        }
-        Log.d("stop", lastStep.toString())
-    }*/
 }
 
 

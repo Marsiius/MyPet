@@ -32,14 +32,6 @@ class NotesFragment : Fragment(), FragmentPopUpNotes.OnDialogNextBtnClickListene
     private lateinit var popUpFragment: FragmentPopUpNotes
     /*--------VARIABILI PER IL POPUP-------*/
 
-
-    /*override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        //binding = FragmentBinding.inflate(inflater, container, false)
-
-
-    }*/
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -51,22 +43,10 @@ class NotesFragment : Fragment(), FragmentPopUpNotes.OnDialogNextBtnClickListene
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        /*fab.setOnClickListener{
-            findNavController().navigate(R.id.action_notesFragment_to_fragmentAddNotes)
-        }*/
+
         init()
         getNoteFromFirebase()
-
         registerEvents()
-        /*binding.fab.setOnClickListener{
-            if(popUpFragment != null){
-                childFragmentManager.beginTransaction().remove(popUpFragment!!).commit()
-                popUpFragment = FragmentPopUpNotes()
-                popUpFragment!!.setListener(this)
-
-                popUpFragment!!.show(childFragmentManager, "DialogFragment")
-            }
-        }*/
     }
 
     private fun getNoteFromFirebase(){
@@ -80,7 +60,6 @@ class NotesFragment : Fragment(), FragmentPopUpNotes.OnDialogNextBtnClickListene
                     val noteDate = stringArray[1]
                     val noteBody = stringArray[2]
                     val toDoNote = noteSnapshot.key?.let { Note(it, title, noteDate, noteBody) } //con it, passo nel primo parametro(idNote)
-                    //val toDoDate = noteSnapshot.key?.let { Note(noteSnapshot.value.toString()) }
                     if(toDoNote != null){
                         toDoItemList.add(toDoNote)
                     }
@@ -119,18 +98,6 @@ class NotesFragment : Fragment(), FragmentPopUpNotes.OnDialogNextBtnClickListene
         }
     }
 
-    /*override fun onSaveTask(note: String, tvNote: TextInputEditText) {
-        database.push().setValue(note).addOnCompleteListener {
-            if (it.isSuccessful){
-                Toast.makeText(context, "Nota aggiunta", Toast.LENGTH_SHORT).show()
-                tvNote.text = null
-            }else{
-                Toast.makeText(context, it.exception?.message, Toast.LENGTH_SHORT).show()
-            }
-            popUpFragment.dismiss()
-        }
-    }*/
-
     override fun onSaveTask(note: String, tvNote: TextInputEditText, date: String, body : String, tvNoteBody : TextInputEditText) { //tvNote è l'inputEditText nel popUpNotes
 
         database.push().setValue(note+","+date+","+body).addOnCompleteListener {
@@ -142,21 +109,8 @@ class NotesFragment : Fragment(), FragmentPopUpNotes.OnDialogNextBtnClickListene
             }
             popUpFragment.dismiss()
         }
-
-        /*------ salvo la data (trasformata in stringa, ma in una nuova nota)
-
-
-        database.push().setValue(date).addOnCompleteListener{
-            if (it.isSuccessful){
-                Toast.makeText(context, "Nota aggiunta", Toast.LENGTH_SHORT).show()
-                tvNote.text = null
-            }else{
-                Toast.makeText(context, it.exception?.message, Toast.LENGTH_SHORT).show()
-            }
-            popUpFragment.dismiss()
-        }
-        */
     }
+
     override fun onDeleteNoteBtnClicked(note: Note) {
         database.child(note.idNote).removeValue().addOnCompleteListener {
             if(it.isSuccessful){
@@ -166,113 +120,4 @@ class NotesFragment : Fragment(), FragmentPopUpNotes.OnDialogNextBtnClickListene
             }
         }
     }
-
-    override fun onEditNoteBtnClicked(note: Note) {
-        TODO("Not yet implemented")
-    }
-
-/*---------------------------------------------------------------------------------------------------------*/
-    /*override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        //return super.onCreateView(inflater, container, savedInstanceState)
-        binding = FragmentNotesBinding.inflate(inflater, container, false)
-        return binding.root
-
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        fab.setOnClickListener{
-            findNavController().navigate(R.id.action_notesFragment_to_fragmentAddNotes)
-        }
-        /*noteList.layoutManager = LinearLayoutManager(requireContext())
-        noteList.setHasFixedSize(true)*/
-        init()
-
-        noteRecyclerView = view.findViewById(R.id.noteList)
-        noteRecyclerView.layoutManager = LinearLayoutManager(activity)
-        noteRecyclerView.setHasFixedSize(true)
-
-        arrayList = arrayListOf<Note>()
-
-        getUserData()
-    }
-
-    private fun getUserData() {
-        val db = FirebaseRealtimeDBHelper.dbRefRT.child("Notes")
-
-        db.addValueEventListener(object : ValueEventListener{
-            override fun onDataChange(snapshot: DataSnapshot) {
-                arrayList.clear()
-                if (snapshot.exists()){
-                    for (userSnapshot in snapshot.children){
-                        val note = userSnapshot.child("NKJOLQ4kU-SfaVIX93m").getValue(Note::class.java)
-                        if (note != null) {
-                            arrayList.add(note)
-                        }
-                        Log.d("nota", note.toString())
-                    }
-                    val mAdapter = MyAdapter(arrayList)
-                    noteRecyclerView.adapter = mAdapter
-
-                    noteRecyclerView.visibility = View.VISIBLE
-                    //noteList.adapter = MyAdapter(noteArray)
-                }
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-        })
-    }*/
-
-    /*------------------------------------------------------------------------------------------*/
-
-
-    /*
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentNotesBinding.inflate(inflater, container, false)
-        
-        val array = ArrayList<Note>()
-        setNote(array)
-
-        return binding.root
-    }
-
-    private fun setNote(array: ArrayList<Note>) {
-        val db = FirebaseRealtimeDBHelper.dbRefRT.child("Notes")
-        db.addValueEventListener(object : ValueEventListener{
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if(snapshot.exists()){
-                    for (i in snapshot.children){
-                        val note = i.child("NKJOLQ4kU-SfaVIX93m").getValue(Note::class.java)
-                        //array.add(note!!)  //se metto .child("Notes") da errore all'array add
-                        //arrayList.add(note!!)
-                        Log.d("nota", note.toString())
-                    }
-                }
-
-                val recyclerView = binding.noteList
-                recyclerView.layoutManager = LinearLayoutManager(requireContext())
-                val adapter = MyAdapter(array)
-                recyclerView.adapter = adapter
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-
-        })
-    }*/
-
-    /*private fun init() {
-        uId = FirebaseAuth.getInstance().currentUser!!.uid
-    }*/
-
 }

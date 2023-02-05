@@ -37,7 +37,6 @@ class VisitsFragment : Fragment(), VisitPopUp.OnDialogNextBtnClickListener,
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         binding = FragmentVisitsBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -59,7 +58,6 @@ class VisitsFragment : Fragment(), VisitPopUp.OnDialogNextBtnClickListener,
                     val title = stringArray[0]
                     val visitDate = stringArray[1]
                     val toDoNote = noteSnapshot.key?.let { Visit(it, title, visitDate) } //con it, passo nel primo parametro(idNote)
-                    //val toDoDate = noteSnapshot.key?.let { Note(noteSnapshot.value.toString()) }
                     if(toDoNote != null){
                         visitItemList.add(toDoNote)
                     }

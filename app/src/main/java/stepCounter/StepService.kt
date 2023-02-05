@@ -73,35 +73,20 @@ class StepService : Service(), SensorEventListener {
     override fun onDestroy() {
         running = false
         Toast.makeText(applicationContext, "Destroy", Toast.LENGTH_SHORT).show()
-        // Toast.makeText(this, "$totalSteps", Toast.LENGTH_SHORT).show()
         super.onDestroy()
     }
 
     override fun onSensorChanged(event: SensorEvent?) {
         if(running){
-            Log.d("Tracking","passo")
-            //steps = event!!.values[0].toLong()
             passi = event!!.values[0].toInt()
-            Log.d("passoInt", passi.toString())
             passiTotali = getPassi()
             passiTotali += getPassi()
             savePassi(passiTotali)
             mySingleton.myValue = passi.toString()
-            Log.d("Singleton", mySingleton.myValue)
-            /*totalSteps = getSteps()
-            totalSteps += steps
-            saveSteps(totalSteps)*/
         }
-        //TODO("cambiare il nome della variabile passi, e salvarlo nelle shared preferences")
     }
 
     override fun onAccuracyChanged(p0: Sensor?, p1: Int) {
-    }
-
-    private fun getSteps() : Long {
-        val sharedPreferences = getSharedPreferences("trackingPrefs", Context.MODE_PRIVATE)
-        val steps = sharedPreferences!!.getLong("steps",0)
-        return steps
     }
 
     private fun getPassi() : Int{
@@ -121,18 +106,6 @@ class StepService : Service(), SensorEventListener {
             Log.d("tag", "shared ripristinate")
             mySingleton.resetShared = false
         }
-    }
-    //salvo gli step
-    private fun saveSteps(steps : Long) {
-        val sharedPreferences =
-            getSharedPreferences("trackingPrefs", Context.MODE_PRIVATE)
-        val editor = sharedPreferences?.edit()
-        editor?.apply {
-            putInt("steps", passi);
-            //putLong("steps",steps );
-            //TODO("Verificare se il putInt salva correttamente, prima usavamo il putLong con vecchia variabile")
-        }?.apply()
-        //Log.d("saveSteps", steps.toString())
     }
 
     private fun createNotificationChannel() {

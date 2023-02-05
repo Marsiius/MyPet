@@ -64,11 +64,6 @@ class VaccinePopUp : DialogFragment() {
         binding.popUpNext.setOnClickListener{
             val vaccineName = binding.nameVaccine.text.toString()
 
-            //date1.set(data_picker1.year, data_picker1.month, data_picker1.dayOfMonth)
-            //date2.set(data_picker2.year, data_picker2.month, data_picker2.dayOfMonth)
-            //val dataSelezionata = dateFormat.format(date1.time) //trasforma in stringa la data con il suo formato dd-MM-yyyy
-            //val recallSelezionata = dateFormat.format(date2.time) //trasforma in stringa la data con il suo formato dd-MM-yyyy
-
             if (dateFirst.before(date2)) {  //La data Selezionata è prima di quella corrente
                 Toast.makeText(context, "Non puoi selezionare una data già passata", Toast.LENGTH_SHORT).show()
             }
@@ -83,16 +78,12 @@ class VaccinePopUp : DialogFragment() {
                 }
             }else{
                 Log.d("La Data", "Selezionata è la stessa di quella corrente")
-                //aggiungere al firebase
+                if(vaccineName.isNotEmpty()){
+                    listener?.onSaveVaccine(vaccineName, binding.nameVaccine, dataSelezionata, recallSelezionata) //noteTask è la stringa che viene presa dal tvNote -------------------------------------------------------
+                }else{
+                    Toast.makeText(context, "Non puoi lasciare il campo vuoto", Toast.LENGTH_SHORT).show()
+                }
             }
-
-            /*if(vaccineName.isNotEmpty()){
-                listener?.onSaveVaccine(vaccineName, binding.nameVaccine, dataSelezionata, recallSelezionata) //noteTask è la stringa che viene presa dal tvNote -------------------------------------------------------
-            }else{
-                Toast.makeText(context, "Non puoi lasciare il campo vuoto", Toast.LENGTH_SHORT).show()
-            }*/
-
-
         }
         binding.popUpClose.setOnClickListener{
             dismiss()
@@ -105,40 +96,20 @@ class VaccinePopUp : DialogFragment() {
         picker.show(childFragmentManager, picker.toString())
         picker.addOnPositiveButtonClickListener {
             val formatter = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+            //il valore è true se viene premuto il pulsante del data_picker in questione
             if(dateVaccine == true){
                 dataSelezionata = formatter.format(Date(it))
                 et.setText(dataSelezionata)
                 dateVaccine = false
                 dateFirst = Date(it)
             }
+            //il valore è true se viene premuto il pulsante del data_picker in questione
             if (recallVaccine == true){
                 recallSelezionata = formatter.format(Date(it))
                 et.setText(recallSelezionata)
                 recallVaccine = false
                 dateRecall = Date(it)
             }
-        }
-    }
-
-    private fun openDateCalendar(et: Button) {
-        val builder = MaterialDatePicker.Builder.datePicker()
-        val picker = builder.build()
-        picker.show(childFragmentManager, picker.toString())
-        picker.addOnPositiveButtonClickListener {
-            val formatter = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-            dataSelezionata = formatter.format(Date(it))
-            et.setText(dataSelezionata)
-        }
-    }
-    private fun openRecallCalendar(et: Button) {
-        val builder = MaterialDatePicker.Builder.datePicker()
-        val picker = builder.build()
-        picker.show(childFragmentManager, picker.toString())
-        picker.addOnPositiveButtonClickListener {
-            val formatter = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-            recallSelezionata = formatter.format(Date(it))
-            et.setText(recallSelezionata)
-
         }
     }
 

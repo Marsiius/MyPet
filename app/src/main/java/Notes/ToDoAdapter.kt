@@ -41,7 +41,6 @@ class toDoAdapter(private val list: MutableList<Note>) : RecyclerView.Adapter<to
 
     interface adapterClickInterface{
         fun onDeleteNoteBtnClicked(note: Note)
-        fun onEditNoteBtnClicked(note: Note)
     }
 
 }

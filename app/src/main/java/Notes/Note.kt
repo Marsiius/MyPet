@@ -7,5 +7,4 @@ data class Note (
     var textNote: String = "",
     var dateNote: String = "",
     var bodyNote: String = ""
-    //var calendar: Calendar
 )

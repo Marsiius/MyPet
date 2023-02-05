@@ -31,7 +31,6 @@ class FragmentAddNotes : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        //return super.onCreateView(inflater, container, savedInstanceState)
         binding = FragmentAddNotesBinding.inflate(inflater, container, false)
         return binding.root
     }

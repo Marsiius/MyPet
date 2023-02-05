@@ -81,15 +81,12 @@ class VisitPopUp : DialogFragment() {
                 }
             }else{
                 Log.d("La Data", "Selezionata è la stessa di quella corrente")
-                //aggiungere al firebase
+                if(visitName.isNotEmpty()){
+                    listener?.onSaveVisit(visitName, binding.tvVisit, dataSelezionata) //noteTask è la stringa che viene presa dal tvNote -------------------------------------------------------
+                }else{
+                    Toast.makeText(context, "Non puoi lasciare il campo vuoto", Toast.LENGTH_SHORT).show()
+                }
             }
-
-            /*if(visitName.isNotEmpty()){
-                listener?.onSaveVisit(visitName, binding.tvVisit, dataSelezionata) //noteTask è la stringa che viene presa dal tvNote -------------------------------------------------------
-            }else{
-                Toast.makeText(context, "Non puoi lasciare il campo vuoto", Toast.LENGTH_SHORT).show()
-            }*/
-
         }
         binding.popUpClose.setOnClickListener{
             dismiss()
