@@ -45,8 +45,10 @@ class VaccinationFragment : Fragment(), VaccineAdapter.adapterClickInterface, Va
         registerEvents()
     }
 
+    //prendo i vaccini dal database
     private fun getVaccinesFromFirebase(){
-        database.addValueEventListener(object: ValueEventListener {
+        database.addValueEventListener(object: ValueEventListener { //ascolto i cambiamenti
+            //prendo ogni dato sotto al nodo del database, in questo caso "vaccines"
             override fun onDataChange(snapshot: DataSnapshot) {
                 vaccineItemList.clear()
                 for (vacSnapshot in snapshot.children){
@@ -55,19 +57,16 @@ class VaccinationFragment : Fragment(), VaccineAdapter.adapterClickInterface, Va
                     val name = stringArray[0]
                     val date = stringArray[1]
                     val recall = stringArray[2]
-                    val toDoVaccine = snapshot.key?.let { Vaccine(it, name, date, recall) } //con it, passo nel primo parametro(idNote)
-                    //val toDoDate = noteSnapshot.key?.let { Note(noteSnapshot.value.toString()) }
+                    val toDoVaccine = snapshot.key?.let { Vaccine(it, name, date, recall) } //it indica l'oggetto corrente, e diventa il valore della variabile idVaccine
                     if(toDoVaccine != null){
-                        vaccineItemList.add(toDoVaccine)
+                        vaccineItemList.add(toDoVaccine) //aggiungo l'oggetto alla lista
                         Log.d("vaccino", name+date+recall)
                     }
-                    //scaricare vaccini da firebase e memorizarli nella listview
                 }
                 vacAdapter.notifyDataSetChanged()
             }
-
+            //se non è possibile leggere i dati:
             override fun onCancelled(error: DatabaseError) {
-
             }
         })
     }
@@ -97,6 +96,7 @@ class VaccinationFragment : Fragment(), VaccineAdapter.adapterClickInterface, Va
 
     override fun onSaveVaccine(vaccine: String, tvVaccine: TextInputEditText, date1: String, date2: String) { //tvNote è l'inputEditText nel popUpNotes
 
+        //creo un nodo figlio univoco
         database.push().setValue(vaccine+","+date1+","+date2).addOnCompleteListener {
             if (it.isSuccessful){
                 Toast.makeText(context, "Nota aggiunta", Toast.LENGTH_SHORT).show()

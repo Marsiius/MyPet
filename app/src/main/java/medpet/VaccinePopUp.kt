@@ -64,22 +64,24 @@ class VaccinePopUp : DialogFragment() {
         binding.popUpNext.setOnClickListener{
             val vaccineName = binding.nameVaccine.text.toString()
 
-            if (dateFirst.before(date2)) {  //La data Selezionata è prima di quella corrente
+            //La data Selezionata è prima di quella corrente
+            if (dateFirst.before(date2)) {
                 Toast.makeText(context, "Non puoi selezionare una data già passata", Toast.LENGTH_SHORT).show()
             }
             if(dateRecall.before(dateFirst)){
                 Toast.makeText(context, "Non puoi selezionare il richiamo prima della vaccinazione", Toast.LENGTH_SHORT).show()
             }
-            else if(dateFirst.after(date2) || dateRecall.after(dateFirst) ){   // la data Selezionata è dopo quella corrente
+            // la data Selezionata è dopo quella corrente
+            else if(dateFirst.after(date2) || dateRecall.after(dateFirst) ){
                 if(vaccineName.isNotEmpty()){
-                    listener?.onSaveVaccine(vaccineName, binding.nameVaccine, dataSelezionata, recallSelezionata) //noteTask è la stringa che viene presa dal tvNote -------------------------------------------------------
+                    listener?.onSaveVaccine(vaccineName, binding.nameVaccine, dataSelezionata, recallSelezionata)
                 }else{
                     Toast.makeText(context, "Non puoi lasciare il campo vuoto", Toast.LENGTH_SHORT).show()
                 }
             }else{
                 Log.d("La Data", "Selezionata è la stessa di quella corrente")
                 if(vaccineName.isNotEmpty()){
-                    listener?.onSaveVaccine(vaccineName, binding.nameVaccine, dataSelezionata, recallSelezionata) //noteTask è la stringa che viene presa dal tvNote -------------------------------------------------------
+                    listener?.onSaveVaccine(vaccineName, binding.nameVaccine, dataSelezionata, recallSelezionata)
                 }else{
                     Toast.makeText(context, "Non puoi lasciare il campo vuoto", Toast.LENGTH_SHORT).show()
                 }

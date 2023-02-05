@@ -33,9 +33,6 @@ class StepCounterFragment : Fragment() {
     var peso = 0.00f
     private var weight = ""
     private var calPerse = 0.00f
-    val currentDate = Date()
-    val date1 = Date()
-    val mySingleton = MySingleton.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -76,7 +73,8 @@ class StepCounterFragment : Fragment() {
         Log.d("tag", calPerse.toString())
         Log.d("pesoLetto", peso.toString())
         Log.d("passiLetti", passiFatti.toString())
-        
+
+        //prendo il valore del peso del pet da firebase
         val ref = FirebaseDBHelper.dbRefPets
         ref.addValueEventListener(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -95,7 +93,6 @@ class StepCounterFragment : Fragment() {
                 }
             }
             override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
             }
         })
     }

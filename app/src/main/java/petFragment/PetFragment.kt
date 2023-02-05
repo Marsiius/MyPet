@@ -45,7 +45,6 @@ class Pet : Fragment() {
         const val GALLERY_REQUEST_CODE = 3
     }
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

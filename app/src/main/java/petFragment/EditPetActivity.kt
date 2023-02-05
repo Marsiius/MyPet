@@ -39,6 +39,7 @@ class EditPetActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_pet)
 
+        //prendo la stringa e la metto nella lista per visualizzarla nel dropDown
         val gender = resources.getStringArray(R.array.gender)
         val arrayAdapter = ArrayAdapter(this, R.layout.list_item, gender)
         et_gender.setAdapter(arrayAdapter)

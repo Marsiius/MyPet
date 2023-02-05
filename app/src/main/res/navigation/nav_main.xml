@@ -44,6 +44,9 @@
         <action
             android:id="@+id/action_petFragment_to_blankFragment"
             app:destination="@id/blankFragment" />
+        <action
+            android:id="@+id/action_petFragment_to_notesFragment"
+            app:destination="@id/notesFragment" />
     </fragment><!-- Label che cambia nella toolbar di ogni fragment -->
     <fragment
         android:id="@+id/settingsFragment"

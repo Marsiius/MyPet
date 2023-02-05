@@ -28,7 +28,7 @@ class MedFragment : Fragment() {
         }
 
         card_medicines.setOnClickListener {
-            findNavController().navigate(R.id.action_petFragment_to_medicinesFragment)
+            findNavController().navigate(R.id.action_petFragment_to_notesFragment)
         }
 
         card_visits.setOnClickListener {

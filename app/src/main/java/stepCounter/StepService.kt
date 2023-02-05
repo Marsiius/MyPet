@@ -31,10 +31,8 @@ class StepService : Service(), SensorEventListener {
     private var steps : Long = 0
     private var passi = 0
     private var passiTotali = 0
-    private var totalSteps by Delegates.notNull<Long>()
     private val CHANNEL_ID = "ForegroundService Kotlin"
     val mySingleton = MySingleton.getInstance()
-    val currentDate = Date()
 
     override fun onCreate() {
         super.onCreate()
@@ -43,9 +41,8 @@ class StepService : Service(), SensorEventListener {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         running = true
+        //sensore per contare i passi
         val stepsSensor = sensorManager?.getDefaultSensor(Sensor.TYPE_STEP_COUNTER)
-
-        Toast.makeText(applicationContext, "passi", Toast.LENGTH_SHORT).show()
 
         if (stepsSensor == null) {
             Toast.makeText(this, "Sensore non presente", Toast.LENGTH_SHORT).show()
@@ -94,7 +91,7 @@ class StepService : Service(), SensorEventListener {
         val passi = sharedPreferences!!.getInt("passi",0)
         return passi
     }
-
+    //salvo i passi nelle shared preferences
     private fun savePassi(passi : Int){
         val sharedPreferences = getSharedPreferences("trakingSteps", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
