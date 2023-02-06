@@ -36,9 +36,6 @@
             android:id="@+id/action_petFragment_to_vaccinationFragment"
             app:destination="@id/vaccinationFragment" />
         <action
-            android:id="@+id/action_petFragment_to_medicinesFragment"
-            app:destination="@id/medicinesFragment" />
-        <action
             android:id="@+id/action_petFragment_to_visitsFragment"
             app:destination="@id/visitsFragment" />
         <action
@@ -85,11 +82,6 @@
         android:name="medpet.VaccinationFragment"
         android:label="fragment_vaccination"
         tools:layout="@layout/fragment_vaccination" />
-    <fragment
-        android:id="@+id/medicinesFragment"
-        android:name="medpet.MedicinesFragment"
-        android:label="fragment_medicines"
-        tools:layout="@layout/fragment_medicines" />
     <fragment
         android:id="@+id/visitsFragment"
         android:name="medpet.VisitsFragment"

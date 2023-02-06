@@ -1,6 +1,7 @@
 package it.pdm.app
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.ContentValues.TAG
@@ -195,6 +196,7 @@ class Pet : Fragment() {
     }
 
     //metodo che scarica la foto dal DB Storage oppure, se presente sul dispositivo, viene caricata da esso
+    @SuppressLint("SuspiciousIndentation")
     private fun setPicturePet(){
         val directory = context?.getDir("imageDir", Context.MODE_PRIVATE)
         val file = File(directory, "your-image.jpg")
