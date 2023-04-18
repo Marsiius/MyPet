@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:fontFamily="@font/aclonica"
-            android:text="PET IDENTITY CARD"
+            android:text="@string/pet_identity_card"
             android:textColor="@color/Green"
             android:textSize="35sp"
             tools:ignore="TextContrastCheck" />
@@ -46,7 +46,7 @@
             android:layout_margin="8dp"
             android:background="@drawable/countor_signuppet"
             android:focusable="false"
-            android:hint="Name">
+            android:hint="@string/name">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tv_name"

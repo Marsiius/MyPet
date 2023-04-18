@@ -38,6 +38,8 @@
     <string name="notes">Notes</string>
     <string name="paw_counter">Paw counter</string>
     <string name="edit_pet">Edit pet</string>
+    <string name="pet_identity_card">PET IDENTITY CARD</string>
+    <string name="name">Name</string>
 
     <string-array name="gender">
         <item>Male</item>

@@ -1,5 +1,6 @@
 package petFragment
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -47,11 +48,13 @@ class PetIdentityCardFragment : Fragment() {
 
                         val weight = snapshot.child("weight").value.toString()
                         if(tv_weight!=null)
-                            tv_weight.setText(weight + " kg")
+                            tv_weight.setText("")
+                            tv_weight.setText("$weight kg")
 
                         val height = snapshot.child("height").value.toString()
                         if(tv_height!=null)
-                            tv_height.setText(height + " cm")
+                            tv_height.setText("")
+                            tv_height.setText("$height cm")
 
                         val chipNumber = snapshot.child("chipNumber").value.toString()
                         if(tv_chipNumber!=null)
